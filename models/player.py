@@ -1,11 +1,29 @@
-class Player:
-    def __init__(self, lastName: str,firstName: str, birthDate: str,nationalChessID: str, inTournament=None):
-        self.lastName = lastName,
-        self.firstName = firstName,
-        self.birthDate = birthDate,
+from person import Person
+
+class Player(Person):
+    def __init__(
+        self,
+        lastName: str,
+        firstName: str,
+        birthDate: str,
+        nationalChessID: str,
+        score=0,
+        inTournament=None
+    ):
+        super().__init__(firstName, lastName, birthDate)
         self.nationalChessID = nationalChessID,
         self.inTournament = inTournament
+        self.score = score
 
     def join_tournament(self, tournamentID: int):
         self.inTournament = tournamentID
         print(f"player {self.firstName} {self.lastName}' successfully registered to the tournament")
+
+    def post(self):
+        pass
+
+    def get(self, nationalChesID: str):
+        pass
+
+    def put(self, nationalChessID: str):
+        pass
