@@ -1,4 +1,5 @@
 from person import Person
+from tournament import Tournament
 
 class Player(Person):
     def __init__(
@@ -7,16 +8,20 @@ class Player(Person):
         firstName: str,
         birthDate: str,
         nationalChessID: str,
+        tournamentID="",
         score=0,
-        inTournament=None
+        inTournament=False
     ):
         super().__init__(firstName, lastName, birthDate)
         self.nationalChessID = nationalChessID,
         self.inTournament = inTournament
         self.score = score
+        self.tournamentID = tournamentID
 
-    def join_tournament(self, tournamentID: int):
-        self.inTournament = tournamentID
+    def join_tournament(self, tournament: Tournament):
+        self.inTournament = True
+        self.tournamentID = tournament.ID
+        tournament.registeredPlayers.append(self)
         print(f"player {self.firstName} {self.lastName}' successfully registered to the tournament")
 
     def post(self):

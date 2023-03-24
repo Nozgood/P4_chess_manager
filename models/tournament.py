@@ -1,9 +1,25 @@
+from turn import Turn
+from player import Player
+import uuid
+import datetime
+
 class Tournament:
-    def __init__(self, name, place, startDate, endDate, actualTurn, turns, registeredPlayers, description, numberOfTurns=4):
-        self.ID = ""  # TODO: create method to generate tournamentID
+    def __init__(
+            self,
+            name: str,
+            place: str,
+            startDate: datetime.date,
+            endDate: datetime.date,
+            turns: list[Turn],
+            registeredPlayers: list[Player],
+            description: str,
+            numberOfTurns=4,
+            actualTurn=1
+    ):
+        self.ID = uuid.uuid1()
         self.name = name
         self.place = place
-        self.startDate = startDate
+        self.startDate = startDate.today()
         self.endDate = endDate
         self.actualTurn = actualTurn
         self.turns = turns
@@ -11,16 +27,16 @@ class Tournament:
         self.description = description
         self.numberOfTurns = numberOfTurns
 
-    def generateTurn(self):
+    def generate_turn(self):
         pass
 
-    def sortPlayersByPoints(self):
+    def sort_players_by_points(self):
         pass
 
-    def associatePlayers(self):
+    def associate_players(self):
         pass
 
-    def choosePlayersWithSamePoints(self):
+    def choose_players_with_same_points(self):
         pass
 
     def post(self):
