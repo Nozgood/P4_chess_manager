@@ -1,5 +1,4 @@
-from person import Person
-from tournament import Tournament
+from models.person import Person
 
 class Player(Person):
     def __init__(
@@ -18,11 +17,14 @@ class Player(Person):
         self.score = score
         self.tournamentID = tournamentID
 
-    def join_tournament(self, tournament: Tournament):
+    def join_tournament(self, tournament):
         self.inTournament = True
         self.tournamentID = tournament.ID
         tournament.registeredPlayers.append(self)
         print(f"player {self.firstName} {self.lastName}' successfully registered to the tournament")
+
+    def display_score(self):
+        return self.score
 
     def post(self):
         pass

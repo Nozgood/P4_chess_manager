@@ -4,18 +4,18 @@ class Game:
     def __init__(
             self,
             playerOneInfo: Player,
-            playerTwoInfo:Player
+            playerTwoInfo: Player
     ):
 
         self.playerOneInfo = playerOneInfo
         self.playerTwoInfo = playerTwoInfo
 
-    def giveWinPoint(self, player: Player):
+    def give_win_point(self, player: Player):
         if self.playerOneInfo.firstName == player.firstName and self.playerOneInfo.lastName == player.lastName:
             self.playerOneInfo.score += 1
             return
         self.playerTwoInfo.score += 1
 
-    def giveEqualPoint(self):
+    def give_equal_point(self):
         self.playerOneInfo.score += 0.5
         self.playerTwoInfo.score += 0.5

@@ -1,7 +1,9 @@
-from turn import Turn
-from player import Player
+from models.turn import Turn
+from models.player import Player
+
 import uuid
-import datetime
+from datetime import datetime
+import random
 
 class Tournament:
     def __init__(
@@ -27,17 +29,44 @@ class Tournament:
         self.description = description
         self.numberOfTurns = numberOfTurns
 
-    def generate_turn(self):
-        pass
+    def register_new_player(self, player: Player):
+        for registeredPlayer in self.registeredPlayers:
+            if player.nationalChessID == registeredPlayer.nationalChessID:
+                print("This player is already registered")
+                return
+        self.registeredPlayers.append(player)
 
-    def sort_players_by_points(self):
-        pass
+    def blend_players_first_turn(self):
+        blended_players = self.registeredPlayers
+        random.shuffle(blended_players)
+        return blended_players
 
-    def associate_players(self):
-        pass
+    def create_first_turn(self):
+        if self.actualTurn != 1:
+            print("This is not the first turn")
+            return
+        blended_players = self.blend_players_first_turn()
+        turn_name = "round " + str(self.actualTurn)
+        start_date = datetime.today()
+        start_hour = datetime.time().strftime("%H:%M:%S")
+        number_of_games = len(self.registeredPlayers) / 2
+        turn = Turn(turn_name, blended_players, number_of_games, start_date, start_hour)
+        self.turns.append(turn)
+        return turn
 
-    def choose_players_with_same_points(self):
-        pass
+    def sort_players_by_score(self):
+        sorted_players = self.registeredPlayers
+        sorted_players.sort(key=Player.display_score, reverse=False)
+        return sorted_players
+
+    def create_turn(self):
+        sorted_players = self.sort_players_by_score()
+        turn_name = "round " + str(self.actualTurn)
+        start_date = datetime.today()
+        start_hour = datetime.time().strftime("%H:%M:%S")
+        turn = Turn(turn_name, sorted_players, start_date, start_hour)
+        self.turns.append(turn)
+        return turn
 
     def post(self):
         pass
