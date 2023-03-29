@@ -11,10 +11,4 @@ players = [player_one, player_two, player_three]
 
 test_tournament = Tournament("test", "valenciennes", datetime.date.today(), datetime.date.today(), [], players, "test")
 
-for player in test_tournament.registeredPlayers:
-    print("before test: " + str(player.score))
-
-test_tournament.sort_players_by_score()
-
-for player in test_tournament.registeredPlayers:
-    print("after test: " + str(player.score))
+print(len(players))

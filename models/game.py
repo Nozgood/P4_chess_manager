@@ -1,4 +1,4 @@
-from player import Player
+from models.player import Player
 
 class Game:
     def __init__(
@@ -11,7 +11,7 @@ class Game:
         self.playerTwoInfo = playerTwoInfo
 
     def give_win_point(self, player: Player):
-        if self.playerOneInfo.firstName == player.firstName and self.playerOneInfo.lastName == player.lastName:
+        if self.playerOneInfo.nationalChessID == player.nationalChessID:
             self.playerOneInfo.score += 1
             return
         self.playerTwoInfo.score += 1
