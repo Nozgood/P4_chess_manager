@@ -8,9 +8,9 @@ class Player(Person):
         birthDate: str,
         nationalChessID: str,
         tournamentID="",
+        hasPlayedWith=list[str],
         score=0,
         inTournament=False,
-        hasPlayedWith=[],
     ):
         super().__init__(firstName, lastName, birthDate)
         self.nationalChessID = nationalChessID,

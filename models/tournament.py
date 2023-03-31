@@ -62,7 +62,7 @@ class Tournament:
 
     def update_player_has_played(self, nationalChessID: str, player: Player):
         opponent = self.find_player(nationalChessID)
-        player.hasPlayedWith.append(opponent)
+        player.hasPlayedWith.append(opponent.nationalChessID)
 
     def find_player(self, nationalChessID: str):
         for player in self.registeredPlayers:
@@ -87,10 +87,29 @@ class Tournament:
         turn_name = "round " + str(self.actualTurn)
         start_date = datetime.today()
         start_hour = datetime.time().strftime("%H:%M:%S")
+        self.check_players_opponents(players)
         all_games = self.create_games(players)
         turn = Turn(turn_name, players, len(all_games), all_games, start_date, start_hour)
         self.all_turns.append(turn)
         return turn
+
+    def check_players_opponents(self, players: list[Player]):
+        if self.actualTurn == 1:
+            print("it's the first turn, we don't need to check who played against who")
+            return
+        for i in range(0, len(players), 2):
+            if i == (len(players)-2):
+                break
+            if self.find_player_opponent(players[i], players[i+1].nationalChessID):
+                players[i+1], players[i+2] = players[i+2], players[i+1]
+        return players
+
+    def find_player_opponent(self, player: Player, national_chess_id: str):
+        print("player {} nationalchess {}".format(player.nationalChessID, player.hasPlayedWith))
+        # for opponent_chess_id in player.hasPlayedWith:
+        #     if opponent_chess_id == national_chess_id:
+        #         return True
+        return True
 
     def update_actual_turn(self):
         if self.actualTurn == self.number_of_turns:
