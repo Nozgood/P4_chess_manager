@@ -1,4 +1,7 @@
 from models.person import Person
+import json
+
+filename = "./data/players/players.json"
 
 class Player(Person):
     def __init__(
@@ -19,6 +22,18 @@ class Player(Person):
         self.tournamentID = tournamentID
         self.hasPlayedWith = hasPlayedWith
 
+    def __json__(self):
+        return {
+            "lastName":self.lastName,
+            "firstName":self.firstName,
+            "birthDate":self.birthDate,
+            "nationalChessID":self.nationalChessID,
+            "tournamentID":self.tournamentID,
+            "hasPlayedWith":self.hasPlayedWith,
+            "score":self.score,
+            "inTournament":self.inTournament
+        }
+
     def join_tournament(self, tournament):
         self.inTournament = True
         self.tournamentID = tournament.ID
@@ -29,7 +44,13 @@ class Player(Person):
         return self.score
 
     def post(self):
-        pass
+        with open(filename, "r") as file:
+            datas = json.load(file)
+            print(datas)
+            json_self = self.__json__()
+        datas.append(json_self)
+        with open(filename, 'w') as file:
+            json.dump(datas, file, indent=4)
 
     def get(self, nationalChesID: str):
         pass

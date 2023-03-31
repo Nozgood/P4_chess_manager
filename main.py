@@ -4,6 +4,7 @@ from models.player import Player
 from models.tournament import Tournament
 
 player_one = Player("safi", "nowfeel", "23/02/1999", "AB123", "", "", 1, True)
+player_one.post()
 player_two = Player("dupont", "jean", "23/02/1999", "AB456", "", "", 2, True)
 player_three = Player("luc", "charles", "23/02/1999", "AB789", "", "", 3, True)
 player_four = Player("jacques", "paul", "23/02/1999", "AB101112", "", "", 4, True)

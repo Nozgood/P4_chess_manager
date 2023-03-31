@@ -1,0 +1,26 @@
+[
+    {
+        "lastName": "safi",
+        "firstName": "nowfeel",
+        "birthDate": "23/02/1999",
+        "nationalChessID": [
+            "AB123"
+        ],
+        "tournamentID": "",
+        "hasPlayedWith": "",
+        "score": 1,
+        "inTournament": true
+    },
+    {
+        "lastName": "safi",
+        "firstName": "nowfeel",
+        "birthDate": "23/02/1999",
+        "nationalChessID": [
+            "AB123"
+        ],
+        "tournamentID": "",
+        "hasPlayedWith": "",
+        "score": 1,
+        "inTournament": true
+    }
+]
