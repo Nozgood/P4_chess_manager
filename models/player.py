@@ -9,13 +9,15 @@ class Player(Person):
         nationalChessID: str,
         tournamentID="",
         score=0,
-        inTournament=False
+        inTournament=False,
+        hasPlayedWith=[],
     ):
         super().__init__(firstName, lastName, birthDate)
         self.nationalChessID = nationalChessID,
         self.inTournament = inTournament
         self.score = score
         self.tournamentID = tournamentID
+        self.hasPlayedWith = hasPlayedWith
 
     def join_tournament(self, tournament):
         self.inTournament = True

@@ -48,6 +48,36 @@ class Tournament:
         sorted_players.sort(key=Player.display_score, reverse=False)
         return sorted_players
 
+    def update_players_by_game(self, game: Game):
+        self.update_player_score_by_id(game.playerOneInfo.nationalChessID, game.playerOneInfo.score)
+        self.update_player_has_played(game.playerTwoInfo.nationalChessID, game.playerOneInfo)
+        self.update_player_score_by_id(game.playerTwoInfo.nationalChessID, game.playerTwoInfo.score)
+        self.update_player_has_played(game.playerOneInfo.nationalChessID, game.playerTwoInfo)
+
+    def update_player_score_by_id(self, nationalChessID: str, new_score: int):
+        player = self.find_player(nationalChessID)
+        player.score = new_score
+        print("we didn't find a player with this national chess ID in this tournaments")
+        return
+
+    def update_player_has_played(self, nationalChessID: str, player: Player):
+        opponent = self.find_player(nationalChessID)
+        player.hasPlayedWith.append(opponent)
+
+    def find_player(self, nationalChessID: str):
+        for player in self.registeredPlayers:
+            if player.nationalChessID == nationalChessID:
+                return player
+        print("we didn't find a player with this national chess ID in this tournaments")
+        return
+
+    def create_games(self, players: list[Player]):
+        all_games = list[Game]
+        for i in range(0, len(players), 2):
+            game = players[i:i+2]
+            all_games.append(game)
+        return all_games
+
     def create_turn(self):
         players = list[Player]
         if self.actualTurn == 1:
@@ -62,34 +92,16 @@ class Tournament:
         self.all_turns.append(turn)
         return turn
 
-    def create_games(self, players: list[Player]):
-        all_games = list[Game]
-        for i in range(0, len(players), 2):
-            game = players[i:i+2]
-            all_games.append(game)
-        return all_games
-
-    def update_players_points(self, game: Game):
-        self.find_and_update_player_by_id(game.playerOneInfo.nationalChessID, game.playerOneInfo.score)
-        self.find_and_update_player_by_id(game.playerTwoInfo.nationalChessID, game.playerTwoInfo.score)
-
-    def find_and_update_player_by_id(self, nationalChessID: str, new_score: int):
-        for player in self.registeredPlayers:
-            if player.nationalChessID == nationalChessID:
-                player.score = new_score
-        print("we didn't find a player with this national chess ID in this tournament")
-        return
-
     def update_actual_turn(self):
         if self.actualTurn == self.number_of_turns:
-            print("it was the last turn of the tournament")
+            print("it was the last turn of the tournaments")
             return
         self.actualTurn += 1
 
     def end_turn(self, turn: Turn):
         turn.end_turn()
         for game in turn.all_games:
-            self.update_players_points(game)
+            self.update_players_by_game(game)
         self.update_actual_turn()
 
     def post(self):
