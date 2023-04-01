@@ -1,26 +1,42 @@
 [
     {
-        "lastName": "safi",
-        "firstName": "nowfeel",
-        "birthDate": "23/02/1999",
-        "nationalChessID": [
-            "AB123"
-        ],
+        "lastName": "Safi",
+        "firstName": "Nowfeel",
+        "birthDate": "12/02/1999",
+        "nationalChessID": "AB123",
         "tournamentID": "",
-        "hasPlayedWith": "",
-        "score": 1,
-        "inTournament": true
+        "hasPlayedWith": [],
+        "score": 0,
+        "inTournament": false
     },
     {
-        "lastName": "safi",
-        "firstName": "nowfeel",
-        "birthDate": "23/02/1999",
-        "nationalChessID": [
-            "AB123"
-        ],
+        "lastName": "Dupont",
+        "firstName": "Jean",
+        "birthDate": "01/01/1999",
+        "nationalChessID": "AB456",
         "tournamentID": "",
-        "hasPlayedWith": "",
-        "score": 1,
-        "inTournament": true
+        "hasPlayedWith": [],
+        "score": 0,
+        "inTournament": false
+    },
+    {
+        "lastName": "Luc",
+        "firstName": "Charles",
+        "birthDate": "02/02/1999",
+        "nationalChessID": "AB789",
+        "tournamentID": "",
+        "hasPlayedWith": [],
+        "score": 0,
+        "inTournament": false
+    },
+    {
+        "lastName": "Paul",
+        "firstName": "Jacques",
+        "birthDate": "03/03/1999",
+        "nationalChessID": "AB101112",
+        "tournamentID": "",
+        "hasPlayedWith": [],
+        "score": 0,
+        "inTournament": false
     }
 ]

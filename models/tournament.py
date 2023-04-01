@@ -33,7 +33,7 @@ class Tournament:
 
     def register_new_player(self, player: Player):
         for registeredPlayer in self.registeredPlayers:
-            if player.nationalChessID == registeredPlayer.nationalChessID:
+            if player.national_chess_ID == registeredPlayer.national_chess_ID:
                 print("This player has been already registered")
                 return
         self.registeredPlayers.append(player)
@@ -49,10 +49,10 @@ class Tournament:
         return sorted_players
 
     def update_players_by_game(self, game: Game):
-        self.update_player_score_by_id(game.playerOneInfo.nationalChessID, game.playerOneInfo.score)
-        self.update_player_has_played(game.playerTwoInfo.nationalChessID, game.playerOneInfo)
-        self.update_player_score_by_id(game.playerTwoInfo.nationalChessID, game.playerTwoInfo.score)
-        self.update_player_has_played(game.playerOneInfo.nationalChessID, game.playerTwoInfo)
+        self.update_player_score_by_id(game.playerOneInfo.national_chess_ID, game.playerOneInfo.score)
+        self.update_player_has_played(game.playerTwoInfo.national_chess_ID, game.playerOneInfo)
+        self.update_player_score_by_id(game.playerTwoInfo.national_chess_ID, game.playerTwoInfo.score)
+        self.update_player_has_played(game.playerOneInfo.national_chess_ID, game.playerTwoInfo)
 
     def update_player_score_by_id(self, nationalChessID: str, new_score: int):
         player = self.find_player(nationalChessID)
@@ -62,11 +62,11 @@ class Tournament:
 
     def update_player_has_played(self, nationalChessID: str, player: Player):
         opponent = self.find_player(nationalChessID)
-        player.hasPlayedWith.append(opponent.nationalChessID)
+        player.has_played_with.append(opponent.national_chess_ID)
 
     def find_player(self, nationalChessID: str):
         for player in self.registeredPlayers:
-            if player.nationalChessID == nationalChessID:
+            if player.national_chess_ID == nationalChessID:
                 return player
         print("we didn't find a player with this national chess ID in this tournaments")
         return
@@ -100,16 +100,16 @@ class Tournament:
         for i in range(0, len(players), 2):
             if i == (len(players)-2):
                 break
-            if self.find_player_opponent(players[i], players[i+1].nationalChessID):
+            if self.find_player_opponent(players[i], players[i+1].national_chess_ID):
                 players[i+1], players[i+2] = players[i+2], players[i+1]
         return players
 
     def find_player_opponent(self, player: Player, national_chess_id: str):
-        print("player {} nationalchess {}".format(player.nationalChessID, player.hasPlayedWith))
-        # for opponent_chess_id in player.hasPlayedWith:
-        #     if opponent_chess_id == national_chess_id:
-        #         return True
-        return True
+        print("player {} nationalchess {}".format(player.national_chess_ID, player.has_played_with))
+        for opponent_chess_id in player.has_played_with:
+            if opponent_chess_id == national_chess_id:
+                return True
+        return False
 
     def update_actual_turn(self):
         if self.actualTurn == self.number_of_turns:
