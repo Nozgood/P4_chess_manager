@@ -4,24 +4,30 @@ class Game:
     """ Game represents and manage the opposition of 2 players """
     def __init__(
             self,
-            playerOneInfo: Player,
-            playerTwoInfo: Player
+            player_one_info: Player,
+            player_two_info: Player
     ):
 
-        self.playerOneInfo = playerOneInfo
-        self.playerTwoInfo = playerTwoInfo
+        self.player_one_info = player_one_info
+        self.player_two_info = player_two_info
+
+    def __json__(self):
+        return {
+            "playerOneInfo": self.player_one_info,
+            "playerTwoInfo": self.player_two_info,
+        }
 
     def give_win_point(self, player: Player):
         """Add a point to the score of the winner player
 
         :param player: take one player (the winner) as argument
         """
-        if self.playerOneInfo.national_chess_ID == player.national_chess_ID:
-            self.playerOneInfo.score += 1
+        if self.player_one_info.national_chess_ID == player.national_chess_ID:
+            self.player_one_info.score += 1
             return
-        self.playerTwoInfo.score += 1
+        self.player_two_info.score += 1
 
     def give_equal_point(self):
         """ Give 0.5 points to both players that play the game. It used when players are tied"""
-        self.playerOneInfo.score += 0.5
-        self.playerTwoInfo.score += 0.5
+        self.player_one_info.score += 0.5
+        self.player_one_info.score += 0.5

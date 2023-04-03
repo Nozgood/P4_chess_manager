@@ -7,7 +7,7 @@ from datetime import datetime
 import random
 
 class Tournament:
-    """Tournament manages all the needed informations, and the needed behaviors about a tournament"""
+    """Tournament manages all the needed information, and the needed behaviors about a tournament"""
 
     def __init__(
             self,
@@ -26,12 +26,26 @@ class Tournament:
         self.place = place
         self.start_date = start_date.today()
         self.end_date = end_date
-        self.actual_turn = actual_turn
         self.all_turns = all_turns
         self.registered_players = registered_players
         self.description = description
         self.number_of_turns = number_of_turns
         self.actual_turn = actual_turn
+
+    def __json__(self):
+        """Json formatting"""
+        return {
+            "Id": self.ID,
+            "name": self.name,
+            "place": self.place,
+            "startDate": self.start_date,
+            "endDate": self.end_date,
+            "allTurns": self.all_turns,
+            "registeredPlayers": self.registered_players,
+            "description": self.description,
+            "numberOfTurns": self.number_of_turns,
+            "actualTurn": self.actual_turn,
+        }
 
     def register_new_player(self, player: Player):
         """Registers a new player to the tournament
@@ -66,10 +80,10 @@ class Tournament:
         :param game: a game that is ENDED
         :return:
         """
-        self.update_player_score_by_id(game.playerOneInfo.national_chess_ID, game.playerOneInfo.score)
-        self.update_player_has_played(game.playerTwoInfo.national_chess_ID, game.playerOneInfo)
-        self.update_player_score_by_id(game.playerTwoInfo.national_chess_ID, game.playerTwoInfo.score)
-        self.update_player_has_played(game.playerOneInfo.national_chess_ID, game.playerTwoInfo)
+        self.update_player_score_by_id(game.player_one_info.national_chess_ID, game.player_one_info.score)
+        self.update_player_has_played(game.player_two_info.national_chess_ID, game.player_one_info)
+        self.update_player_score_by_id(game.player_two_info.national_chess_ID, game.player_two_info.score)
+        self.update_player_has_played(game.player_one_info.national_chess_ID, game.player_two_info)
 
     def update_player_score_by_id(self, nationalChessID: str, new_score: int):
         """Find a player by his chessID and update his score after a game

@@ -22,7 +22,20 @@ class Turn:
         self.end_hour = end_hour
         self.all_games = all_games
 
+    def __json__(self):
+        """Json formatting"""
+        return {
+            "name": self.name,
+            "players": self.players,
+            "number_of_games": self.number_of_games,
+            "allGames": self.all_games,
+            "startDate": self.start_date,
+            "startHour": self.start_hour,
+            "endHour": self.end_hour,
+            "endDate": self.end_date,
+        }
+
     def end_turn(self):
         """manage needed information to end a turn"""
-        self.endDate = date.today()
-        self.endHour = datetime.time().strftime("%H:%M:%S")
+        self.end_date = date.today()
+        self.end_hour = datetime.time().strftime("%H:%M:%S")
