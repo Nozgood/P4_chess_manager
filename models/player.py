@@ -4,6 +4,7 @@ import json
 filename = "./data/players/players.json"
 
 class Player(Person):
+    """Player, a legacy of Person, manage all the needed informations for a player"""
     def __init__(
         self,
         last_name: str,
@@ -23,6 +24,7 @@ class Player(Person):
         self.has_played_with = has_played_with
 
     def __json__(self):
+        """Format an object of type player in json (to be used in db)"""
         return {
             "lastName": self.last_name,
             "firstName": self.first_name,
@@ -33,12 +35,6 @@ class Player(Person):
             "score": self.score,
             "inTournament": self.in_tournament
         }
-
-    def join_tournament(self, tournament):
-        self.in_tournament = True
-        self.tournament_id = tournament.ID
-        tournament.registeredPlayers.append(self)
-        print(f"player {self.first_name} {self.last_name}' successfully registered to the tournament")
 
     def display_score(self):
         return self.score

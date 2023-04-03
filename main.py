@@ -43,19 +43,16 @@ player_four = Player(
     has_played_with=[],
     score=0,
 )
+all_players = [player_one, player_two, player_three, player_four]
 
-player_two_found = player_two.get(player_two.national_chess_ID)
-print(player_two_found)
-#
-#
-# players = [player_one, player_two, player_three, player_four]
-#
-# test_tournament = Tournament("test", "valenciennes", datetime.date.today(), datetime.date.today(), [], players, "test")
-#
-# player_one.hasPlayedWith = [player_two.nationalChessID]
-#
-# test_tournament.actualTurn = 2
-# test_tournament.check_players_opponents(test_tournament.registeredPlayers)
-#
-# for player in test_tournament.registeredPlayers:
-#     print("players after checking opponents: {}".format(player.nationalChessID))
+tournament = Tournament(
+    name="test",
+    place="Saint-Saulve",
+    start_date=datetime.date.today(),
+    end_date=datetime.date.today(),
+    registered_players=all_players,
+    all_turns=[],
+    description="test tournament"
+)
+
+print(tournament.ID)

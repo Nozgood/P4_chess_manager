@@ -23,5 +23,6 @@ class Turn:
         self.all_games = all_games
 
     def end_turn(self):
+        """manage needed information to end a turn"""
         self.endDate = date.today()
         self.endHour = datetime.time().strftime("%H:%M:%S")
