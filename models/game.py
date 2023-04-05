@@ -24,8 +24,9 @@ class Game:
         """
         if self.player_one_info.national_chess_ID == player.national_chess_ID:
             self.player_one_info.score += 1
-            return
+            return None
         self.player_two_info.score += 1
+        return None
 
     def give_equal_point(self):
         """ Give 0.5 points to both players that play the game. It used when players are tied"""

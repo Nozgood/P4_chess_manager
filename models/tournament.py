@@ -56,7 +56,7 @@ class Tournament:
         for registered_player in self.registered_players:
             if player.national_chess_ID == registered_player.national_chess_ID:
                 print("This player has been already registered")
-                return
+                return None
         player.in_tournament = True
         player.tournament_id = self.ID
         self.registered_players.append(player)
@@ -92,21 +92,26 @@ class Tournament:
         :param new_score: the updated score
         """
         player = self.find_player(nationalChessID)
+        if player is None:
+            print("we didn't find a player with this national chess ID in this tournament")
+            return None
         player.score = new_score
-        print("we didn't find a player with this national chess ID in this tournaments")
-        return
 
     def update_player_has_played(self, nationalChessID: str, player: Player):
         """Update the array of players that the player has played against
 
-        :param nationalChessID: the chessID of the player we wanna put in the array of the player
+        :param nationalChessID: the chessID of the player we want to put in the array of the player
         :param player: the target of update
         """
         opponent = self.find_player(nationalChessID)
+        if opponent is None:
+            print("we didn't find a player with this chess ID")
+            return None
         player.has_played_with.append(opponent.national_chess_ID)
 
     def find_player(self, nationalChessID: str):
-        """Find a player in the tournament entries by the chessID. It's a helper
+        """
+        Find a player in the tournament entries by the chessID. It's a helper
 
         :param nationalChessID: the chessID of the player we want to find
         """
@@ -114,7 +119,6 @@ class Tournament:
             if player.national_chess_ID == nationalChessID:
                 return player
         print("we didn't find a player with this national chess ID in this tournaments")
-        return
 
     def create_games(self, players: list[Player]):
         """ Create all the games for a turn in the tournament
@@ -128,8 +132,9 @@ class Tournament:
         return all_games
 
     def create_turn(self):
-        """Creates a new turn in the tournament, manage all the needed information"""
-        players = list[Player]
+        """
+        Creates a new turn in the tournament, manage all the needed information
+        """
         if self.actual_turn == 1:
             players = self.blend_players_first_turn()
         else:
@@ -144,14 +149,15 @@ class Tournament:
         return turn
 
     def check_players_opponents(self, players: list[Player]):
-        """Manage the case where two players have already played against
+        """
+        Manage the case where two players have already played against
 
         :param players: list of players
         :return: the list of players that have been checked
         """
         if self.actual_turn == 1:
             print("it's the first turn, we don't need to check who played against who")
-            return
+            return None
         for i in range(0, len(players), 2):
             if i == (len(players)-2):
                 break
@@ -160,7 +166,8 @@ class Tournament:
         return players
 
     def find_player_opponent(self, player: Player, national_chess_id: str):
-        """check if two players have already played against
+        """
+        check if two players have already played against
 
         :param player: the player that we want check opponent
         :param national_chess_id: the chessID of the player we want to find in the array
@@ -175,7 +182,7 @@ class Tournament:
         """Update the number of the turn we are playing"""
         if self.actual_turn == self.number_of_turns:
             print("it was the last turn of the tournaments")
-            return
+            return None
         self.actual_turn += 1
 
     def end_turn(self, turn: Turn):

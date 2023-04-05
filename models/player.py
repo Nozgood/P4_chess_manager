@@ -55,11 +55,12 @@ class Player(Person):
                 if player["nationalChessID"] == nationalChessID:
                     return player
         print("we didn't found a player with this nationalChessID in our database")
+        return None
 
     def list(self):
         with open(filename, "r") as file:
             datas = json.load(file)
-            return datas
+        return datas
 
     def put(self, nationalChessID: str):
         pass
