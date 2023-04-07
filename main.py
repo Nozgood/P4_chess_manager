@@ -55,4 +55,5 @@ tournament = Tournament(
     description="test tournament"
 )
 
-print(tournament.ID)
+tournament.name = "okoktest"
+tournament.put("65ac09b4-d54d-11ed-b8d7-acde48001122")

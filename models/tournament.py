@@ -2,9 +2,13 @@ from models.turn import Turn
 from models.game import Game
 from models.player import Player
 
+from collections import namedtuple
 import uuid
 from datetime import datetime
+import json
 import random
+
+FILENAME = "./data/tournaments/tournaments.json"
 
 class Tournament:
     """Tournament manages all the needed information, and the needed behaviors about a tournament"""
@@ -34,17 +38,23 @@ class Tournament:
 
     def __json__(self):
         """Json formatting"""
+        json_players = []
+
+        for player in self.registered_players:
+            json_player = player.__json__()
+            json_players.append(json_player)
+
         return {
-            "Id": self.ID,
+            "ID": str(self.ID),
             "name": self.name,
             "place": self.place,
-            "startDate": self.start_date,
-            "endDate": self.end_date,
-            "allTurns": self.all_turns,
-            "registeredPlayers": self.registered_players,
+            "start_date": str(self.start_date),
+            "end_date": str(self.end_date),
+            "all_turns": self.all_turns,
+            "registered_players": json_players,
             "description": self.description,
-            "numberOfTurns": self.number_of_turns,
-            "actualTurn": self.actual_turn,
+            "number_of_turns": self.number_of_turns,
+            "actual_turn": self.actual_turn,
         }
 
     def register_new_player(self, player: Player):
@@ -195,11 +205,40 @@ class Tournament:
             self.update_players_by_game(game)
         self.update_actual_turn()
 
+    def json_tournament_decoder(self, value: dict):
+        return namedtuple('Tournament', value.keys())(*value.values())
+
     def post(self):
-        pass
+        with open(FILENAME, "r") as file:
+            datas = json.load(file)
+        json_self = self.__json__()
+        datas.append(json_self)
+        with open(FILENAME, 'w') as file:
+            json.dump(datas, file, indent=4)
 
-    def get(self, tournamentID):
-        pass
+    def get(self, tournamentID: str):
+        with open(FILENAME, "r") as file:
+            datas = json.load(file, object_hook=self.json_tournament_decoder)
+            for tournament in datas:
+                if tournament.ID == tournamentID:
+                    return tournament
+        print("we didn't find a tournament with this id in our database")
+        return None
 
-    def put(self, tournamentID):
-        pass
+    def list(self):
+        with open(FILENAME, "r") as file:
+            all_tournaments = json.load(file, object_hook=self.json_tournament_decoder)
+        return all_tournaments
+
+    def put(self, tournamentID: str):
+        new_information = self.__json__()
+        old_information = self.get(tournamentID)
+        if old_information is None:
+            return None
+        all_tournaments = self.list()
+        index_of_tournament = all_tournaments.index(old_information)
+        all_tournaments[index_of_tournament] = new_information
+        with open(FILENAME, "w") as file:
+            json.dump(all_tournaments, file, indent=4)
+        print("tournament successfully updated")
+        return None

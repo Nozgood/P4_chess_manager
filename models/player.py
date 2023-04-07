@@ -1,7 +1,8 @@
 from models.person import Person
 import json
+from collections import namedtuple
 
-filename = "./data/players/players.json"
+FILENAME = "./data/players/players.json"
 
 class Player(Person):
     """Player, a legacy of Person, manage all the needed informations for a player"""
@@ -26,41 +27,53 @@ class Player(Person):
     def __json__(self):
         """Format an object of type player in json (to be used in db)"""
         return {
-            "lastName": self.last_name,
-            "firstName": self.first_name,
-            "birthDate": self.birth_date,
-            "nationalChessID": self.national_chess_ID,
-            "tournamentID": self.tournament_id,
-            "hasPlayedWith": self.has_played_with,
+            "last_name": self.last_name,
+            "first_name": self.first_name,
+            "birth_date": self.birth_date,
+            "national_chess_ID": self.national_chess_ID,
+            "tournament_ID": self.tournament_id,
+            "has_played_with": self.has_played_with,
             "score": self.score,
-            "inTournament": self.in_tournament
+            "in_tournament": self.in_tournament
         }
 
     def display_score(self):
         return self.score
 
+    def json_player_decoder(self, value: dict):
+        return namedtuple('Player', value.keys())(*value.values())
+
     def post(self):
-        with open(filename, "r") as file:
+        with open(FILENAME, "r") as file:
             datas = json.load(file)
         json_self = self.__json__()
         datas.append(json_self)
-        with open(filename, 'w') as file:
+        with open(FILENAME, 'w') as file:
             json.dump(datas, file, indent=4)
 
-    def get(self, nationalChessID: str):
-        print(nationalChessID)
-        with open(filename, "r") as file:
-            datas = json.load(file)
+    def get(self, national_chess_ID: str):
+        with open(FILENAME, "r") as file:
+            datas = json.load(file, object_hook=self.json_player_decoder)
             for player in datas:
-                if player["nationalChessID"] == nationalChessID:
+                if player.national_chess_ID == national_chess_ID:
                     return player
-        print("we didn't found a player with this nationalChessID in our database")
+        print("we didn't find a player with this nationalChessID in our database")
         return None
 
     def list(self):
-        with open(filename, "r") as file:
-            datas = json.load(file)
+        with open(FILENAME, "r") as file:
+            datas = json.load(file, object_hook=self.json_player_decoder())
         return datas
 
     def put(self, nationalChessID: str):
-        pass
+        new_information = self.__json__()
+        old_information = self.get(nationalChessID)
+        if old_information is None:
+            return None
+        all_players = self.list()
+        index_of_player = all_players.index(old_information)
+        all_players[index_of_player] = new_information
+        with open(FILENAME, "w") as file:
+            json.dump(all_players, file, indent=4)
+        print("player successfully updated")
+        return None

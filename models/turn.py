@@ -1,5 +1,10 @@
 from models.game import Game
 from datetime import datetime, date
+from collections import namedtuple
+import json
+import uuid
+
+FILENAME = "./data/turns/turns.json"
 
 class Turn:
     def __init__(
@@ -13,6 +18,7 @@ class Turn:
             end_hour=None,
             end_date=None,
     ):
+        self.ID = uuid.uuid1()
         self.name = name
         self.players = players
         self.number_of_games = number_of_games
@@ -25,17 +31,56 @@ class Turn:
     def __json__(self):
         """Json formatting"""
         return {
+            "ID": self.ID,
             "name": self.name,
             "players": self.players,
             "number_of_games": self.number_of_games,
-            "allGames": self.all_games,
-            "startDate": self.start_date,
-            "startHour": self.start_hour,
-            "endHour": self.end_hour,
-            "endDate": self.end_date,
+            "all_games": self.all_games,
+            "start_date": self.start_date,
+            "start_hour": self.start_hour,
+            "end_hour": self.end_hour,
+            "end_date": self.end_date,
         }
 
     def end_turn(self):
         """manage needed information to end a turn"""
         self.end_date = date.today()
         self.end_hour = datetime.time().strftime("%H:%M:%S")
+
+    def json_turn_decoder(self, value: dict):
+        return namedtuple('Turn', value.keys())(*value.values())
+
+    def post(self):
+        with open(FILENAME, "r") as file:
+            datas = json.load(file)
+        json_self = self.__json__()
+        datas.append(json_self)
+        with open(FILENAME, 'w') as file:
+            json.dump(datas, file, indent=4)
+
+    def get(self, turn_ID: str):
+        with open(FILENAME, "r") as file:
+            datas = json.load(file, object_hook=self.json_turn_decoder)
+            for turn in datas:
+                if turn_ID == turn_ID:
+                    return turn
+        print("we didn't find a player with this nationalChessID in our database")
+        return None
+
+    def list(self):
+        with open(FILENAME, "r") as file:
+            datas = json.load(file, object_hook=self.json_turn_decoder)
+        return datas
+
+    def put(self, turn_ID: str):
+        new_information = self.__json__()
+        old_information = self.get(turn_ID)
+        if old_information is None:
+            return None
+        all_turns = self.list()
+        index_of_player = all_turns.index(old_information)
+        all_turns[index_of_player] = new_information
+        with open(FILENAME, "w") as file:
+            json.dump(all_turns, file, indent=4)
+        print("turn successfully updated")
+        return None
