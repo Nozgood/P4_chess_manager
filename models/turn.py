@@ -12,7 +12,7 @@ class Turn:
             name: str,
             players,
             number_of_games: float,
-            all_games: [list[Game]],
+            all_games: list[Game],
             start_date: date,
             start_hour: datetime.time,
             end_hour=None,
@@ -30,14 +30,25 @@ class Turn:
 
     def __json__(self):
         """Json formatting"""
+
+        json_players = []
+        json_games = []
+
+        for player in self.players:
+            json_player = player.__json__()
+            json_players.append(json_player)
+
+        for game in self.all_games:
+            json_game = game.__json__()
+            json_games.append(json_game)
         return {
-            "ID": self.ID,
+            "ID": str(self.ID),
             "name": self.name,
-            "players": self.players,
+            "players": json_players,
             "number_of_games": self.number_of_games,
-            "all_games": self.all_games,
-            "start_date": self.start_date,
-            "start_hour": self.start_hour,
+            "all_games": json_games,
+            "start_date": str(self.start_date),
+            "start_hour": str(self.start_hour),
             "end_hour": self.end_hour,
             "end_date": self.end_date,
         }

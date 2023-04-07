@@ -135,9 +135,9 @@ class Tournament:
 
         :param players: a list of sorted or blended players
         """
-        all_games = list[Game]
+        all_games = []
         for i in range(0, len(players), 2):
-            game = players[i:i+2]
+            game = Game(players[i], players[i+1])
             all_games.append(game)
         return all_games
 
@@ -151,7 +151,7 @@ class Tournament:
             players = self.sort_players_by_score()
         turn_name = "round " + str(self.actual_turn)
         start_date = datetime.today()
-        start_hour = datetime.time().strftime("%H:%M:%S")
+        start_hour = datetime.now().strftime("%H:%M:%S")
         self.check_players_opponents(players)
         all_games = self.create_games(players)
         turn = Turn(turn_name, players, len(all_games), all_games, start_date, start_hour)

@@ -1,3 +1,99 @@
 [
-
+    {
+        "ID": "f8e4d1f0-d554-11ed-83e9-acde48001122",
+        "name": "round 1",
+        "players": [
+            {
+                "last_name": "Safi",
+                "first_name": "Nowfeel",
+                "birth_date": "12/02/1999",
+                "national_chess_ID": "AB123",
+                "tournament_ID": "",
+                "has_played_with": [],
+                "score": 0,
+                "in_tournament": false
+            },
+            {
+                "last_name": "Paul",
+                "first_name": "Jacques",
+                "birth_date": "03/03/1999",
+                "national_chess_ID": "AB101112",
+                "tournament_ID": "",
+                "has_played_with": [],
+                "score": 0,
+                "in_tournament": false
+            },
+            {
+                "last_name": "Dupont",
+                "first_name": "Jean",
+                "birth_date": "01/01/1999",
+                "national_chess_ID": "AB456",
+                "tournament_ID": "",
+                "has_played_with": [],
+                "score": 0,
+                "in_tournament": false
+            },
+            {
+                "last_name": "Luc",
+                "first_name": "Charles",
+                "birth_date": "02/02/1999",
+                "national_chess_ID": "AB789",
+                "tournament_ID": "",
+                "has_played_with": [],
+                "score": 0,
+                "in_tournament": false
+            }
+        ],
+        "number_of_games": 2,
+        "all_games": [
+            {
+                "player_one_info": {
+                    "last_name": "Safi",
+                    "first_name": "Nowfeel",
+                    "birth_date": "12/02/1999",
+                    "national_chess_ID": "AB123",
+                    "tournament_ID": "",
+                    "has_played_with": [],
+                    "score": 0,
+                    "in_tournament": false
+                },
+                "player_two_info": {
+                    "last_name": "Paul",
+                    "first_name": "Jacques",
+                    "birth_date": "03/03/1999",
+                    "national_chess_ID": "AB101112",
+                    "tournament_ID": "",
+                    "has_played_with": [],
+                    "score": 0,
+                    "in_tournament": false
+                }
+            },
+            {
+                "player_one_info": {
+                    "last_name": "Dupont",
+                    "first_name": "Jean",
+                    "birth_date": "01/01/1999",
+                    "national_chess_ID": "AB456",
+                    "tournament_ID": "",
+                    "has_played_with": [],
+                    "score": 0,
+                    "in_tournament": false
+                },
+                "player_two_info": {
+                    "last_name": "Luc",
+                    "first_name": "Charles",
+                    "birth_date": "02/02/1999",
+                    "national_chess_ID": "AB789",
+                    "tournament_ID": "",
+                    "has_played_with": [],
+                    "score": 0,
+                    "in_tournament": false
+                }
+            }
+        ],
+        "start_date": "2023-04-07 17:00:44.806740",
+        "start_hour": "17:00:44",
+        "end_hour": null,
+        "end_date": null
+    }
 ]

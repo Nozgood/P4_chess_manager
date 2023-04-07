@@ -55,5 +55,7 @@ tournament = Tournament(
     description="test tournament"
 )
 
-tournament.name = "okoktest"
-tournament.put("65ac09b4-d54d-11ed-b8d7-acde48001122")
+new_turn = tournament.create_turn()
+
+
+new_turn.post()

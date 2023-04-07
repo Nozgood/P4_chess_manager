@@ -1,3 +1,42 @@
 [
-
+    {
+        "last_name": "Safi",
+        "first_name": "Nowfeel",
+        "birth_date": "12/02/1999",
+        "national_chess_ID": "AB123",
+        "tournament_ID": "",
+        "has_played_with": [],
+        "score": 0,
+        "in_tournament": false
+    },
+    {
+        "last_name": "Dupont",
+        "first_name": "Jean",
+        "birth_date": "01/01/1999",
+        "national_chess_ID": "AB456",
+        "tournament_ID": "",
+        "has_played_with": [],
+        "score": 0,
+        "in_tournament": false
+    },
+    {
+        "last_name": "Luc",
+        "first_name": "Charles",
+        "birth_date": "02/02/1999",
+        "national_chess_ID": "AB789",
+        "tournament_ID": "",
+        "has_played_with": [],
+        "score": 0,
+        "in_tournament": false
+    },
+    {
+        "last_name": "Paul",
+        "first_name": "Jacques",
+        "birth_date": "03/03/1999",
+        "national_chess_ID": "AB101112",
+        "tournament_ID": "",
+        "has_played_with": [],
+        "score": 0,
+        "in_tournament": false
+    }
 ]

@@ -12,9 +12,11 @@ class Game:
         self.player_two_info = player_two_info
 
     def __json__(self):
+        json_player_one = self.player_one_info.__json__()
+        json_player_two = self.player_two_info.__json__()
         return {
-            "playerOneInfo": self.player_one_info,
-            "playerTwoInfo": self.player_two_info,
+            "player_one_info": json_player_one,
+            "player_two_info": json_player_two,
         }
 
     def give_win_point(self, player: Player):
