@@ -2,6 +2,8 @@ import datetime
 
 from models.player import Player
 from models.tournament import Tournament
+from views.view import View
+from controllers.controller import Controller
 
 player_one = Player(
     last_name='Safi',
@@ -55,7 +57,7 @@ tournament = Tournament(
     description="test tournament"
 )
 
-new_turn = tournament.create_turn()
+view = View()
+controller = Controller(view)
 
-
-new_turn.post()
+controller.run()

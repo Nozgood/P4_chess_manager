@@ -19,9 +19,9 @@ class Tournament:
             place: str,
             start_date: datetime.date,
             end_date: datetime.date,
-            all_turns: list[Turn],
             registered_players: list[Player],
             description: str,
+            all_turns=None,
             number_of_turns=4,
             actual_turn=1
     ):
@@ -205,7 +205,8 @@ class Tournament:
             self.update_players_by_game(game)
         self.update_actual_turn()
 
-    def json_tournament_decoder(self, value: dict):
+    @staticmethod
+    def json_tournament_decoder(value: dict):
         return namedtuple('Tournament', value.keys())(*value.values())
 
     def post(self):
@@ -215,10 +216,12 @@ class Tournament:
         datas.append(json_self)
         with open(FILENAME, 'w') as file:
             json.dump(datas, file, indent=4)
+        print(f"tournament created, id of the tournament: {self.ID}")
 
-    def get(self, tournamentID: str):
+    @staticmethod
+    def get(tournamentID: str):
         with open(FILENAME, "r") as file:
-            datas = json.load(file, object_hook=self.json_tournament_decoder)
+            datas = json.load(file, object_hook=Tournament.json_tournament_decoder)
             for tournament in datas:
                 if tournament.ID == tournamentID:
                     return tournament

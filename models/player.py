@@ -40,7 +40,8 @@ class Player(Person):
     def display_score(self):
         return self.score
 
-    def json_player_decoder(self, value: dict):
+    @staticmethod
+    def json_player_decoder(value: dict):
         return namedtuple('Player', value.keys())(*value.values())
 
     def post(self):
@@ -51,9 +52,10 @@ class Player(Person):
         with open(FILENAME, 'w') as file:
             json.dump(datas, file, indent=4)
 
-    def get(self, national_chess_ID: str):
+    @staticmethod
+    def get(national_chess_ID: str):
         with open(FILENAME, "r") as file:
-            datas = json.load(file, object_hook=self.json_player_decoder)
+            datas = json.load(file, object_hook=Player.json_player_decoder)
             for player in datas:
                 if player.national_chess_ID == national_chess_ID:
                     return player
@@ -62,7 +64,7 @@ class Player(Person):
 
     def list(self):
         with open(FILENAME, "r") as file:
-            datas = json.load(file, object_hook=self.json_player_decoder())
+            datas = json.load(file, object_hook=Player.json_player_decoder())
         return datas
 
     def put(self, nationalChessID: str):
