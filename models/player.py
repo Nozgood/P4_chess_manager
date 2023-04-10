@@ -5,17 +5,17 @@ from collections import namedtuple
 FILENAME = "./data/players/players.json"
 
 class Player(Person):
-    """Player, a legacy of Person, manage all the needed informations for a player"""
+    """Player, a legacy of Person, manage all the needed information for a player"""
     def __init__(
         self,
         last_name: str,
         first_name: str,
         birth_date: str,
         national_chess_id: str,
+        in_tournament=False,
         tournament_id="",
         has_played_with=list[str],
         score=0,
-        in_tournament=False,
     ):
         super().__init__(first_name, last_name, birth_date)
         self.national_chess_ID = national_chess_id
@@ -29,7 +29,7 @@ class Player(Person):
         return {
             "last_name": self.last_name,
             "first_name": self.first_name,
-            "birth_date": self.birth_date,
+            "birth_date": str(self.birth_date),
             "national_chess_ID": self.national_chess_ID,
             "tournament_ID": self.tournament_id,
             "has_played_with": self.has_played_with,
@@ -51,6 +51,7 @@ class Player(Person):
         datas.append(json_self)
         with open(FILENAME, 'w') as file:
             json.dump(datas, file, indent=4)
+        print("player successfully registered in the database")
 
     @staticmethod
     def get(national_chess_ID: str):

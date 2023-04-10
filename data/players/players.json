@@ -1,3 +1,12 @@
 [
-
+    {
+        "last_name": "Safi",
+        "first_name": "Nowfeel",
+        "birth_date": "1999-02-23",
+        "national_chess_ID": "ab12345",
+        "tournament_ID": "",
+        "has_played_with": [],
+        "score": 0,
+        "in_tournament": false
+    }
 ]

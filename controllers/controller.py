@@ -8,18 +8,15 @@ class Controller:
 
     def run(self):
         """
-        run manages the creation and the running of a tournament, this is the main function of the controller
+        run manages the logical running of the main menu of the program, it returns error if there is during the
+        execution of the program
         """
-    # tournament = view.create_tournament() => c'est également ici que l'on va inscrire les joueurs (ajouter une méthode à la fin pour inscrire un joueur en retar)
-    # envoyer le tournoi en DB
-    # créer le premier tour du tournoi
-    # envoyer le tour en DB
-    # créer les matchs du premier tour
-    #
-        tournament_to_create = self.create_tournament()
-        tournament_to_create.post()
+        menu_selection = self.view.input_main_menu()
+        if menu_selection == 1:
+            self.register_player_in_db()
+        if menu_selection == 2:
+            self.create_tournament()
 
-    # TODO: MANAGE THE REGISTERING PLAYERS PART
     def create_tournament(self):
         tournament_name = self.view.input_tournament_name()
         tournament_place = self.view.input_tournament_place()
@@ -35,9 +32,25 @@ class Controller:
             description=tournament_description,
             registered_players=tournament_registered_players,
         )
+        tournament.post()
         return tournament
 
     def get_player(self):
-        player_id = self.view.input_get_player_id()
+        player_id = self.view.input_tournament_register_players()
         player_to_get = Player.get(player_id)
         return player_to_get
+
+    def register_player_in_db(self):
+        player_chess_id = self.view.input_player_chess_id()
+        player_first_name = self.view.input_player_first_name()
+        player_last_name = self.view.input_player_last_name()
+        player_birth_date = self.view.input_player_birth_date()
+        player_to_save = Player(
+            first_name=player_first_name,
+            last_name=player_last_name,
+            national_chess_id=player_chess_id,
+            birth_date=player_birth_date,
+            has_played_with=[],
+        )
+        player_to_save.post()
+        return player_to_save
