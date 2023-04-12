@@ -1,0 +1,14 @@
+[
+    {
+        "ID": "cb2b26b2-d629-11ed-a982-367dda2e2d91",
+        "name": "test",
+        "place": "saint-saulve",
+        "start_date": "2023-04-08",
+        "end_date": "2023-02-12",
+        "all_turns": null,
+        "registered_players": [],
+        "description": "its a test",
+        "number_of_turns": 4,
+        "actual_turn": 1
+    }
+]
