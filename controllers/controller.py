@@ -23,12 +23,19 @@ class Controller:
                 running = False
 
     def create_tournament(self):
+        """
+        create_tournament manage all the necessaries information to create a tournament and store it in database
+        :return: the new instance of tournament that has been created
+        """
+        tournament_number_of_players = self.view.input_tournament_number_of_players()
+        tournament_registered_players = self.register_players_in_tournament(tournament_number_of_players)
+        json_players = Tournament.json_players(tournament_registered_players)
+        tournament_number_of_turns = self.view.input_tournament_number_of_turns()
         tournament_name = self.view.input_tournament_name()
         tournament_place = self.view.input_tournament_place()
         tournament_start_date = self.view.input_tournament_start_date()
         tournament_end_date = self.view.input_tournament_end_date()
         tournament_description = self.view.input_tournament_description()
-        tournament_registered_players = []
         tournament = Tournament(
             name=tournament_name,
             place=tournament_place,
@@ -36,14 +43,31 @@ class Controller:
             end_date=tournament_end_date,
             description=tournament_description,
             registered_players=tournament_registered_players,
+            number_of_turns=tournament_number_of_turns
         )
-        tournament.post()
+        tournament.post(json_players)
         return tournament
 
+    def register_players_in_tournament(self, number_of_players: int):
+        slice_of_players = [Player]
+        count = 1
+        while count <= number_of_players:
+            player = self.get_player()
+            slice_of_players.append(player)
+            count += 1
+        return slice_of_players
+
     def get_player(self):
-        player_id = self.view.input_tournament_register_players()
+        player_id = self.view.input_tournament_register_player()
         player_to_get = Player.get(player_id)
-        return player_to_get
+        player = Player(
+            last_name=player_to_get.last_name,
+            first_name=player_to_get.first_name,
+            birth_date= player_to_get.birth_date,
+            national_chess_id=player_to_get.national_chess_ID,
+        )
+        print(f"player getted: {player_to_get.national_chess_ID}")
+        return player
 
     def register_player_in_db(self):
         player_chess_id = self.view.input_player_chess_id()

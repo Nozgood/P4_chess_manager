@@ -36,14 +36,8 @@ class Tournament:
         self.number_of_turns = number_of_turns
         self.actual_turn = actual_turn
 
-    def __json__(self):
+    def __json__(self, json_players):
         """Json formatting"""
-        json_players = []
-
-        for player in self.registered_players:
-            json_player = player.__json__()
-            json_players.append(json_player)
-
         return {
             "ID": str(self.ID),
             "name": self.name,
@@ -209,10 +203,18 @@ class Tournament:
     def json_tournament_decoder(value: dict):
         return namedtuple('Tournament', value.keys())(*value.values())
 
-    def post(self):
+    @staticmethod
+    def json_players(players: list[Player]):
+        json_players = []
+        for player in players:
+            json_player = player.__json__()
+            json_players.append(json_player)
+        return json_players
+
+    def post(self, json_players):
         with open(FILENAME, "r") as file:
             datas = json.load(file)
-        json_self = self.__json__()
+        json_self = self.__json__(json_players)
         datas.append(json_self)
         with open(FILENAME, 'w') as file:
             json.dump(datas, file, indent=4)

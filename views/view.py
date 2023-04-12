@@ -1,6 +1,8 @@
 from models.tournament import Tournament
 import datetime
 
+ERR_NOT_NUMERIC_VALUE = "please fill this field in digits"
+
 class View:
     def __init__(self):
         return
@@ -59,11 +61,32 @@ class View:
         return tournament_description
 
     @staticmethod
-    def input_tournament_register_players():
+    def input_tournament_register_player():
         player_to_register_id = input(
             "please enter the national chess ID of the player you want to register for the tournament: \n"
         )
         return player_to_register_id
+
+    @staticmethod
+    def input_tournament_number_of_turns():
+        number_of_turns = None
+        while number_of_turns is None:
+            try:
+                number_of_turns = int(input("how much turns this tournament will count ? (in digits) \n"))
+                return number_of_turns
+            except ValueError:
+                print(ERR_NOT_NUMERIC_VALUE)
+
+    @staticmethod
+    def input_tournament_number_of_players():
+        number_of_players = None
+        while number_of_players is None:
+            try:
+                number_of_players = int(
+                    input("please enter how much players will participate to the tournament(in digits) \n"))
+                return number_of_players
+            except ValueError:
+                print(ERR_NOT_NUMERIC_VALUE)
 
     @staticmethod
     def input_player_chess_id():
