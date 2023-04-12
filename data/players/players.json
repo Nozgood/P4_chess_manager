@@ -8,5 +8,25 @@
         "has_played_with": [],
         "score": 0,
         "in_tournament": false
+    },
+    {
+        "last_name": "Safi",
+        "first_name": "Nowfeel",
+        "birth_date": "1999-02-23",
+        "national_chess_ID": "AB23456",
+        "tournament_ID": "",
+        "has_played_with": [],
+        "score": 0,
+        "in_tournament": false
+    },
+    {
+        "last_name": "test",
+        "first_name": "test",
+        "birth_date": "1999-02-02",
+        "national_chess_ID": "ab89762",
+        "tournament_ID": "",
+        "has_played_with": [],
+        "score": 0,
+        "in_tournament": false
     }
 ]

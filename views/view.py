@@ -10,8 +10,8 @@ class View:
         digit_menu_selection = ""
         print("\n \n --- Chess Manager --- \n\n")
         print("(1) Register a player in the database")
-        print("(2) Create a new tournament (turns and players managemet in progress ...")
-        print("\n\n")
+        print("(2) Create a new tournament (turns and players management in progress ...) ")
+        print("(3) Exit the application \n")
         try:
             digit_menu_selection = int(
                 input("please insert the digit corresponding to the action you want to make: \n"))

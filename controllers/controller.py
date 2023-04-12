@@ -7,15 +7,20 @@ class Controller:
         self.view = view
 
     def run(self):
+        running = True
         """
         run manages the logical running of the main menu of the program, it returns error if there is during the
         execution of the program
         """
-        menu_selection = self.view.input_main_menu()
-        if menu_selection == 1:
-            self.register_player_in_db()
-        if menu_selection == 2:
-            self.create_tournament()
+        while running:
+            menu_selection = self.view.input_main_menu()
+            if menu_selection == 1:
+                self.register_player_in_db()
+            if menu_selection == 2:
+                self.create_tournament()
+            if menu_selection == 3:
+                print("See You ASAP...")
+                running = False
 
     def create_tournament(self):
         tournament_name = self.view.input_tournament_name()
