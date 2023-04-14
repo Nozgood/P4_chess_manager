@@ -36,7 +36,7 @@ class Tournament:
         self.number_of_turns = number_of_turns
         self.actual_turn = actual_turn
 
-    def __json__(self, json_players):
+    def __json__(self, json_players, json_turns):
         """Json formatting"""
         return {
             "ID": str(self.ID),
@@ -44,7 +44,7 @@ class Tournament:
             "place": self.place,
             "start_date": str(self.start_date),
             "end_date": str(self.end_date),
-            "all_turns": self.all_turns,
+            "all_turns": json_turns,
             "registered_players": json_players,
             "description": self.description,
             "number_of_turns": self.number_of_turns,
@@ -212,11 +212,10 @@ class Tournament:
             json_players.append(json_player)
         return json_players
 
-    def post(self, json_players):
-        print(json_players)
+    def post(self, json_players, json_turns):
         with open(FILENAME, "r") as file:
             datas = json.load(file)
-        json_self = self.__json__(json_players)
+        json_self = self.__json__(json_players, json_turns)
         datas.append(json_self)
         with open(FILENAME, 'w') as file:
             json.dump(datas, file, indent=4)

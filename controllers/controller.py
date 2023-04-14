@@ -1,6 +1,8 @@
 from models.tournament import Tournament
+from models.turn import Turn
 from models.player import Player
 from views.view import View
+
 
 class Controller:
     def __init__(self, view: View):
@@ -52,7 +54,11 @@ class Controller:
         )
         tournament_first_turn = tournament.create_turn()
         tournament.all_turns.append(tournament_first_turn)
-        tournament.post(json_players)
+        json_turns = []
+        for turn in tournament.all_turns:
+            json_turn = self.json_turn(turn)
+            json_turns.append(json_turn)
+        tournament.post(json_players, json_turns)
         return tournament
 
     def register_players_in_tournament(self, number_of_players: int):
@@ -80,6 +86,10 @@ class Controller:
     def json_player(self, player: Player):
         json_player = player.__json__()
         return json_player
+
+    def json_turn(self, turn: Turn):
+        json_turn = turn.__json__()
+        return json_turn
 
     def register_player_in_db(self):
         player_chess_id = self.view.input_player_chess_id()
