@@ -1,3 +1,55 @@
 [
-
-]
+    {
+        "ID": "0e3a98cc-da83-11ed-9a3f-acde48001122",
+        "name": "test",
+        "place": "test",
+        "start_date": "2023-04-14",
+        "end_date": "1999-02-23",
+        "all_turns": null,
+        "registered_players": [
+            {
+                "last_name": "Safi",
+                "first_name": "Nowfeel",
+                "birth_date": "1999-02-23",
+                "national_chess_ID": "ab12345",
+                "tournament_ID": "",
+                "has_played_with": [],
+                "score": 0,
+                "in_tournament": false
+            }
+        ],
+        "description": "test",
+        "number_of_turns": 1,
+        "actual_turn": 1
+    },
+    {
+        "ID": "07a0f4a0-da85-11ed-b17d-acde48001122",
+        "name": "test",
+        "place": "test",
+        "start_date": "2023-04-14",
+        "end_date": "1999-02-23",
+        "all_turns": null,
+        "registered_players": [
+            {
+                "last_name": "Safi",
+                "first_name": "Nowfeel",
+                "birth_date": "1999-02-23",
+                "national_chess_ID": "ab12345",
+                "tournament_ID": "",
+                "has_played_with": [],
+                "score": 0,
+                "in_tournament": false
+            }
+        ],
+        "description": "test",
+        "number_of_turns": 1,
+        "actual_turn": 1
+    },
+    {
+        "ID": "0515379a-da86-11ed-a17c-acde48001122",
+        "name": "test",
+        "place": "test",
+        "start_date": "2023-04-14",
+        "end_date": "1999-02-23",
+        "all_turns": [
+            

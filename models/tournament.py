@@ -21,7 +21,7 @@ class Tournament:
             end_date: datetime.date,
             registered_players: list[Player],
             description: str,
-            all_turns=None,
+            all_turns: list[Turn],
             number_of_turns=4,
             actual_turn=1
     ):
@@ -207,11 +207,13 @@ class Tournament:
     def json_players(players: list[Player]):
         json_players = []
         for player in players:
+            print(type(player.national_chess_ID))
             json_player = player.__json__()
             json_players.append(json_player)
         return json_players
 
     def post(self, json_players):
+        print(json_players)
         with open(FILENAME, "r") as file:
             datas = json.load(file)
         json_self = self.__json__(json_players)

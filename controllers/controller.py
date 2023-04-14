@@ -29,6 +29,10 @@ class Controller:
         """
         tournament_number_of_players = self.view.input_tournament_number_of_players()
         tournament_registered_players = self.register_players_in_tournament(tournament_number_of_players)
+        json_players = []
+        for player in tournament_registered_players:
+            json_player = self.json_player(player)
+            json_players.append(json_player)
         json_players = Tournament.json_players(tournament_registered_players)
         tournament_number_of_turns = self.view.input_tournament_number_of_turns()
         tournament_name = self.view.input_tournament_name()
@@ -43,13 +47,16 @@ class Controller:
             end_date=tournament_end_date,
             description=tournament_description,
             registered_players=tournament_registered_players,
-            number_of_turns=tournament_number_of_turns
+            number_of_turns=tournament_number_of_turns,
+            all_turns=[],
         )
+        tournament_first_turn = tournament.create_turn()
+        tournament.all_turns.append(tournament_first_turn)
         tournament.post(json_players)
         return tournament
 
     def register_players_in_tournament(self, number_of_players: int):
-        slice_of_players = [Player]
+        slice_of_players = []
         count = 1
         while count <= number_of_players:
             player = self.get_player()
@@ -65,9 +72,14 @@ class Controller:
             first_name=player_to_get.first_name,
             birth_date= player_to_get.birth_date,
             national_chess_id=player_to_get.national_chess_ID,
+            has_played_with=[],
         )
-        print(f"player getted: {player_to_get.national_chess_ID}")
+        print(f"player got: {player_to_get.national_chess_ID}")
         return player
+
+    def json_player(self, player: Player):
+        json_player = player.__json__()
+        return json_player
 
     def register_player_in_db(self):
         player_chess_id = self.view.input_player_chess_id()
