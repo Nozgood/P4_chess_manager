@@ -1,20 +1,20 @@
 [
     {
-        "ID": "6c5dab20-db6d-11ed-9d06-acde48001122",
+        "ID": "698e347a-de77-11ed-a869-acde48001122",
         "name": "test",
         "place": "test",
-        "start_date": "2023-04-15",
-        "end_date": "1999-02-23",
+        "start_date": "2023-04-19",
+        "end_date": "2023-04-19",
         "all_turns": [
             {
-                "ID": "6c5e06c4-db6d-11ed-9d06-acde48001122",
+                "ID": "698e3c2c-de77-11ed-a869-acde48001122",
                 "name": "round 1",
                 "players": [
                     {
-                        "last_name": "paul",
-                        "first_name": "luc",
+                        "last_name": "safi",
+                        "first_name": "nowfeel",
                         "birth_date": "1999-02-23",
-                        "national_chess_ID": "ab23456",
+                        "national_chess_ID": "b",
                         "tournament_ID": "",
                         "has_played_with": [],
                         "score": 0,
@@ -24,7 +24,7 @@
                         "last_name": "safi",
                         "first_name": "nowfeel",
                         "birth_date": "1999-02-23",
-                        "national_chess_ID": "ab12345",
+                        "national_chess_ID": "a",
                         "tournament_ID": "",
                         "has_played_with": [],
                         "score": 0,
@@ -35,84 +35,35 @@
                 "all_games": [
                     {
                         "player_one_info": {
-                            "last_name": "paul",
-                            "first_name": "luc",
-                            "birth_date": "1999-02-23",
-                            "national_chess_ID": "ab23456",
-                            "tournament_ID": "",
-                            "has_played_with": [],
-                            "score": 0,
-                            "in_tournament": false
+                            "player_info": {
+                                "last_name": "safi",
+                                "first_name": "nowfeel",
+                                "birth_date": "1999-02-23",
+                                "national_chess_ID": "b",
+                                "tournament_ID": "",
+                                "has_played_with": [],
+                                "score": 0,
+                                "in_tournament": false
+                            },
+                            "score": 0
                         },
                         "player_two_info": {
-                            "last_name": "safi",
-                            "first_name": "nowfeel",
-                            "birth_date": "1999-02-23",
-                            "national_chess_ID": "ab12345",
-                            "tournament_ID": "",
-                            "has_played_with": [],
-                            "score": 0,
-                            "in_tournament": false
+                            "player_info": {
+                                "last_name": "safi",
+                                "first_name": "nowfeel",
+                                "birth_date": "1999-02-23",
+                                "national_chess_ID": "a",
+                                "tournament_ID": "",
+                                "has_played_with": [],
+                                "score": 0,
+                                "in_tournament": false
+                            },
+                            "score": 0
                         }
                     }
                 ],
-                "start_date": "2023-04-15 11:10:53.435099",
-                "start_hour": "11:10:53",
-                "end_hour": null,
-                "end_date": null
-            },
-            {
-                "ID": "6c5e06c4-db6d-11ed-9d06-acde48001122",
-                "name": "round 1",
-                "players": [
-                    {
-                        "last_name": "paul",
-                        "first_name": "luc",
-                        "birth_date": "1999-02-23",
-                        "national_chess_ID": "ab23456",
-                        "tournament_ID": "",
-                        "has_played_with": [],
-                        "score": 0,
-                        "in_tournament": false
-                    },
-                    {
-                        "last_name": "safi",
-                        "first_name": "nowfeel",
-                        "birth_date": "1999-02-23",
-                        "national_chess_ID": "ab12345",
-                        "tournament_ID": "",
-                        "has_played_with": [],
-                        "score": 0,
-                        "in_tournament": false
-                    }
-                ],
-                "number_of_games": 1,
-                "all_games": [
-                    {
-                        "player_one_info": {
-                            "last_name": "paul",
-                            "first_name": "luc",
-                            "birth_date": "1999-02-23",
-                            "national_chess_ID": "ab23456",
-                            "tournament_ID": "",
-                            "has_played_with": [],
-                            "score": 0,
-                            "in_tournament": false
-                        },
-                        "player_two_info": {
-                            "last_name": "safi",
-                            "first_name": "nowfeel",
-                            "birth_date": "1999-02-23",
-                            "national_chess_ID": "ab12345",
-                            "tournament_ID": "",
-                            "has_played_with": [],
-                            "score": 0,
-                            "in_tournament": false
-                        }
-                    }
-                ],
-                "start_date": "2023-04-15 11:10:53.435099",
-                "start_hour": "11:10:53",
+                "start_date": "2023-04-19 07:59:57.175595",
+                "start_hour": "07:59:57",
                 "end_hour": null,
                 "end_date": null
             }
@@ -122,17 +73,17 @@
                 "last_name": "safi",
                 "first_name": "nowfeel",
                 "birth_date": "1999-02-23",
-                "national_chess_ID": "ab12345",
+                "national_chess_ID": "a",
                 "tournament_ID": "",
                 "has_played_with": [],
                 "score": 0,
                 "in_tournament": false
             },
             {
-                "last_name": "paul",
-                "first_name": "luc",
+                "last_name": "safi",
+                "first_name": "nowfeel",
                 "birth_date": "1999-02-23",
-                "national_chess_ID": "ab23456",
+                "national_chess_ID": "b",
                 "tournament_ID": "",
                 "has_played_with": [],
                 "score": 0,

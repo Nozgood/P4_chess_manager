@@ -13,7 +13,8 @@ class View:
         print("\n \n --- Chess Manager --- \n\n")
         print("(1) Register a player in the database")
         print("(2) Create a new tournament (turns and players management in progress ...) ")
-        print("(3) Exit the application \n")
+        print("(3) Resume a tournament \n")
+        print("(4) Exit the application \n")
         try:
             digit_menu_selection = int(
                 input("please insert the digit corresponding to the action you want to make: \n"))
@@ -166,5 +167,25 @@ class View:
             print("you must enter the date in digits please")
         birth_date = datetime.date(birth_year, birth_month, birth_day)
         return birth_date
+
+    @staticmethod
+    def input_get_tournament_id():
+        tournament_id = input("please fill the id of the tournament you want to resume: \n")
+        return tournament_id
+
+    @staticmethod
+    def display_tournaments_turn(turn):
+        print(f"\n current turn: {turn.name}\n")
+
+    @staticmethod
+    def display_tournament_match(game):
+        print(
+            f"game info:\n player one: {game.player_one_info.player.first_name + game.player_one_info.player.last_name} \n"
+            f"player two:  {game.player_two_info.player.first_name + game.player_two_info.player.last_name} "
+        )
+
+    @staticmethod
+    def input_game_winner(game):
+        pass
 
 

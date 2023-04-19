@@ -1,3 +1,5 @@
+import datetime
+
 from models.tournament import Tournament
 from models.turn import Turn
 from models.player import Player
@@ -21,6 +23,8 @@ class Controller:
             if menu_selection == 2:
                 self.create_tournament()
             if menu_selection == 3:
+                self.resume_tournament()
+            if menu_selection == 4:
                 print("See You ASAP...")
                 running = False
 
@@ -29,12 +33,14 @@ class Controller:
         create_tournament manage all the necessaries information to create a tournament and store it in database
         :return: the new instance of tournament that has been created
         """
+        """
         tournament_number_of_players = self.view.input_tournament_number_of_players()
         tournament_registered_players = self.register_players_in_tournament(tournament_number_of_players)
         json_players = []
         for player in tournament_registered_players:
             json_player = self.json_player(player)
             json_players.append(json_player)
+            
         json_players = Tournament.json_players(tournament_registered_players)
         tournament_number_of_turns = self.view.input_tournament_number_of_turns()
         tournament_name = self.view.input_tournament_name()
@@ -42,18 +48,26 @@ class Controller:
         tournament_start_date = self.view.input_tournament_start_date()
         tournament_end_date = self.view.input_tournament_end_date()
         tournament_description = self.view.input_tournament_description()
+        """
+
+        tournament_number_of_players = 2
+        tournament_registered_players = self.register_players_in_tournament(tournament_number_of_players)
+        json_players = []
+        for player in tournament_registered_players:
+            json_player = self.json_player(player)
+            json_players.append(json_player)
+
         tournament = Tournament(
-            name=tournament_name,
-            place=tournament_place,
-            start_date=tournament_start_date,
-            end_date=tournament_end_date,
-            description=tournament_description,
+            name="test",
+            place="test",
+            start_date=datetime.date.today(),
+            end_date=datetime.date.today(),
+            description="test",
             registered_players=tournament_registered_players,
-            number_of_turns=tournament_number_of_turns,
+            number_of_turns=1,
             all_turns=[],
         )
-        tournament_first_turn = tournament.create_turn()
-        tournament.all_turns.append(tournament_first_turn)
+        tournament.create_turn()
         json_turns = []
         for turn in tournament.all_turns:
             json_turn = self.json_turn(turn)
@@ -107,3 +121,14 @@ class Controller:
         )
         player_to_save.post()
         return player_to_save
+
+    def resume_tournament(self):
+        tournament_id = self.view.input_get_tournament_id()
+        tournament = Tournament.get(tournament_id)
+        if tournament is None:
+            return None
+        self.view.display_tournaments_turn(tournament.all_turns[0])
+        print(f"{}")
+        self.view.display_tournament_match(tournament.all_turns[0].all_games[0])
+
+
