@@ -83,11 +83,13 @@ class Controller:
         print(f"player got: {player_to_get.national_chess_ID}")
         return player
 
-    def json_player(self, player: Player):
+    @staticmethod
+    def json_player(player: Player):
         json_player = player.__json__()
         return json_player
 
-    def json_turn(self, turn: Turn):
+    @staticmethod
+    def json_turn(turn: Turn):
         json_turn = turn.__json__()
         return json_turn
 
