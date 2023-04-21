@@ -7,7 +7,6 @@ class GamePlayerInfo:
 
     def __json__(self):
         json_player = self.player.__json__()
-        print(f"score of player in match: {self.score}")
         return {
             "player_info": json_player,
             "score": self.score or 0

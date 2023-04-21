@@ -179,10 +179,7 @@ class View:
 
     @staticmethod
     def display_tournament_match(game):
-        print(
-            f"game info:\n player one: {game.player_one_info.player.first_name + game.player_one_info.player.last_name} \n"
-            f"player two:  {game.player_two_info.player.first_name + game.player_two_info.player.last_name} "
-        )
+        print(f"match: {game}")
 
     @staticmethod
     def input_game_winner(game):

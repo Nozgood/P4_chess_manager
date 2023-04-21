@@ -3,7 +3,7 @@ from models.game import Game
 from models.player import Player
 
 from collections import namedtuple
-import uuid
+import shortuuid
 from datetime import datetime
 import json
 import random
@@ -25,10 +25,10 @@ class Tournament:
             number_of_turns=4,
             actual_turn=1
     ):
-        self.ID = uuid.uuid1()
+        self.ID = shortuuid.uuid()
         self.name = name
         self.place = place
-        self.start_date = start_date.today()
+        self.start_date = start_date
         self.end_date = end_date
         self.all_turns = all_turns
         self.registered_players = registered_players
@@ -50,6 +50,69 @@ class Tournament:
             "number_of_turns": self.number_of_turns,
             "actual_turn": self.actual_turn,
         }
+
+    @staticmethod
+    def json_players_decoder(json_players: dict):
+        formatted_players = []
+        for player in json_players:
+            formatted_player = Player(
+                last_name=player["last_name"],
+                first_name=player["first_name"],
+                birth_date=player["birth_date"],
+                national_chess_id=player["national_chess_ID"],
+                has_played_with=player["has_played_with"],
+                score=player["score"],
+                in_tournament=player["in_tournament"]
+            )
+            formatted_players.append(formatted_player)
+        return formatted_players
+
+    @staticmethod
+    def json_games_decoder(json_games: dict):
+        formatted_games = []
+        for game in json_games:
+            formatted_game = Game(
+                player_one=game["player_one_info"],
+                player_two=game["player_two_info"],
+            )
+            formatted_games.append(formatted_game)
+        return formatted_games
+
+    @staticmethod
+    def json_turn_decoder(json_turns: dict):
+        formatted_turns = []
+        for turn in json_turns:
+            formatted_players = Tournament.json_players_decoder(turn["players"])
+            formatted_games = Tournament.json_games_decoder(turn["all_games"])
+            formatted_turn = Turn(
+                name=turn["name"],
+                players=formatted_players,
+                number_of_games=turn["number_of_games"],
+                all_games=formatted_games,
+                start_date=turn["start_date"],
+                start_hour=turn["start_hour"],
+                end_hour=turn["end_hour"],
+                end_date=turn["end_date"],
+            )
+            formatted_turns.append(formatted_turn)
+        return formatted_turns
+
+    @staticmethod
+    def json_tournament_decoder(json_tournament: dict):
+        formatted_turns = Tournament.json_turn_decoder(json_tournament["all_turns"])
+        formatted_players = Tournament.json_players_decoder(json_tournament["registered_players"])
+        formatted_tournament = Tournament(
+            name=json_tournament["name"],
+            place=json_tournament["place"],
+            start_date=json_tournament["start_date"],
+            end_date=json_tournament["end_date"],
+            description=json_tournament["description"],
+            number_of_turns=json_tournament["number_of_turns"],
+            actual_turn=json_tournament["actual_turn"],
+            all_turns=formatted_turns,
+            registered_players=formatted_players,
+        )
+        return formatted_tournament
 
     def register_new_player(self, player: Player):
         """Registers a new player to the tournament
@@ -135,7 +198,7 @@ class Tournament:
             all_games.append(game)
         return all_games
 
-    def create_turn(self):
+    def create_turn(self) -> Turn:
         """
         Creates a new turn in the tournament, manage all the needed information
         """
@@ -150,6 +213,7 @@ class Tournament:
         all_games = self.create_games(players)
         turn = Turn(turn_name, players, len(all_games), all_games, start_date, start_hour)
         self.all_turns.append(turn)
+        print(f"in create_turn, type of turn: {type(turn)}")
         return turn
 
     def check_players_opponents(self, players: list[Player]):
@@ -200,14 +264,9 @@ class Tournament:
         self.update_actual_turn()
 
     @staticmethod
-    def json_tournament_decoder(value: dict):
-        return namedtuple('Tournament', value.keys())(*value.values())
-
-    @staticmethod
     def json_players(players: list[Player]):
         json_players = []
         for player in players:
-            print(type(player.national_chess_ID))
             json_player = player.__json__()
             json_players.append(json_player)
         return json_players
@@ -224,10 +283,12 @@ class Tournament:
     @staticmethod
     def get(tournamentID: str):
         with open(FILENAME, "r") as file:
-            datas = json.load(file, object_hook=Tournament.json_tournament_decoder)
+            datas = json.load(file)
             for tournament in datas:
-                if tournament.ID == tournamentID:
-                    return tournament
+                if tournament["ID"] == tournamentID:
+                    print(tournament)
+                    formatted_tournament = Tournament.json_tournament_decoder(tournament)
+                    return formatted_tournament
         print("we didn't find a tournament with this id in our database")
         return None
 

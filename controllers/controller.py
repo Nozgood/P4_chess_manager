@@ -65,6 +65,7 @@ class Controller:
             description="test",
             registered_players=tournament_registered_players,
             number_of_turns=1,
+            actual_turn=1,
             all_turns=[],
         )
         tournament.create_turn()
@@ -94,7 +95,6 @@ class Controller:
             national_chess_id=player_to_get.national_chess_ID,
             has_played_with=[],
         )
-        print(f"player got: {player_to_get.national_chess_ID}")
         return player
 
     @staticmethod
@@ -125,10 +125,12 @@ class Controller:
     def resume_tournament(self):
         tournament_id = self.view.input_get_tournament_id()
         tournament = Tournament.get(tournament_id)
+        print(f"test: {tournament.all_turns}")
+        print(f"test: {type(tournament.all_turns[0])}")
+        print(f"turn type:{type(tournament.all_turns[0])}")
         if tournament is None:
             return None
         self.view.display_tournaments_turn(tournament.all_turns[0])
-        print(f"{}")
-        self.view.display_tournament_match(tournament.all_turns[0].all_games[0])
+        self.view.display_tournament_match("prout")
 
 
