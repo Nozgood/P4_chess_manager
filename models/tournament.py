@@ -2,7 +2,6 @@ from models.turn import Turn
 from models.game import Game
 from models.player import Player
 
-from collections import namedtuple
 import shortuuid
 from datetime import datetime
 import json
@@ -52,9 +51,11 @@ class Tournament:
         }
 
     @staticmethod
-    def json_players_decoder(json_players: dict):
+    def json_players_decoder(json_players: list):
+        print(json_players)
         formatted_players = []
         for player in json_players:
+            print(type(player))
             formatted_player = Player(
                 last_name=player["last_name"],
                 first_name=player["first_name"],
@@ -71,9 +72,14 @@ class Tournament:
     def json_games_decoder(json_games: dict):
         formatted_games = []
         for game in json_games:
+            json_players = [
+                        game["player_one_info"]["player_info"],
+                        game["player_two_info"]["player_info"],
+                        ]
+            formatted_players = Tournament.json_players_decoder(json_players)
             formatted_game = Game(
-                player_one=game["player_one_info"],
-                player_two=game["player_two_info"],
+                player_one=formatted_players[0],
+                player_two=formatted_players[1],
             )
             formatted_games.append(formatted_game)
         return formatted_games
@@ -286,7 +292,6 @@ class Tournament:
             datas = json.load(file)
             for tournament in datas:
                 if tournament["ID"] == tournamentID:
-                    print(tournament)
                     formatted_tournament = Tournament.json_tournament_decoder(tournament)
                     return formatted_tournament
         print("we didn't find a tournament with this id in our database")

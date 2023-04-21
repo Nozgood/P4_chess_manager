@@ -132,7 +132,12 @@ class Controller:
         current_turn = self.get_current_turn(tournament)
         current_game = self.get_current_game(current_turn)
         self.view.display_tournaments_turn(current_turn)
-        self.view.display_tournament_match(current_game)
+        game_winner = self.view.input_game_winner(current_game)
+        if game_winner == "no winner player":
+            print("aucun joueur n'a gagné c'est match nul")
+            return None
+        winner_player = Player.get(game_winner)
+        print(winner_player)
 
     def get_current_turn(self, tournament: Tournament) -> Optional[Turn]:
         searched_name = "round " + str(tournament.actual_turn)

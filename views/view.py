@@ -178,11 +178,19 @@ class View:
         print(f"\n current turn: {turn.name}\n")
 
     @staticmethod
-    def display_tournament_match(game):
-        print(f"match: {game.player_one_info.player}")
-
-    @staticmethod
     def input_game_winner(game):
-        pass
+        print(f"-- player one --"
+              f"  first name: {game.player_one_info.player.first_name}"
+              f"  last name: {game.player_one_info.player.last_name}"
+              f"  chess id: {game.player_one_info.player.national_chess_ID}")
+        print(f"-- player two --"
+              f"  first name: {game.player_two_info.player.first_name}"
+              f"  last name: {game.player_two_info.player.last_name}"
+              f"  chess id: {game.player_two_info.player.national_chess_ID}")
+        is_winner = input("did a player win a match or are they equal ? just write Yes/No")
+        if is_winner == "yes":
+            winner_player_id = input("please fill the chess id of the winner player")
+            return winner_player_id
+        return "no winner player"
 
 

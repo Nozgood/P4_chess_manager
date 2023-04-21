@@ -11,6 +11,7 @@ class GamePlayerInfo:
             "player_info": json_player,
             "score": self.score or 0
         }
+
 class Game:
     """ Game represents and manage the opposition of 2 players """
     def __init__(
