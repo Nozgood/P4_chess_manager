@@ -2,8 +2,10 @@ import datetime
 
 from models.tournament import Tournament
 from models.turn import Turn
+from models.game import Game
 from models.player import Player
 from views.view import View
+from typing import Optional
 
 
 class Controller:
@@ -125,12 +127,24 @@ class Controller:
     def resume_tournament(self):
         tournament_id = self.view.input_get_tournament_id()
         tournament = Tournament.get(tournament_id)
-        print(f"test: {tournament.all_turns}")
-        print(f"test: {type(tournament.all_turns[0])}")
-        print(f"turn type:{type(tournament.all_turns[0])}")
         if tournament is None:
             return None
-        self.view.display_tournaments_turn(tournament.all_turns[0])
-        self.view.display_tournament_match("prout")
+        current_turn = self.get_current_turn(tournament)
+        current_game = self.get_current_game(current_turn)
+        self.view.display_tournaments_turn(current_turn)
+        self.view.display_tournament_match(current_game)
 
+    def get_current_turn(self, tournament: Tournament) -> Optional[Turn]:
+        searched_name = "round " + str(tournament.actual_turn)
+        for turn in tournament.all_turns:
+            if turn.name == searched_name:
+                return turn
+        print("we didnt find any turn matching with this turn name")
+        return None
 
+    def get_current_game(self, turn: Turn) -> Optional[Game]:
+        for game in turn.all_games:
+            if game.player_one_info.score == 0 and game.player_two_info.score == 0:
+                return game
+        print("all games for this turn has been played")
+        return None
