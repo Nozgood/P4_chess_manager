@@ -130,14 +130,13 @@ class Controller:
         if tournament is None:
             return None
         current_turn = self.get_current_turn(tournament)
-        current_game = self.get_current_game(current_turn)
+        current_game, index_of_game = self.get_current_game(current_turn)
         self.view.display_tournaments_turn(current_turn)
-        game_winner = self.view.input_game_winner(current_game)
-        if game_winner == "no winner player":
-            print("aucun joueur n'a gagné c'est match nul")
-            return None
-        winner_player = Player.get(game_winner)
-        print(winner_player)
+        game_winner = self.view.input_game_winner(current_game, index_of_game)
+        print("game winner: " + game_winner)
+        if game_winner == "1":
+            current_game.player_one_info.score += 1
+            current_turn.all_games[index_of_game] = current_game
 
     def get_current_turn(self, tournament: Tournament) -> Optional[Turn]:
         searched_name = "round " + str(tournament.actual_turn)
@@ -147,9 +146,9 @@ class Controller:
         print("we didnt find any turn matching with this turn name")
         return None
 
-    def get_current_game(self, turn: Turn) -> Optional[Game]:
+    def get_current_game(self, turn: Turn):
         for game in turn.all_games:
             if game.player_one_info.score == 0 and game.player_two_info.score == 0:
-                return game
+                return game, turn.all_games.index(game) + 1
         print("all games for this turn has been played")
         return None

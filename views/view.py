@@ -3,6 +3,7 @@ import datetime
 
 ERR_NOT_NUMERIC_VALUE = "please fill this field in digits"
 
+
 class View:
     def __init__(self):
         return
@@ -175,22 +176,13 @@ class View:
 
     @staticmethod
     def display_tournaments_turn(turn):
-        print(f"\n current turn: {turn.name}\n")
+        print(f"current turn: {turn.name}")
 
     @staticmethod
-    def input_game_winner(game):
-        print(f"-- player one --"
-              f"  first name: {game.player_one_info.player.first_name}"
-              f"  last name: {game.player_one_info.player.last_name}"
-              f"  chess id: {game.player_one_info.player.national_chess_ID}")
-        print(f"-- player two --"
-              f"  first name: {game.player_two_info.player.first_name}"
-              f"  last name: {game.player_two_info.player.last_name}"
-              f"  chess id: {game.player_two_info.player.national_chess_ID}")
-        is_winner = input("did a player win a match or are they equal ? just write Yes/No")
-        if is_winner == "yes":
-            winner_player_id = input("please fill the chess id of the winner player")
-            return winner_player_id
-        return "no winner player"
-
-
+    def input_game_winner(game, game_number):
+        print(f"current game: game {game_number}")
+        game_result = input(f"Please choose the digit corresponding to the result of the game \n"
+                            f"1) Player One - {game.player_one_info.player.first_name} {game.player_one_info.player.last_name} - win \n"
+                            f"2) Player Two - {game.player_two_info.player.first_name} {game.player_two_info.player.last_name} - win \n"
+                            f"3) Draw \n")
+        return game_result

@@ -18,7 +18,6 @@ class Turn:
             end_hour=None,
             end_date=None,
     ):
-        self.ID = uuid.uuid1()
         self.name = name
         self.players = players
         self.number_of_games = number_of_games
@@ -42,7 +41,6 @@ class Turn:
             json_game = game.__json__()
             json_games.append(json_game)
         return {
-            "ID": str(self.ID),
             "name": self.name,
             "players": json_players,
             "number_of_games": self.number_of_games,
