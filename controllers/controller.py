@@ -132,11 +132,25 @@ class Controller:
         current_turn = self.get_current_turn(tournament)
         current_game, index_of_game = self.get_current_game(current_turn)
         self.view.display_tournaments_turn(current_turn)
-        game_winner = self.view.input_game_winner(current_game, index_of_game)
+        game_winner = self.view.input_game_winner(current_game, index_of_game + 1)
         print("game winner: " + game_winner)
         if game_winner == "1":
             current_game.player_one_info.score += 1
-            current_turn.all_games[index_of_game] = current_game
+        if game_winner == "2":
+            current_game.player_two_info.score += 1
+        if game_winner == "3":
+            current_game.player_one_info.score, current_game.player_two_info.score = 0.5, 0.5
+        current_turn.all_games[index_of_game] = current_game
+        current_turn_index = Controller.find_turn_index_in_tournament(tournament, current_turn)
+        tournament.all_turns[current_turn_index] = current_turn
+        json_players, json_turns = [], []
+        for player in tournament.registered_players:
+            json_player = Controller.json_player(player)
+            json_players.append(json_player)
+        for turn in tournament.all_turns:
+            json_turn = Controller.json_turn(turn)
+            json_turns.append(json_turn)
+        tournament.put(tournament.ID, json_players, json_turns)
 
     def get_current_turn(self, tournament: Tournament) -> Optional[Turn]:
         searched_name = "round " + str(tournament.actual_turn)
@@ -149,6 +163,15 @@ class Controller:
     def get_current_game(self, turn: Turn):
         for game in turn.all_games:
             if game.player_one_info.score == 0 and game.player_two_info.score == 0:
-                return game, turn.all_games.index(game) + 1
+                return game, turn.all_games.index(game)
         print("all games for this turn has been played")
+        return None
+
+    @staticmethod
+    def find_turn_index_in_tournament(tournament, current_turn):
+        for turn in tournament.all_turns:
+            if turn.name == current_turn.name:
+                index_of_turn = tournament.all_turns.index(turn)
+                return index_of_turn
+        print("we didn't find a turn with this name")
         return None

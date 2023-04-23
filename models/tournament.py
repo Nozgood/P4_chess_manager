@@ -302,8 +302,8 @@ class Tournament:
             all_tournaments = json.load(file, object_hook=self.json_tournament_decoder)
         return all_tournaments
 
-    def put(self, tournamentID: str):
-        new_information = self.__json__()
+    def put(self, tournamentID: str, json_players, json_turns):
+        new_information = self.__json__(json_players, json_turns)
         old_information = self.get(tournamentID)
         if old_information is None:
             return None
