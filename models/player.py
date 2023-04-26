@@ -24,6 +24,15 @@ class Player(Person):
         self.tournament_id = tournament_id
         self.has_played_with = has_played_with
 
+    def __str__(self):
+        return f"first name: {self.first_name} " \
+               f"last name: {self.last_name} " \
+               f"birth date: {self.birth_date} " \
+               f"national chess id: {self.national_chess_ID} " \
+               f"in tournament ?: {self.in_tournament} " \
+               f"has played with: {self.has_played_with} " \
+               f"score: {self.score} " \
+
     def __json__(self):
         """Format an object of type player in json (to be used in db)"""
         return {

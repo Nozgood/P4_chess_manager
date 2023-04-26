@@ -5,6 +5,10 @@ class GamePlayerInfo:
         self.player = player
         self.score = score
 
+    def __str__(self):
+        return f"player: {self.player} " \
+               f"score: {self.score} "
+
     def __json__(self):
         json_player = self.player.__json__()
         return {
@@ -23,6 +27,10 @@ class Game:
         player_two_info = GamePlayerInfo(player_two)
         self.player_one_info = player_one_info
         self.player_two_info = player_two_info
+
+    def __str__(self):
+        return f"player one info: {self.player_one_info} " \
+               f"player two info: {self.player_two_info} "
 
     def __json__(self):
         json_player_one = self.player_one_info.__json__()

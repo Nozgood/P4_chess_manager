@@ -127,6 +127,7 @@ class Controller:
     def resume_tournament(self):
         tournament_id = self.view.input_get_tournament_id()
         tournament = Tournament.get(tournament_id)
+        tournament.ID = tournament_id
         if tournament is None:
             return None
         current_turn = self.get_current_turn(tournament)
@@ -136,11 +137,16 @@ class Controller:
         print("game winner: " + game_winner)
         if game_winner == "1":
             current_game.player_one_info.score += 1
+            print("the player one win the game")
         if game_winner == "2":
             current_game.player_two_info.score += 1
+            print("the player two win the game")
         if game_winner == "3":
             current_game.player_one_info.score, current_game.player_two_info.score = 0.5, 0.5
+            print("it's a draw")
         current_turn.all_games[index_of_game] = current_game
+        print(f"score after update: player one: {current_turn.all_games[index_of_game].player_one_info.score}"
+              f"player two: {current_turn.all_games[index_of_game].player_two_info.score}")
         current_turn_index = Controller.find_turn_index_in_tournament(tournament, current_turn)
         tournament.all_turns[current_turn_index] = current_turn
         json_players, json_turns = [], []

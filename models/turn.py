@@ -27,6 +27,25 @@ class Turn:
         self.end_hour = end_hour
         self.all_games = all_games
 
+    def __str__(self):
+        str_players, str_games = [], []
+        for player in self.players:
+            str_player = player.__str__()
+            str_players.append(str_player)
+
+        for game in self.all_games:
+            str_game = game.__str__()
+            str_games.append(str_game)
+
+        return f"name: {self.name} " \
+               f"players:{str_players} "\
+               f"number of games:{self.number_of_games} "\
+               f"start date:{self.start_date} "\
+               f"end date:{self.end_date} "\
+               f"start hour:{self.start_hour} "\
+               f"end hour:{self.end_hour} "\
+               f"all games:{str_games} "\
+
     def __json__(self):
         """Json formatting"""
 

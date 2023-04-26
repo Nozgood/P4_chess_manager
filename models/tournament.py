@@ -22,9 +22,12 @@ class Tournament:
             description: str,
             all_turns: list[Turn],
             number_of_turns=4,
-            actual_turn=1
+            actual_turn=1,
+            ID=None,
     ):
-        self.ID = shortuuid.uuid()
+        if ID is None:
+            ID = shortuuid.uuid()
+        self.ID = ID
         self.name = name
         self.place = place
         self.start_date = start_date
@@ -34,6 +37,27 @@ class Tournament:
         self.description = description
         self.number_of_turns = number_of_turns
         self.actual_turn = actual_turn
+
+    def __str__(self):
+        str_turns, str_players = [], []
+        for turn in self.all_turns:
+            str_turn = turn.__str__()
+            str_turns.append(str_turn)
+
+        for player in self.registered_players:
+            str_player = player.__str__()
+            str_players.append(str_player)
+
+        return f"id: {self.ID}\n " \
+               f"name:{self.name}\n " \
+               f"place:{self.place}\n " \
+               f"start date: {self.start_date}\n " \
+               f"end date: {self.end_date}\n " \
+               f"all turns: {str_turns}\n " \
+               f"registered players: {str_players}\n" \
+               f"description: {self.description}\n " \
+               f"number of turns:{self.number_of_turns} \n " \
+               f"actual turn: {self.actual_turn}"
 
     def __json__(self, json_players, json_turns):
         """Json formatting"""
@@ -52,10 +76,8 @@ class Tournament:
 
     @staticmethod
     def json_players_decoder(json_players: list):
-        print(json_players)
         formatted_players = []
         for player in json_players:
-            print(type(player))
             formatted_player = Player(
                 last_name=player["last_name"],
                 first_name=player["first_name"],
@@ -104,10 +126,11 @@ class Tournament:
         return formatted_turns
 
     @staticmethod
-    def json_tournament_decoder(json_tournament: dict):
+    def json_tournament_decoder(json_tournament):
         formatted_turns = Tournament.json_turn_decoder(json_tournament["all_turns"])
         formatted_players = Tournament.json_players_decoder(json_tournament["registered_players"])
         formatted_tournament = Tournament(
+            ID=json_tournament["ID"],
             name=json_tournament["name"],
             place=json_tournament["place"],
             start_date=json_tournament["start_date"],
@@ -219,7 +242,6 @@ class Tournament:
         all_games = self.create_games(players)
         turn = Turn(turn_name, players, len(all_games), all_games, start_date, start_hour)
         self.all_turns.append(turn)
-        print(f"in create_turn, type of turn: {type(turn)}")
         return turn
 
     def check_players_opponents(self, players: list[Player]):
@@ -299,16 +321,24 @@ class Tournament:
 
     def list(self):
         with open(FILENAME, "r") as file:
-            all_tournaments = json.load(file, object_hook=self.json_tournament_decoder)
+            all_tournaments = json.load(file)
         return all_tournaments
 
     def put(self, tournamentID: str, json_players, json_turns):
         new_information = self.__json__(json_players, json_turns)
         old_information = self.get(tournamentID)
         if old_information is None:
+            print("this tournament doesn't exist in our database, please create it before trying to update")
             return None
         all_tournaments = self.list()
-        index_of_tournament = all_tournaments.index(old_information)
+        formatted_tournaments = []
+        index_of_tournament = 9999999
+        for tournament in all_tournaments:
+            formatted_tournament = self.json_tournament_decoder(tournament)
+            formatted_tournaments.append(formatted_tournament)
+        for formatted_tournament in formatted_tournaments:
+            if formatted_tournament.ID == old_information.ID:
+                index_of_tournament = formatted_tournaments.index(formatted_tournament)
         all_tournaments[index_of_tournament] = new_information
         with open(FILENAME, "w") as file:
             json.dump(all_tournaments, file, indent=4)

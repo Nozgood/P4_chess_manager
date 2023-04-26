@@ -3,27 +3,27 @@
         "ID": "a",
         "name": "test",
         "place": "test",
-        "start_date": "2023-04-23",
-        "end_date": "2023-04-23",
+        "start_date": "2023-04-26",
+        "end_date": "2023-04-26",
         "all_turns": [
             {
                 "name": "round 1",
                 "players": [
                     {
-                        "last_name": "safi",
-                        "first_name": "nowfeel",
+                        "last_name": "Chatelain",
+                        "first_name": "Flora",
                         "birth_date": "1999-02-23",
-                        "national_chess_ID": "a",
+                        "national_chess_ID": "b",
                         "tournament_ID": "",
                         "has_played_with": [],
                         "score": 0,
                         "in_tournament": false
                     },
                     {
-                        "last_name": "Chatelain",
-                        "first_name": "Flora",
+                        "last_name": "safi",
+                        "first_name": "nowfeel",
                         "birth_date": "1999-02-23",
-                        "national_chess_ID": "b",
+                        "national_chess_ID": "a",
                         "tournament_ID": "",
                         "has_played_with": [],
                         "score": 0,
@@ -35,19 +35,6 @@
                     {
                         "player_one_info": {
                             "player_info": {
-                                "last_name": "safi",
-                                "first_name": "nowfeel",
-                                "birth_date": "1999-02-23",
-                                "national_chess_ID": "a",
-                                "tournament_ID": "",
-                                "has_played_with": [],
-                                "score": 0,
-                                "in_tournament": false
-                            },
-                            "score": 0
-                        },
-                        "player_two_info": {
-                            "player_info": {
                                 "last_name": "Chatelain",
                                 "first_name": "Flora",
                                 "birth_date": "1999-02-23",
@@ -57,12 +44,25 @@
                                 "score": 0,
                                 "in_tournament": false
                             },
-                            "score": 0
+                            "score": 0.5
+                        },
+                        "player_two_info": {
+                            "player_info": {
+                                "last_name": "safi",
+                                "first_name": "nowfeel",
+                                "birth_date": "1999-02-23",
+                                "national_chess_ID": "a",
+                                "tournament_ID": "",
+                                "has_played_with": [],
+                                "score": 0,
+                                "in_tournament": false
+                            },
+                            "score": 0.5
                         }
                     }
                 ],
-                "start_date": "2023-04-23 10:44:56.883055",
-                "start_hour": "10:44:56",
+                "start_date": "2023-04-26 07:00:00.826833",
+                "start_hour": "07:00:00",
                 "end_hour": null,
                 "end_date": null
             }
