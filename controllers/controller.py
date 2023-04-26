@@ -12,12 +12,22 @@ class Controller:
     def __init__(self, view: View):
         self.view = view
 
+    @staticmethod
+    def json_player(player: Player):
+        json_player = player.__json__()
+        return json_player
+
+    @staticmethod
+    def json_turn(turn: Turn):
+        json_turn = turn.__json__()
+        return json_turn
+
     def run(self):
-        running = True
         """
         run manages the logical running of the main menu of the program, it returns error if there is during the
         execution of the program
         """
+        running = True
         while running:
             menu_selection = self.view.input_main_menu()
             if menu_selection == 1:
@@ -30,28 +40,7 @@ class Controller:
                 print("See You ASAP...")
                 running = False
 
-    def create_tournament(self):
-        """
-        create_tournament manage all the necessaries information to create a tournament and store it in database
-        :return: the new instance of tournament that has been created
-        """
-        """
-        tournament_number_of_players = self.view.input_tournament_number_of_players()
-        tournament_registered_players = self.register_players_in_tournament(tournament_number_of_players)
-        json_players = []
-        for player in tournament_registered_players:
-            json_player = self.json_player(player)
-            json_players.append(json_player)
-            
-        json_players = Tournament.json_players(tournament_registered_players)
-        tournament_number_of_turns = self.view.input_tournament_number_of_turns()
-        tournament_name = self.view.input_tournament_name()
-        tournament_place = self.view.input_tournament_place()
-        tournament_start_date = self.view.input_tournament_start_date()
-        tournament_end_date = self.view.input_tournament_end_date()
-        tournament_description = self.view.input_tournament_description()
-        """
-
+    def create_static_tournament(self):
         tournament_number_of_players = 2
         tournament_registered_players = self.register_players_in_tournament(tournament_number_of_players)
         json_players = []
@@ -78,6 +67,37 @@ class Controller:
         tournament.post(json_players, json_turns)
         return tournament
 
+    def create_tournament(self):
+        """
+        create_tournament manage all the necessaries information to create a tournament and store it in database
+        :return: the new instance of tournament that has been created
+        """
+
+        tournament_number_of_players = self.view.input_tournament_number_of_players()
+        tournament_registered_players = self.register_players_in_tournament(tournament_number_of_players)
+        tournament_number_of_turns = self.view.input_tournament_number_of_turns()
+        tournament_name = self.view.input_tournament_name()
+        tournament_place = self.view.input_tournament_place()
+        tournament_start_date = self.view.input_tournament_start_date()
+        tournament_end_date = self.view.input_tournament_end_date()
+        tournament_description = self.view.input_tournament_description()
+        tournament = Tournament(
+            name=tournament_name,
+            place=tournament_place,
+            start_date=tournament_start_date,
+            end_date=tournament_end_date,
+            description=tournament_description,
+            registered_players=tournament_registered_players,
+            number_of_turns=tournament_number_of_turns,
+            actual_turn=1,
+            all_turns=[],
+        )
+        tournament.create_turn()
+        json_players = Tournament.json_players(tournament_registered_players)
+        json_turns = tournament.json_turns(tournament.all_turns)
+        tournament.post(json_players, json_turns)
+        return tournament
+
     def register_players_in_tournament(self, number_of_players: int):
         slice_of_players = []
         count = 1
@@ -98,16 +118,6 @@ class Controller:
             has_played_with=[],
         )
         return player
-
-    @staticmethod
-    def json_player(player: Player):
-        json_player = player.__json__()
-        return json_player
-
-    @staticmethod
-    def json_turn(turn: Turn):
-        json_turn = turn.__json__()
-        return json_turn
 
     def register_player_in_db(self):
         player_chess_id = self.view.input_player_chess_id()

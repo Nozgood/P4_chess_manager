@@ -143,6 +143,15 @@ class Tournament:
         )
         return formatted_tournament
 
+    @staticmethod
+    def json_tournaments_decoder(json_tournaments: list):
+        formatted_tournaments = []
+        for tournament in json_tournaments:
+            formatted_tournament = Tournament.json_tournament_decoder(tournament)
+            formatted_tournaments.append(formatted_tournament)
+
+        return formatted_tournaments
+
     def register_new_player(self, player: Player):
         """Registers a new player to the tournament
 
@@ -299,6 +308,14 @@ class Tournament:
             json_players.append(json_player)
         return json_players
 
+    @staticmethod
+    def json_turns(turns: list[Turn]):
+        json_turns = []
+        for turn in turns:
+            json_turn = turn.__json__()
+            json_turns.append(json_turn)
+        return json_turns
+
     def post(self, json_players, json_turns):
         with open(FILENAME, "r") as file:
             datas = json.load(file)
@@ -319,7 +336,8 @@ class Tournament:
         print("we didn't find a tournament with this id in our database")
         return None
 
-    def list(self):
+    @staticmethod
+    def list():
         with open(FILENAME, "r") as file:
             all_tournaments = json.load(file)
         return all_tournaments
@@ -330,17 +348,17 @@ class Tournament:
         if old_information is None:
             print("this tournament doesn't exist in our database, please create it before trying to update")
             return None
-        all_tournaments = self.list()
-        formatted_tournaments = []
-        index_of_tournament = 9999999
-        for tournament in all_tournaments:
-            formatted_tournament = self.json_tournament_decoder(tournament)
-            formatted_tournaments.append(formatted_tournament)
-        for formatted_tournament in formatted_tournaments:
+        json_list_tournaments = Tournament.list()
+        formatted_tournament_list = Tournament.json_tournaments_decoder(json_list_tournaments)
+        index_of_tournament = 0
+        for formatted_tournament in formatted_tournament_list:
             if formatted_tournament.ID == old_information.ID:
-                index_of_tournament = formatted_tournaments.index(formatted_tournament)
-        all_tournaments[index_of_tournament] = new_information
+                index_of_tournament = formatted_tournament_list.index(formatted_tournament)
+            else:
+                print("an error occured during the update of the tournaments database")
+                return None
+        json_list_tournaments[index_of_tournament] = new_information
         with open(FILENAME, "w") as file:
-            json.dump(all_tournaments, file, indent=4)
+            json.dump(json_list_tournaments, file, indent=4)
         print("tournament successfully updated")
         return None
