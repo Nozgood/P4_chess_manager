@@ -7,7 +7,6 @@ from models.player import Player
 from views.view import View
 from typing import Optional
 
-
 class Controller:
     def __init__(self, view: View):
         self.view = view

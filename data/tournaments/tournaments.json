@@ -4,15 +4,15 @@
         "name": "test",
         "place": "test",
         "start_date": "2023-04-28",
-        "end_date": "2023-04-28",
+        "end_date": "2023-04-29",
         "all_turns": [
             {
                 "name": "round 1",
                 "players": [
                     {
-                        "last_name": "West",
-                        "first_name": "Kenny",
-                        "birth_date": "2001-03-28",
+                        "last_name": "ronaldo",
+                        "first_name": "cristiano",
+                        "birth_date": "1985-02-05",
                         "national_chess_ID": "a",
                         "tournament_ID": "",
                         "has_played_with": [],
@@ -20,19 +20,19 @@
                         "in_tournament": false
                     },
                     {
-                        "last_name": "ronaldo",
-                        "first_name": "cristiano",
-                        "birth_date": "1985-02-05",
-                        "national_chess_ID": "d",
+                        "last_name": "messi",
+                        "first_name": "leo",
+                        "birth_date": "1987-04-26",
+                        "national_chess_ID": "b",
                         "tournament_ID": "",
                         "has_played_with": [],
                         "score": 0,
                         "in_tournament": false
                     },
                     {
-                        "last_name": "Messi",
-                        "first_name": "Leo",
-                        "birth_date": "1987-06-24",
+                        "last_name": "jr",
+                        "first_name": "neymar",
+                        "birth_date": "1992-02-05",
                         "national_chess_ID": "c",
                         "tournament_ID": "",
                         "has_played_with": [],
@@ -40,10 +40,10 @@
                         "in_tournament": false
                     },
                     {
-                        "last_name": "Safi",
-                        "first_name": "Nowfeel",
-                        "birth_date": "1999-02-23",
-                        "national_chess_ID": "b",
+                        "last_name": "niang",
+                        "first_name": "mamadou",
+                        "birth_date": "1979-10-13",
+                        "national_chess_ID": "d",
                         "tournament_ID": "",
                         "has_played_with": [],
                         "score": 0,
@@ -55,42 +55,10 @@
                     {
                         "player_one_info": {
                             "player_info": {
-                                "last_name": "West",
-                                "first_name": "Kenny",
-                                "birth_date": "2001-03-28",
-                                "national_chess_ID": "a",
-                                "tournament_ID": "",
-                                "has_played_with": [
-                                    "d"
-                                ],
-                                "score": 0,
-                                "in_tournament": false
-                            },
-                            "score": 1
-                        },
-                        "player_two_info": {
-                            "player_info": {
                                 "last_name": "ronaldo",
                                 "first_name": "cristiano",
                                 "birth_date": "1985-02-05",
-                                "national_chess_ID": "d",
-                                "tournament_ID": "",
-                                "has_played_with": [
-                                    "a"
-                                ],
-                                "score": 0,
-                                "in_tournament": false
-                            },
-                            "score": 0
-                        }
-                    },
-                    {
-                        "player_one_info": {
-                            "player_info": {
-                                "last_name": "Messi",
-                                "first_name": "Leo",
-                                "birth_date": "1987-06-24",
-                                "national_chess_ID": "c",
+                                "national_chess_ID": "a",
                                 "tournament_ID": "",
                                 "has_played_with": [
                                     "b"
@@ -102,10 +70,42 @@
                         },
                         "player_two_info": {
                             "player_info": {
-                                "last_name": "Safi",
-                                "first_name": "Nowfeel",
-                                "birth_date": "1999-02-23",
+                                "last_name": "messi",
+                                "first_name": "leo",
+                                "birth_date": "1987-04-26",
                                 "national_chess_ID": "b",
+                                "tournament_ID": "",
+                                "has_played_with": [
+                                    "a"
+                                ],
+                                "score": 0,
+                                "in_tournament": false
+                            },
+                            "score": 1
+                        }
+                    },
+                    {
+                        "player_one_info": {
+                            "player_info": {
+                                "last_name": "jr",
+                                "first_name": "neymar",
+                                "birth_date": "1992-02-05",
+                                "national_chess_ID": "c",
+                                "tournament_ID": "",
+                                "has_played_with": [
+                                    "d"
+                                ],
+                                "score": 0,
+                                "in_tournament": false
+                            },
+                            "score": 0
+                        },
+                        "player_two_info": {
+                            "player_info": {
+                                "last_name": "niang",
+                                "first_name": "mamadou",
+                                "birth_date": "1979-10-13",
+                                "national_chess_ID": "d",
                                 "tournament_ID": "",
                                 "has_played_with": [
                                     "c"
@@ -117,9 +117,9 @@
                         }
                     }
                 ],
-                "start_date": "2023-04-28 11:39:27.840215",
-                "start_hour": "11:39:27",
-                "end_hour": "11:41:19",
+                "start_date": "2023-04-28 12:03:41.979116",
+                "start_hour": "12:03:41",
+                "end_hour": "12:10:32",
                 "end_date": "2023-04-28"
             },
             {
@@ -129,16 +129,16 @@
                         "last_name": "ronaldo",
                         "first_name": "cristiano",
                         "birth_date": "1985-02-05",
-                        "national_chess_ID": "d",
+                        "national_chess_ID": "a",
                         "tournament_ID": "",
                         "has_played_with": [],
                         "score": 0,
                         "in_tournament": false
                     },
                     {
-                        "last_name": "Messi",
-                        "first_name": "Leo",
-                        "birth_date": "1987-06-24",
+                        "last_name": "jr",
+                        "first_name": "neymar",
+                        "birth_date": "1992-02-05",
                         "national_chess_ID": "c",
                         "tournament_ID": "",
                         "has_played_with": [],
@@ -146,20 +146,20 @@
                         "in_tournament": false
                     },
                     {
-                        "last_name": "West",
-                        "first_name": "Kenny",
-                        "birth_date": "2001-03-28",
-                        "national_chess_ID": "a",
+                        "last_name": "messi",
+                        "first_name": "leo",
+                        "birth_date": "1987-04-26",
+                        "national_chess_ID": "b",
                         "tournament_ID": "",
                         "has_played_with": [],
                         "score": 1,
                         "in_tournament": false
                     },
                     {
-                        "last_name": "Safi",
-                        "first_name": "Nowfeel",
-                        "birth_date": "1999-02-23",
-                        "national_chess_ID": "b",
+                        "last_name": "niang",
+                        "first_name": "mamadou",
+                        "birth_date": "1979-10-13",
+                        "national_chess_ID": "d",
                         "tournament_ID": "",
                         "has_played_with": [],
                         "score": 1,
@@ -174,11 +174,9 @@
                                 "last_name": "ronaldo",
                                 "first_name": "cristiano",
                                 "birth_date": "1985-02-05",
-                                "national_chess_ID": "d",
+                                "national_chess_ID": "a",
                                 "tournament_ID": "",
-                                "has_played_with": [
-                                    "c"
-                                ],
+                                "has_played_with": [],
                                 "score": 0,
                                 "in_tournament": false
                             },
@@ -186,14 +184,12 @@
                         },
                         "player_two_info": {
                             "player_info": {
-                                "last_name": "Messi",
-                                "first_name": "Leo",
-                                "birth_date": "1987-06-24",
+                                "last_name": "jr",
+                                "first_name": "neymar",
+                                "birth_date": "1992-02-05",
                                 "national_chess_ID": "c",
                                 "tournament_ID": "",
-                                "has_played_with": [
-                                    "d"
-                                ],
+                                "has_played_with": [],
                                 "score": 0,
                                 "in_tournament": false
                             },
@@ -203,57 +199,43 @@
                     {
                         "player_one_info": {
                             "player_info": {
-                                "last_name": "West",
-                                "first_name": "Kenny",
-                                "birth_date": "2001-03-28",
-                                "national_chess_ID": "a",
-                                "tournament_ID": "",
-                                "has_played_with": [
-                                    "b"
-                                ],
-                                "score": 1,
-                                "in_tournament": false
-                            },
-                            "score": 0
-                        },
-                        "player_two_info": {
-                            "player_info": {
-                                "last_name": "Safi",
-                                "first_name": "Nowfeel",
-                                "birth_date": "1999-02-23",
+                                "last_name": "messi",
+                                "first_name": "leo",
+                                "birth_date": "1987-04-26",
                                 "national_chess_ID": "b",
                                 "tournament_ID": "",
-                                "has_played_with": [
-                                    "a"
-                                ],
+                                "has_played_with": [],
                                 "score": 1,
                                 "in_tournament": false
                             },
                             "score": 1
+                        },
+                        "player_two_info": {
+                            "player_info": {
+                                "last_name": "niang",
+                                "first_name": "mamadou",
+                                "birth_date": "1979-10-13",
+                                "national_chess_ID": "d",
+                                "tournament_ID": "",
+                                "has_played_with": [],
+                                "score": 1,
+                                "in_tournament": false
+                            },
+                            "score": 0
                         }
                     }
                 ],
-                "start_date": "2023-04-28 11:41:19.228003",
-                "start_hour": "11:41:19",
-                "end_hour": "11:41:50",
-                "end_date": "2023-04-28"
+                "start_date": "2023-04-28 12:10:32.381654",
+                "start_hour": "12:10:32",
+                "end_hour": "None",
+                "end_date": "None"
             }
         ],
         "registered_players": [
             {
-                "last_name": "Messi",
-                "first_name": "Leo",
-                "birth_date": "1987-06-24",
-                "national_chess_ID": "c",
-                "tournament_ID": "",
-                "has_played_with": [],
-                "score": 0,
-                "in_tournament": false
-            },
-            {
-                "last_name": "West",
-                "first_name": "Kenny",
-                "birth_date": "2001-03-28",
+                "last_name": "ronaldo",
+                "first_name": "cristiano",
+                "birth_date": "1985-02-05",
                 "national_chess_ID": "a",
                 "tournament_ID": "",
                 "has_played_with": [],
@@ -261,20 +243,30 @@
                 "in_tournament": false
             },
             {
-                "last_name": "ronaldo",
-                "first_name": "cristiano",
-                "birth_date": "1985-02-05",
-                "national_chess_ID": "d",
+                "last_name": "jr",
+                "first_name": "neymar",
+                "birth_date": "1992-02-05",
+                "national_chess_ID": "c",
+                "tournament_ID": "",
+                "has_played_with": [],
+                "score": 0,
+                "in_tournament": false
+            },
+            {
+                "last_name": "messi",
+                "first_name": "leo",
+                "birth_date": "1987-04-26",
+                "national_chess_ID": "b",
                 "tournament_ID": "",
                 "has_played_with": [],
                 "score": 1,
                 "in_tournament": false
             },
             {
-                "last_name": "Safi",
-                "first_name": "Nowfeel",
-                "birth_date": "1999-02-23",
-                "national_chess_ID": "b",
+                "last_name": "niang",
+                "first_name": "mamadou",
+                "birth_date": "1979-10-13",
+                "national_chess_ID": "d",
                 "tournament_ID": "",
                 "has_played_with": [],
                 "score": 1,

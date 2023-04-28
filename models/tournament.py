@@ -271,6 +271,7 @@ class Tournament:
 
     def update_actual_turn(self):
         """Update the number of the turn we are playing"""
+        print("update actual turn: " + str(self.actual_turn) + str(self.number_of_turns))
         if self.actual_turn == self.number_of_turns:
             print("it was the last turn of the tournament")
             return False
@@ -285,7 +286,6 @@ class Tournament:
         turn.end_turn()
         for game in turn.all_games:
             self.update_players_by_game(game)
-        self.update_actual_turn()
 
     @staticmethod
     def json_players(players: list[Player]):

@@ -57,13 +57,27 @@ class View:
 
     @staticmethod
     def input_tournament_start_year():
+        test = View.test()
         start_year = None
         while start_year is None:
             try:
                 start_year = int(input("please enter the year the tournament will start (in digits): \n"))
                 return start_year
-            except ValueError:
+            except test is True:
                 print(ERR_NOT_NUMERIC_VALUE)
+    @staticmethod
+    def test():
+        return True
+
+    @staticmethod
+    def input_tournament_start_date_test():
+        test = input("please enter the date with this format: DAY/MONTH/YEAR: \n\n")
+        date_day = test.split("/")[0]
+        date_month = test.split("/")[1]
+        date_year = test.split("/")[2]
+        print(test.split("/"))
+        start_date = datetime.date(int(date_year), int(date_month), int(date_day))
+        return start_date
 
     @staticmethod
     def input_tournament_end_day():
