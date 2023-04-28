@@ -1,8 +1,8 @@
 [
     {
-        "last_name": "safi",
-        "first_name": "nowfeel",
-        "birth_date": "1999-02-23",
+        "last_name": "West",
+        "first_name": "Kenny",
+        "birth_date": "2001-03-28",
         "national_chess_ID": "a",
         "tournament_ID": "",
         "has_played_with": [],
@@ -10,9 +10,9 @@
         "in_tournament": false
     },
     {
-        "last_name": "Chatelain",
-        "first_name": "Flora",
-        "birth_date": "1999-01-28",
+        "last_name": "Safi",
+        "first_name": "Nowfeel",
+        "birth_date": "1999-02-23",
         "national_chess_ID": "b",
         "tournament_ID": "",
         "has_played_with": [],
@@ -20,9 +20,9 @@
         "in_tournament": false
     },
     {
-        "last_name": "paul",
-        "first_name": "luc",
-        "birth_date": "1999-02-23",
+        "last_name": "Messi",
+        "first_name": "Leo",
+        "birth_date": "1987-06-24",
         "national_chess_ID": "c",
         "tournament_ID": "",
         "has_played_with": [],
@@ -30,9 +30,9 @@
         "in_tournament": false
     },
     {
-        "last_name": "paul",
-        "first_name": "jean",
-        "birth_date": "1999-02-23",
+        "last_name": "ronaldo",
+        "first_name": "cristiano",
+        "birth_date": "1985-02-05",
         "national_chess_ID": "d",
         "tournament_ID": "",
         "has_played_with": [],

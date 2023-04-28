@@ -14,7 +14,6 @@ class GamePlayerInfo:
         json_score = 0
         if self.score != 0:
             json_score = self.score
-        print("score before json: " + str(json_score))
         return {
             "player_info": json_player,
             "score": json_score

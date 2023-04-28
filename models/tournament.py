@@ -171,10 +171,10 @@ class Tournament:
         :param game: a game that is ENDED
         :return:
         """
-        self.update_player_score_by_id(game.player_one_info.national_chess_ID, game.player_one_info.score)
-        self.update_player_has_played(game.player_two_info.national_chess_ID, game.player_one_info)
-        self.update_player_score_by_id(game.player_two_info.national_chess_ID, game.player_two_info.score)
-        self.update_player_has_played(game.player_one_info.national_chess_ID, game.player_two_info)
+        self.update_player_score_by_id(game.player_one_info.player.national_chess_ID, game.player_one_info.score)
+        self.update_player_has_played_with(game.player_two_info.player.national_chess_ID, game.player_one_info.player)
+        self.update_player_score_by_id(game.player_two_info.player.national_chess_ID, game.player_two_info.score)
+        self.update_player_has_played_with(game.player_one_info.player.national_chess_ID, game.player_two_info.player)
 
     def update_player_score_by_id(self, nationalChessID: str, new_score: int):
         """Find a player by his chessID and update his score after a game
@@ -188,7 +188,7 @@ class Tournament:
             return None
         player.score = new_score
 
-    def update_player_has_played(self, nationalChessID: str, player: Player):
+    def update_player_has_played_with(self, nationalChessID: str, player: Player):
         """Update the array of players that the player has played against
 
         :param nationalChessID: the chessID of the player we want to put in the array of the player
@@ -272,9 +272,10 @@ class Tournament:
     def update_actual_turn(self):
         """Update the number of the turn we are playing"""
         if self.actual_turn == self.number_of_turns:
-            print("it was the last turn of the tournaments")
-            return None
+            print("it was the last turn of the tournament")
+            return False
         self.actual_turn += 1
+        return True
 
     def end_turn(self, turn: Turn):
         """manage that what to be done at the end of a turn : update players score, and update turn number

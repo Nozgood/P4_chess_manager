@@ -70,14 +70,14 @@ class Turn:
             "all_games": json_games,
             "start_date": str(self.start_date),
             "start_hour": str(self.start_hour),
-            "end_hour": self.end_hour,
-            "end_date": self.end_date,
+            "end_hour": str(self.end_hour),
+            "end_date": str(self.end_date),
         }
 
     def end_turn(self):
         """manage needed information to end a turn"""
         self.end_date = date.today()
-        self.end_hour = datetime.time().strftime("%H:%M:%S")
+        self.end_hour = datetime.now().strftime("%H:%M:%S")
 
     def json_turn_decoder(self, value: dict):
         return namedtuple('Turn', value.keys())(*value.values())

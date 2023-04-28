@@ -133,9 +133,13 @@ class Controller:
 
     def resume_tournament(self):
         tournament = self.get_tournament()
+        tournament = self.check_tournament_status(tournament)
+        if tournament is None:
+            print("this tournament is ended ! :D")
+            return None
         current_turn = self.get_current_turn(tournament)
         current_game, index_of_game = self.get_current_game(current_turn)
-        self.view.display_tournaments_turn(current_turn)
+        self.view.display_tournament_turn(current_turn)
         game_winner = self.view.input_game_winner(current_game, index_of_game + 1)
         print("game winner: " + game_winner)
         if game_winner == "1":
@@ -152,30 +156,44 @@ class Controller:
               f"player two: {current_turn.all_games[index_of_game].player_two_info.score}")
         current_turn_index = Controller.find_turn_index_in_tournament(tournament, current_turn)
         tournament.all_turns[current_turn_index] = current_turn
-        json_players, json_turns = [], []
-        for player in tournament.registered_players:
-            json_player = Controller.json_player(player)
-            json_players.append(json_player)
-        for turn in tournament.all_turns:
-            json_turn = Controller.json_turn(turn)
-            json_turns.append(json_turn)
+        json_players = Tournament.json_players(tournament.registered_players)
+        json_turns = Tournament.json_turns(tournament.all_turns)
         tournament.put(tournament.ID, json_players, json_turns)
+
+    def check_tournament_status(self, tournament: Tournament):
+        current_turn = self.get_current_turn(tournament)
+        if self.are_still_game_to_play(current_turn) is False:
+            tournament.end_turn(current_turn)
+            is_turn_updated = tournament.update_actual_turn()
+            if is_turn_updated is False:
+                return None
+            tournament.create_turn()
+            json_turns = Tournament.json_turns(tournament.all_turns)
+            json_players = Tournament.json_players(tournament.registered_players)
+            tournament.put(tournament.ID, json_players, json_turns)
+        return tournament
 
     def get_current_turn(self, tournament: Tournament) -> Optional[Turn]:
         searched_name = "round " + str(tournament.actual_turn)
+        founded_turn = None
         for turn in tournament.all_turns:
             if turn.name == searched_name:
-                return turn
-        print("we didnt find any turn matching with this turn name")
-        return None
+                founded_turn = turn
+        return founded_turn
 
     def get_current_game(self, turn: Turn):
         for game in turn.all_games:
-            print("score of players of the game: " + str(game.player_one_info.score) + str(game.player_two_info.score))
             if game.player_one_info.score == 0 and game.player_two_info.score == 0:
                 return game, turn.all_games.index(game)
         print("all games for this turn has been played")
         return None
+
+    def are_still_game_to_play(self, turn: Turn):
+        current_game = self.get_current_game(turn)
+        print(current_game)
+        if current_game is None:
+            return False
+        return True
 
     @staticmethod
     def find_turn_index_in_tournament(tournament, current_turn):

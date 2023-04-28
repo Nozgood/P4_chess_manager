@@ -177,7 +177,7 @@ class View:
         return tournament_id
 
     @staticmethod
-    def display_tournaments_turn(turn):
+    def display_tournament_turn(turn):
         print(f"current turn: {turn.name}")
 
     @staticmethod
