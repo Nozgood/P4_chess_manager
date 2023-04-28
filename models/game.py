@@ -11,9 +11,13 @@ class GamePlayerInfo:
 
     def __json__(self):
         json_player = self.player.__json__()
+        json_score = 0
+        if self.score != 0:
+            json_score = self.score
+        print("score before json: " + str(json_score))
         return {
             "player_info": json_player,
-            "score": self.score or 0
+            "score": json_score
         }
 
 class Game:
@@ -22,15 +26,17 @@ class Game:
             self,
             player_one: Player,
             player_two: Player,
+            player_one_score=0,
+            player_two_score=0,
     ):
-        player_one_info = GamePlayerInfo(player_one)
-        player_two_info = GamePlayerInfo(player_two)
+        player_one_info = GamePlayerInfo(player_one, player_one_score)
+        player_two_info = GamePlayerInfo(player_two, player_two_score)
         self.player_one_info = player_one_info
         self.player_two_info = player_two_info
 
     def __str__(self):
-        return f"player one info: {self.player_one_info} " \
-               f"player two info: {self.player_two_info} "
+        return f"  player one info: {self.player_one_info} \n" \
+               f"  player two info: {self.player_two_info} \n"
 
     def __json__(self):
         json_player_one = self.player_one_info.__json__()

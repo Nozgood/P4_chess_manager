@@ -37,6 +37,10 @@ class Controller:
             if menu_selection == 3:
                 self.resume_tournament()
             if menu_selection == 4:
+                self.display_tournament()
+            if menu_selection == 5:
+                self.display_player()
+            if menu_selection == 6:
                 print("See You ASAP...")
                 running = False
 
@@ -109,14 +113,7 @@ class Controller:
 
     def get_player(self):
         player_id = self.view.input_tournament_register_player()
-        player_to_get = Player.get(player_id)
-        player = Player(
-            last_name=player_to_get.last_name,
-            first_name=player_to_get.first_name,
-            birth_date= player_to_get.birth_date,
-            national_chess_id=player_to_get.national_chess_ID,
-            has_played_with=[],
-        )
+        player = Player.get(player_id)
         return player
 
     def register_player_in_db(self):
@@ -135,11 +132,7 @@ class Controller:
         return player_to_save
 
     def resume_tournament(self):
-        tournament_id = self.view.input_get_tournament_id()
-        tournament = Tournament.get(tournament_id)
-        tournament.ID = tournament_id
-        if tournament is None:
-            return None
+        tournament = self.get_tournament()
         current_turn = self.get_current_turn(tournament)
         current_game, index_of_game = self.get_current_game(current_turn)
         self.view.display_tournaments_turn(current_turn)
@@ -178,6 +171,7 @@ class Controller:
 
     def get_current_game(self, turn: Turn):
         for game in turn.all_games:
+            print("score of players of the game: " + str(game.player_one_info.score) + str(game.player_two_info.score))
             if game.player_one_info.score == 0 and game.player_two_info.score == 0:
                 return game, turn.all_games.index(game)
         print("all games for this turn has been played")
@@ -191,3 +185,22 @@ class Controller:
                 return index_of_turn
         print("we didn't find a turn with this name")
         return None
+
+    def display_tournament(self):
+        tournament = self.get_tournament()
+        print(f"tournament informations: \n {tournament}")
+
+    def get_tournament(self):
+        tournament_id = self.view.input_get_tournament_id()
+        tournament = Tournament.get(tournament_id)
+        if tournament is None:
+            return None
+        tournament.ID = tournament_id
+        return tournament
+
+    def display_player(self):
+        player = self.get_player()
+        if player is None:
+            print("we didnt find a player with this national chess id in our database")
+            return None
+        print(f"player information:\n{player}")

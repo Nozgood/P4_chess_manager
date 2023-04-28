@@ -11,11 +11,13 @@ class View:
     @staticmethod
     def input_main_menu():
         digit_menu_selection = ""
-        print("\n \n --- Chess Manager --- \n\n")
+        print("\n --- Chess Manager --- \n")
         print("(1) Register a player in the database")
         print("(2) Create a new tournament (turns and players management in progress ...) ")
         print("(3) Resume a tournament \n")
-        print("(4) Exit the application \n")
+        print("(4) Display a Tournament information (need it id)")
+        print("(5) Display a Player information (need him national chess id) \n")
+        print("(6) Exit the application \n")
         try:
             digit_menu_selection = int(
                 input("please insert the digit corresponding to the action you want to make: \n"))

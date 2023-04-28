@@ -1,10 +1,10 @@
 [
     {
-        "ID": "grZczjyJhV59G46Z3LEdZD",
+        "ID": "a",
         "name": "test",
         "place": "test",
-        "start_date": "2023-04-26",
-        "end_date": "2023-04-25",
+        "start_date": "2023-04-28",
+        "end_date": "2023-04-29",
         "all_turns": [
             {
                 "name": "round 1",
@@ -20,10 +20,10 @@
                         "in_tournament": false
                     },
                     {
-                        "last_name": "Chatelain",
-                        "first_name": "Flora",
-                        "birth_date": "1999-01-28",
-                        "national_chess_ID": "b",
+                        "last_name": "paul",
+                        "first_name": "jean",
+                        "birth_date": "1999-02-23",
+                        "national_chess_ID": "d",
                         "tournament_ID": "",
                         "has_played_with": [],
                         "score": 0,
@@ -40,10 +40,10 @@
                         "in_tournament": false
                     },
                     {
-                        "last_name": "paul",
-                        "first_name": "jean",
-                        "birth_date": "1999-02-23",
-                        "national_chess_ID": "d",
+                        "last_name": "Chatelain",
+                        "first_name": "Flora",
+                        "birth_date": "1999-01-28",
+                        "national_chess_ID": "b",
                         "tournament_ID": "",
                         "has_played_with": [],
                         "score": 0,
@@ -64,20 +64,20 @@
                                 "score": 0,
                                 "in_tournament": false
                             },
-                            "score": 0.5
+                            "score": 1
                         },
                         "player_two_info": {
                             "player_info": {
-                                "last_name": "Chatelain",
-                                "first_name": "Flora",
-                                "birth_date": "1999-01-28",
-                                "national_chess_ID": "b",
+                                "last_name": "paul",
+                                "first_name": "jean",
+                                "birth_date": "1999-02-23",
+                                "national_chess_ID": "d",
                                 "tournament_ID": "",
                                 "has_played_with": [],
                                 "score": 0,
                                 "in_tournament": false
                             },
-                            "score": 0.5
+                            "score": 0
                         }
                     },
                     {
@@ -96,21 +96,21 @@
                         },
                         "player_two_info": {
                             "player_info": {
-                                "last_name": "paul",
-                                "first_name": "jean",
-                                "birth_date": "1999-02-23",
-                                "national_chess_ID": "d",
+                                "last_name": "Chatelain",
+                                "first_name": "Flora",
+                                "birth_date": "1999-01-28",
+                                "national_chess_ID": "b",
                                 "tournament_ID": "",
                                 "has_played_with": [],
                                 "score": 0,
                                 "in_tournament": false
                             },
-                            "score": 0
+                            "score": 1
                         }
                     }
                 ],
-                "start_date": "2023-04-26 08:38:57.251788",
-                "start_hour": "08:38:57",
+                "start_date": "2023-04-28 08:53:39.395342",
+                "start_hour": "08:53:39",
                 "end_hour": null,
                 "end_date": null
             }
@@ -127,10 +127,10 @@
                 "in_tournament": false
             },
             {
-                "last_name": "Chatelain",
-                "first_name": "Flora",
-                "birth_date": "1999-01-28",
-                "national_chess_ID": "b",
+                "last_name": "paul",
+                "first_name": "jean",
+                "birth_date": "1999-02-23",
+                "national_chess_ID": "d",
                 "tournament_ID": "",
                 "has_played_with": [],
                 "score": 0,
@@ -147,10 +147,10 @@
                 "in_tournament": false
             },
             {
-                "last_name": "paul",
-                "first_name": "jean",
-                "birth_date": "1999-02-23",
-                "national_chess_ID": "d",
+                "last_name": "Chatelain",
+                "first_name": "Flora",
+                "birth_date": "1999-01-28",
+                "national_chess_ID": "b",
                 "tournament_ID": "",
                 "has_played_with": [],
                 "score": 0,
