@@ -57,9 +57,6 @@ tournament = Tournament(
     description="test tournament"
 )
 
-# view = View()
-# controller = Controller(view)
-# controller.run()
-
-View.input_tournament_start_year()
-View.input_tournament_start_date_test()
+view = View()
+controller = Controller(view)
+controller.run()

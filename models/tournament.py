@@ -162,43 +162,8 @@ class Tournament:
         """Sort players by their score, in ascending order"""
         sorted_players = self.registered_players
         sorted_players.sort(key=Player.display_score, reverse=False)
+        print(sorted_players)
         return sorted_players
-
-    def update_players_by_game(self, game: Game):
-        """Takes an ended game and update the informations (score and has_played_with)
-        abut the players that played this game
-
-        :param game: a game that is ENDED
-        :return:
-        """
-        self.update_player_score_by_id(game.player_one_info.player.national_chess_ID, game.player_one_info.score)
-        self.update_player_has_played_with(game.player_two_info.player.national_chess_ID, game.player_one_info.player)
-        self.update_player_score_by_id(game.player_two_info.player.national_chess_ID, game.player_two_info.score)
-        self.update_player_has_played_with(game.player_one_info.player.national_chess_ID, game.player_two_info.player)
-
-    def update_player_score_by_id(self, nationalChessID: str, new_score: int):
-        """Find a player by his chessID and update his score after a game
-
-        :param nationalChessID: the chessID of the player that we wanna find
-        :param new_score: the updated score
-        """
-        player = self.find_player(nationalChessID)
-        if player is None:
-            print("we didn't find a player with this national chess ID in this tournament")
-            return None
-        player.score = new_score
-
-    def update_player_has_played_with(self, nationalChessID: str, player: Player):
-        """Update the array of players that the player has played against
-
-        :param nationalChessID: the chessID of the player we want to put in the array of the player
-        :param player: the target of update
-        """
-        opponent = self.find_player(nationalChessID)
-        if opponent is None:
-            print("we didn't find a player with this chess ID")
-            return None
-        player.has_played_with.append(opponent.national_chess_ID)
 
     def find_player(self, nationalChessID: str):
         """
@@ -252,7 +217,7 @@ class Tournament:
         for i in range(0, len(players), 2):
             if i == (len(players)-2):
                 break
-            if self.find_player_opponent(players[i], players[i+1].national_chess_ID):
+            if self.find_player_opponent(players[i], players[i+1].national_chess_ID) is True:
                 players[i+1], players[i+2] = players[i+2], players[i+1]
         return players
 
@@ -284,8 +249,7 @@ class Tournament:
         :param turn: the turn that is ended
         """
         turn.end_turn()
-        for game in turn.all_games:
-            self.update_players_by_game(game)
+        self.registered_players = turn.players
 
     @staticmethod
     def json_players(players: list[Player]):

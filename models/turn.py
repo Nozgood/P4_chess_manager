@@ -50,6 +50,7 @@ class Turn:
                f"  end hour:{self.end_hour} \n"\
                f"  all games:{joined_games} \n"\
 
+
     def __json__(self):
         """Json formatting"""
 
@@ -116,3 +117,53 @@ class Turn:
             json.dump(all_turns, file, indent=4)
         print("turn successfully updated")
         return None
+
+    def update_players_by_game(self, game: Game):
+        """Takes an ended game and update the information (score and has_played_with)
+        abut the players that played this game
+
+        :param game: a game that is ENDED
+        :return:
+        """
+        self.update_player_has_played_with(game.player_one_info.player.national_chess_ID, game.player_two_info.player.national_chess_ID)
+        self.update_player_score_by_id(game.player_one_info.player.national_chess_ID, game.player_one_info.score)
+        self.update_player_has_played_with(game.player_two_info.player.national_chess_ID, game.player_one_info.player.national_chess_ID)
+        self.update_player_score_by_id(game.player_two_info.player.national_chess_ID, game.player_two_info.score)
+
+    def update_player_has_played_with(self, player_one_id, player_two_id: str):
+        """Update the array of players that the player has played against
+
+        :param player_one_id: the chessID of the player we want to update
+        :param player_two_id: the chess id we want to put in the array of the player_one (player_one_id)
+        """
+        print("hello it's me")
+        player_index = self.find_player_index(player_one_id)
+        self.players[player_index].has_played_with.append(player_two_id)
+
+    def find_player(self, national_chess_id: str):
+        """
+        Find a player in the tournament entries by the chessID. It's a helper
+
+        :param national_chess_id: the chessID of the player we want to find
+        """
+        for player in self.players:
+            if player.national_chess_ID == national_chess_id:
+                return player
+        print("we didn't find a player with this national chess ID in this tournaments")
+
+    def find_player_index(self, national_chess_id):
+        for player in self.players:
+            if player.national_chess_ID == national_chess_id:
+                return self.players.index(player)
+
+    def update_player_score_by_id(self, national_chess_id: str, new_score: int):
+        """Find a player by his chessID and update his score after a game
+
+        :param national_chess_id: the chessID of the player that we wanna find
+        :param new_score: the updated score
+        """
+        player = self.find_player(national_chess_id)
+        if player is None:
+            print("we didn't find a player with this national chess ID in this tournament")
+            return None
+        player.score += new_score

@@ -143,21 +143,28 @@ class Controller:
         print("game winner: " + game_winner)
         if game_winner == "1":
             current_game.player_one_info.score += 1
+            Controller.update_player_info_in_turn(current_turn, current_game)
             print("the player one win the game")
         if game_winner == "2":
             current_game.player_two_info.score += 1
+            Controller.update_player_info_in_turn(current_turn, current_game)
             print("the player two win the game")
         if game_winner == "3":
-            current_game.player_one_info.score, current_game.player_two_info.score = 0.5, 0.5
+            current_game.player_one_info.score += 0.5
+            current_game.player_two_info.score += 0.5
+            Controller.update_player_info_in_turn(current_turn, current_game)
             print("it's a draw")
         current_turn.all_games[index_of_game] = current_game
-        print(f"score after update: player one: {current_turn.all_games[index_of_game].player_one_info.score}"
-              f"player two: {current_turn.all_games[index_of_game].player_two_info.score}")
         current_turn_index = Controller.find_turn_index_in_tournament(tournament, current_turn)
         tournament.all_turns[current_turn_index] = current_turn
         json_players = Tournament.json_players(tournament.registered_players)
         json_turns = Tournament.json_turns(tournament.all_turns)
         tournament.put(tournament.ID, json_players, json_turns)
+
+
+    @staticmethod
+    def update_player_info_in_turn(turn: Turn, game: Game):
+        turn.update_players_by_game(game)
 
     def check_tournament_status(self, tournament: Tournament):
         current_turn = self.get_current_turn(tournament)
@@ -201,6 +208,15 @@ class Controller:
                 index_of_turn = tournament.all_turns.index(turn)
                 return index_of_turn
         print("we didn't find a turn with this name")
+        return None
+
+    @staticmethod
+    def find_player_index_in_tournament(tournament, current_player):
+        for player in tournament.registered_players:
+            if current_player.national_chess_ID == player.national_chess_ID:
+                index_of_player = tournament.registered_players.index(player)
+                return index_of_player
+        print("this player is not registered to the tournament")
         return None
 
     def display_tournament(self):
