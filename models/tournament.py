@@ -1,5 +1,5 @@
 from models.turn import Turn
-from models.game import Game, GamePlayerInfo
+from models.game import Game
 from models.player import Player
 
 import shortuuid
@@ -8,6 +8,7 @@ import json
 import random
 
 FILENAME = "./data/tournaments/tournaments.json"
+
 
 class Tournament:
     """Tournament manages all the needed information, and the needed behaviors about a tournament"""

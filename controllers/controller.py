@@ -7,6 +7,7 @@ from models.player import Player
 from views.view import View
 from typing import Optional
 
+
 class Controller:
     def __init__(self, view: View):
         self.view = view
@@ -169,7 +170,7 @@ class Controller:
     @staticmethod
     def find_tournament_winner(tournament):
         registered_players = tournament.registered_players
-        player_max_score = max(registered_players, key=lambda objet:objet.score)
+        player_max_score = max(registered_players, key=lambda objet: objet.score)
         return player_max_score
 
     @staticmethod

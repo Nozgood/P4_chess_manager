@@ -1,5 +1,6 @@
 from models.player import Player
 
+
 class GamePlayerInfo:
     def __init__(self, player: Player, score=0):
         self.player = player
@@ -18,6 +19,7 @@ class GamePlayerInfo:
             "player_info": json_player,
             "score": json_score
         }
+
 
 class Game:
     """ Game represents and manage the opposition of 2 players """

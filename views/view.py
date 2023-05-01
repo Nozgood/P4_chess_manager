@@ -1,4 +1,3 @@
-from models.tournament import Tournament
 from models.player import Player
 import datetime
 
@@ -66,6 +65,7 @@ class View:
                 return start_year
             except test is True:
                 print(ERR_NOT_NUMERIC_VALUE)
+
     @staticmethod
     def test():
         return True
@@ -199,8 +199,12 @@ class View:
     def input_game_winner(game, game_number):
         print(f"current game: game {game_number}")
         game_result = input(f"Please choose the digit corresponding to the result of the game \n"
-                            f"1) Player One - {game.player_one_info.player.first_name} {game.player_one_info.player.last_name} - win \n"
-                            f"2) Player Two - {game.player_two_info.player.first_name} {game.player_two_info.player.last_name} - win \n"
+                            f"1) Player One - "
+                            f"{game.player_one_info.player.first_name} "
+                            f"{game.player_one_info.player.last_name} - win \n"
+                            f"2) Player Two - "
+                            f"{game.player_two_info.player.first_name} "
+                            f"{game.player_two_info.player.last_name} - win \n"
                             f"3) Draw \n")
         return game_result
 

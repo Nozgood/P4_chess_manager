@@ -2,9 +2,9 @@ from models.game import Game
 from datetime import datetime, date
 from collections import namedtuple
 import json
-import uuid
 
 FILENAME = "./data/turns/turns.json"
+
 
 class Turn:
     def __init__(
@@ -125,10 +125,22 @@ class Turn:
         :param game: a game that is ENDED
         :return:
         """
-        self.update_player_has_played_with(game.player_one_info.player.national_chess_ID, game.player_two_info.player.national_chess_ID)
-        self.update_player_score_by_id(game.player_one_info.player.national_chess_ID, game.player_one_info.score)
-        self.update_player_has_played_with(game.player_two_info.player.national_chess_ID, game.player_one_info.player.national_chess_ID)
-        self.update_player_score_by_id(game.player_two_info.player.national_chess_ID, game.player_two_info.score)
+        self.update_player_has_played_with(
+            game.player_one_info.player.national_chess_ID,
+            game.player_two_info.player.national_chess_ID
+        )
+        self.update_player_score_by_id(
+            game.player_one_info.player.national_chess_ID,
+            game.player_one_info.score
+        )
+        self.update_player_has_played_with(
+            game.player_two_info.player.national_chess_ID,
+            game.player_one_info.player.national_chess_ID
+        )
+        self.update_player_score_by_id(
+            game.player_two_info.player.national_chess_ID,
+            game.player_two_info.score
+        )
 
     def update_player_has_played_with(self, player_one_id, player_two_id: str):
         """Update the array of players that the player has played against

@@ -5,6 +5,7 @@ from tournament import Tournament
 from turn import Turn
 from game import Game
 
+
 class Report:
     def __init__(
             self,

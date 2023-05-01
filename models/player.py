@@ -1,8 +1,8 @@
 from models.person import Person
 import json
-from collections import namedtuple
 
 FILENAME = "./data/players/players.json"
+
 
 class Player(Person):
     """Player, a legacy of Person, manage all the needed information for a player"""
@@ -32,6 +32,7 @@ class Player(Person):
                f"  in tournament ?: {self.in_tournament} \n" \
                f"  has played with: {self.has_played_with} \n" \
                f"  score: {self.score} \n" \
+
 
     def __json__(self):
         """Format an object of type player in json (to be used in db)"""
