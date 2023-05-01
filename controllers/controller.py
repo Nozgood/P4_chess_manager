@@ -132,8 +132,11 @@ class Controller:
 
     def resume_tournament(self):
         tournament = self.get_tournament()
-        tournament = self.check_tournament_status(tournament)
-        if tournament is None:
+        tournament, status = self.check_tournament_status(tournament)
+        if status is False:
+            json_players = Tournament.json_players(tournament.registered_players)
+            json_turns = Tournament.json_turns(tournament.all_turns)
+            tournament.put(tournament.ID, json_players, json_turns)
             print("this tournament is ended ! :D")
             return None
         current_turn = self.get_current_turn(tournament)
@@ -172,12 +175,12 @@ class Controller:
             tournament.end_turn(current_turn)
             is_turn_updated = tournament.update_actual_turn()
             if is_turn_updated is False:
-                return None
+                return tournament, False
             tournament.create_turn()
             json_turns = Tournament.json_turns(tournament.all_turns)
             json_players = Tournament.json_players(tournament.registered_players)
             tournament.put(tournament.ID, json_players, json_turns)
-        return tournament
+        return tournament, True
 
     def get_current_turn(self, tournament: Tournament) -> Optional[Turn]:
         searched_name = "round " + str(tournament.actual_turn)
