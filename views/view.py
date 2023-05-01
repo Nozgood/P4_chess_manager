@@ -1,4 +1,5 @@
 from models.tournament import Tournament
+from models.player import Player
 import datetime
 
 ERR_NOT_NUMERIC_VALUE = "please fill this field in digits"
@@ -202,3 +203,9 @@ class View:
                             f"2) Player Two - {game.player_two_info.player.first_name} {game.player_two_info.player.last_name} - win \n"
                             f"3) Draw \n")
         return game_result
+
+    @staticmethod
+    def display_tournament_winner(player: Player):
+        print(f"Congratulations ! This tournament is ended and the winner is: \n "
+              f"  {player.first_name} {player.last_name} with a score of {player.score} points ! "
+              )

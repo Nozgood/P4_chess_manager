@@ -137,9 +137,9 @@ class Controller:
             json_players = Tournament.json_players(tournament.registered_players)
             json_turns = Tournament.json_turns(tournament.all_turns)
             tournament.put(tournament.ID, json_players, json_turns)
-            player_max_score = Controller.find_tournament_winner(tournament)
-            print(f"player with the max score: {player_max_score}")
-            print("this tournament is ended ! :D")
+            tournament.sort_players_by_score()
+            player_best_score_index = len(tournament.registered_players) - 1
+            self.view.display_tournament_winner(tournament.registered_players[player_best_score_index])
             return None
         current_turn = self.get_current_turn(tournament)
         current_game, index_of_game = self.get_current_game(current_turn)
