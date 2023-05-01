@@ -137,6 +137,8 @@ class Controller:
             json_players = Tournament.json_players(tournament.registered_players)
             json_turns = Tournament.json_turns(tournament.all_turns)
             tournament.put(tournament.ID, json_players, json_turns)
+            player_max_score = Controller.find_tournament_winner(tournament)
+            print(f"player with the max score: {player_max_score}")
             print("this tournament is ended ! :D")
             return None
         current_turn = self.get_current_turn(tournament)
@@ -164,6 +166,11 @@ class Controller:
         json_turns = Tournament.json_turns(tournament.all_turns)
         tournament.put(tournament.ID, json_players, json_turns)
 
+    @staticmethod
+    def find_tournament_winner(tournament):
+        registered_players = tournament.registered_players
+        player_max_score = max(registered_players, key=lambda objet:objet.score)
+        return player_max_score
 
     @staticmethod
     def update_player_info_in_turn(turn: Turn, game: Game):
