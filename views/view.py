@@ -16,14 +16,33 @@ class View:
         print("(2) Create a new tournament (turns and players management in progress ...) ")
         print("(3) Resume a tournament \n")
         print("(4) Display a Tournament information (need it id)")
-        print("(5) Display a Player information (need him national chess id) \n")
-        print("(6) Exit the application \n")
+        print("(5) Display a Player information (need him national chess id)")
+        print("(6) Generate a report \n")
+        print("(7) Exit the application \n")
         try:
             digit_menu_selection = int(
                 input("please insert the digit corresponding to the action you want to make: \n"))
         except ValueError:
             print("please enter a digit value")
-        return int(digit_menu_selection)
+        return digit_menu_selection
+
+    @staticmethod
+    def input_report_menu():
+        digit_menu_selection = ""
+        print("\n --- Report Management --- \n")
+        print("(1) List of all the players in the database (sorted alphabetically)")
+        print("(2) List of all the tournaments in the database")
+        print("(3) Name and date of a given tournament (need tournament id)")
+        print("(4) List of registered players in a tournament (sorted alphabetically, need tournament id)")
+        print("(5) List of all turns of a tournament and all games of each turn (need tournament id)")
+        print("(6) Go back to main menu")
+        print("(7) Exit the application")
+        try:
+            digit_menu_selection = int(
+                input("please insert the digit corresponding to the action you want to make: \n"))
+        except ValueError:
+            print("please enter a digit value")
+        return digit_menu_selection
 
     @staticmethod
     def input_tournament_name():

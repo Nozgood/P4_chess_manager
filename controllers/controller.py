@@ -41,6 +41,8 @@ class Controller:
             if menu_selection == 5:
                 self.display_player()
             if menu_selection == 6:
+                self.report_management()
+            if menu_selection == 7:
                 print("See You ASAP...")
                 running = False
 
@@ -248,3 +250,7 @@ class Controller:
             print("we didnt find a player with this national chess id in our database")
             return None
         print(f"player information:\n{player}")
+
+    def report_management(self):
+        selection = self.view.input_report_menu()
+        return selection
