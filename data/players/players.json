@@ -1,9 +1,39 @@
 [
     {
-        "last_name": "Safi",
-        "first_name": "Nowfeel",
-        "birth_date": "1999-02-23",
-        "national_chess_ID": "ab12345",
+        "last_name": "ronaldo",
+        "first_name": "cristiano",
+        "birth_date": "1985-02-05",
+        "national_chess_ID": "a",
+        "tournament_ID": "",
+        "has_played_with": [],
+        "score": 0,
+        "in_tournament": false
+    },
+    {
+        "last_name": "messi",
+        "first_name": "leo",
+        "birth_date": "1987-04-26",
+        "national_chess_ID": "b",
+        "tournament_ID": "",
+        "has_played_with": [],
+        "score": 0,
+        "in_tournament": false
+    },
+    {
+        "last_name": "jr",
+        "first_name": "neymar",
+        "birth_date": "1992-02-05",
+        "national_chess_ID": "c",
+        "tournament_ID": "",
+        "has_played_with": [],
+        "score": 0,
+        "in_tournament": false
+    },
+    {
+        "last_name": "niang",
+        "first_name": "mamadou",
+        "birth_date": "1979-10-13",
+        "national_chess_ID": "d",
         "tournament_ID": "",
         "has_played_with": [],
         "score": 0,
