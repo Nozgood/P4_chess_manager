@@ -252,5 +252,31 @@ class Controller:
         print(f"player information:\n{player}")
 
     def report_management(self):
-        selection = self.view.input_report_menu()
-        return selection
+        report_running = True
+        while report_running is True:
+            selection = self.view.input_report_menu()
+            if selection == 1:
+                players = Player.list()
+                sorted_players = sorted(players, key=lambda x: x["last_name"])
+                self.view.report_display_players(sorted_players)
+            if selection == 2:
+                tournaments = Tournament.list()
+                self.view.report_display_tournaments(tournaments)
+            if selection == 3:
+                tournament = self.get_tournament()
+                if tournament is None:
+                    return None
+                self.view.report_display_tournament_information(tournament)
+            if selection == 4:
+                tournament = self.get_tournament()
+                if tournament is None:
+                    return None
+                tournament.registered_players.sort(key=lambda x: x.last_name)
+                self.view.report_display_players(tournament.registered_players)
+            if selection == 5:
+                tournament = self.get_tournament()
+                if tournament is None:
+                    return None
+                self.view.report_display_tournament_turns(tournament)
+            if selection == 6:
+                report_running = False

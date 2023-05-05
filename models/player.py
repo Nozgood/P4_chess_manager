@@ -99,7 +99,8 @@ class Player(Person):
         print("we didn't find a player with this nationalChessID in our database")
         return None
 
-    def list(self):
+    @staticmethod
+    def list() -> list:
         with open(FILENAME, "r") as file:
             datas = json.load(file)
         return datas
