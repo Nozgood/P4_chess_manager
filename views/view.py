@@ -1,4 +1,5 @@
 from models.player import Player
+from models.tournament import Tournament
 import datetime
 
 ERR_NOT_NUMERIC_VALUE = "please fill this field in digits"
@@ -16,14 +17,33 @@ class View:
         print("(2) Create a new tournament (turns and players management in progress ...) ")
         print("(3) Resume a tournament \n")
         print("(4) Display a Tournament information (need it id)")
-        print("(5) Display a Player information (need him national chess id) \n")
-        print("(6) Exit the application \n")
+        print("(5) Display a Player information (need him national chess id)")
+        print("(6) Generate a report \n")
+        print("(7) Exit the application \n")
         try:
             digit_menu_selection = int(
                 input("please insert the digit corresponding to the action you want to make: \n"))
         except ValueError:
             print("please enter a digit value")
-        return int(digit_menu_selection)
+        return digit_menu_selection
+
+    @staticmethod
+    def input_report_menu():
+        digit_menu_selection = ""
+        print("\n --- Report Management --- \n")
+        print("(1) List of all the players in the database (sorted alphabetically by last name)")
+        print("(2) List of all the tournaments in the database")
+        print("(3) Name and date of a given tournament (need tournament id)")
+        print("(4) "
+              "List of registered players in a tournament (sorted alphabetically by last name, need tournament id)")
+        print("(5) List of all turns of a tournament and all games of each turn (need tournament id)")
+        print("(6) Go back to main menu")
+        try:
+            digit_menu_selection = int(
+                input("please insert the digit corresponding to the action you want to make: \n"))
+        except ValueError:
+            print("please enter a digit value")
+        return digit_menu_selection
 
     @staticmethod
     def input_tournament_name():
@@ -213,3 +233,29 @@ class View:
         print(f"Congratulations ! This tournament is ended and the winner is: \n "
               f"  {player.first_name} {player.last_name} with a score of {player.score} points ! "
               )
+
+    @staticmethod
+    def report_display_players(players: list):
+        for player in players:
+            print(f"player: {player}")
+
+    @staticmethod
+    def report_display_tournaments(tournaments: list):
+        for tournament in tournaments:
+            print(f"tournament: {tournament}")
+
+    @staticmethod
+    def report_display_tournament_information(tournament: Tournament):
+        print(f"tournament name: {tournament.name} \n "
+              f"start date: {tournament.start_date} \n "
+              f"end date: {tournament.end_date}")
+
+    @staticmethod
+    def report_display_tournament_players(tournament: Tournament):
+        for player in tournament.registered_players:
+            print(f"registered player: {player}")
+
+    @staticmethod
+    def report_display_tournament_turns(tournament: Tournament):
+        for turn in tournament.all_turns:
+            print(f"turn: {turn}")
