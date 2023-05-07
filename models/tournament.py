@@ -163,7 +163,6 @@ class Tournament:
         """Sort players by their score, in ascending order"""
         sorted_players = self.registered_players
         sorted_players.sort(key=Player.display_score, reverse=False)
-        print(sorted_players)
         return sorted_players
 
     def find_player(self, nationalChessID: str):
@@ -267,6 +266,9 @@ class Tournament:
             json_turn = turn.__json__()
             json_turns.append(json_turn)
         return json_turns
+
+    def json_turns_and_players(self, players: list[Player], turns: list[Turn]):
+        return self.json_players(players), self.json_turns(turns)
 
     def post(self, json_players, json_turns):
         with open(FILENAME, "r") as file:

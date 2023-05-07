@@ -1,5 +1,3 @@
-import datetime
-
 from models.tournament import Tournament
 from models.turn import Turn
 from models.game import Game
@@ -46,33 +44,6 @@ class Controller:
                 print("See You ASAP...")
                 running = False
 
-    def create_static_tournament(self):
-        tournament_number_of_players = 2
-        tournament_registered_players = self.register_players_in_tournament(tournament_number_of_players)
-        json_players = []
-        for player in tournament_registered_players:
-            json_player = self.json_player(player)
-            json_players.append(json_player)
-
-        tournament = Tournament(
-            name="test",
-            place="test",
-            start_date=datetime.date.today(),
-            end_date=datetime.date.today(),
-            description="test",
-            registered_players=tournament_registered_players,
-            number_of_turns=1,
-            actual_turn=1,
-            all_turns=[],
-        )
-        tournament.create_turn()
-        json_turns = []
-        for turn in tournament.all_turns:
-            json_turn = self.json_turn(turn)
-            json_turns.append(json_turn)
-        tournament.post(json_players, json_turns)
-        return tournament
-
     def create_tournament(self):
         """
         create_tournament manage all the necessaries information to create a tournament and store it in database
@@ -99,8 +70,10 @@ class Controller:
             all_turns=[],
         )
         tournament.create_turn()
-        json_players = Tournament.json_players(tournament_registered_players)
-        json_turns = tournament.json_turns(tournament.all_turns)
+        json_players, json_turns = tournament.json_turns_and_players(
+            tournament.registered_players,
+            tournament.all_turns
+        )
         tournament.post(json_players, json_turns)
         return tournament
 
@@ -114,8 +87,10 @@ class Controller:
         return slice_of_players
 
     def get_player(self):
-        player_id = self.view.input_tournament_register_player()
-        player = Player.get(player_id)
+        player = None
+        while player is None:
+            player_id = self.view.input_tournament_register_player()
+            player = Player.get(player_id)
         return player
 
     def register_player_in_db(self):
@@ -137,36 +112,37 @@ class Controller:
         tournament = self.get_tournament()
         tournament, status = self.check_tournament_status(tournament)
         if status is False:
-            json_players = Tournament.json_players(tournament.registered_players)
-            json_turns = Tournament.json_turns(tournament.all_turns)
+            json_players, json_turns = tournament.json_turns_and_players(
+                tournament.registered_players,
+                tournament.all_turns
+            )
             tournament.put(tournament.ID, json_players, json_turns)
             tournament.sort_players_by_score()
             player_best_score_index = len(tournament.registered_players) - 1
             self.view.display_tournament_winner(tournament.registered_players[player_best_score_index])
             return None
         current_turn = self.get_current_turn(tournament)
-        current_game, index_of_game = self.get_current_game(current_turn)
+        current_game, index_of_game = Controller.get_current_game(current_turn)
         self.view.display_tournament_turn(current_turn)
         game_winner = self.view.input_game_winner(current_game, index_of_game + 1)
-        print("game winner: " + game_winner)
-        if game_winner == "1":
+        if game_winner == 1:
             current_game.player_one_info.score += 1
             Controller.update_player_info_in_turn(current_turn, current_game)
-            print("the player one win the game")
-        if game_winner == "2":
+        if game_winner == 2:
             current_game.player_two_info.score += 1
             Controller.update_player_info_in_turn(current_turn, current_game)
-            print("the player two win the game")
-        if game_winner == "3":
+        if game_winner == 3:
             current_game.player_one_info.score += 0.5
             current_game.player_two_info.score += 0.5
             Controller.update_player_info_in_turn(current_turn, current_game)
-            print("it's a draw")
+        self.view.display_game_winner(game_winner)
         current_turn.all_games[index_of_game] = current_game
         current_turn_index = Controller.find_turn_index_in_tournament(tournament, current_turn)
         tournament.all_turns[current_turn_index] = current_turn
-        json_players = Tournament.json_players(tournament.registered_players)
-        json_turns = Tournament.json_turns(tournament.all_turns)
+        json_players, json_turns = tournament.json_turns_and_players(
+            tournament.registered_players,
+            tournament.all_turns
+        )
         tournament.put(tournament.ID, json_players, json_turns)
 
     @staticmethod
@@ -200,7 +176,8 @@ class Controller:
                 founded_turn = turn
         return founded_turn
 
-    def get_current_game(self, turn: Turn):
+    @staticmethod
+    def get_current_game(turn: Turn):
         for game in turn.all_games:
             if game.player_one_info.score == 0 and game.player_two_info.score == 0:
                 return game, turn.all_games.index(game)
@@ -208,7 +185,7 @@ class Controller:
         return None
 
     def are_still_game_to_play(self, turn: Turn):
-        current_game = self.get_current_game(turn)
+        current_game = Controller.get_current_game(turn)
         print(current_game)
         if current_game is None:
             return False

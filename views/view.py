@@ -14,7 +14,7 @@ class View:
         digit_menu_selection = ""
         print("\n --- Chess Manager --- \n")
         print("(1) Register a player in the database")
-        print("(2) Create a new tournament (turns and players management in progress ...) ")
+        print("(2) Create a new tournament")
         print("(3) Resume a tournament \n")
         print("(4) Display a Tournament information (need it id)")
         print("(5) Display a Player information (need him national chess id)")
@@ -77,28 +77,13 @@ class View:
 
     @staticmethod
     def input_tournament_start_year():
-        test = View.test()
         start_year = None
         while start_year is None:
             try:
                 start_year = int(input("please enter the year the tournament will start (in digits): \n"))
                 return start_year
-            except test is True:
+            except ValueError:
                 print(ERR_NOT_NUMERIC_VALUE)
-
-    @staticmethod
-    def test():
-        return True
-
-    @staticmethod
-    def input_tournament_start_date_test():
-        test = input("please enter the date with this format: DAY/MONTH/YEAR: \n\n")
-        date_day = test.split("/")[0]
-        date_month = test.split("/")[1]
-        date_year = test.split("/")[2]
-        print(test.split("/"))
-        start_date = datetime.date(int(date_year), int(date_month), int(date_day))
-        return start_date
 
     @staticmethod
     def input_tournament_end_day():
@@ -153,10 +138,9 @@ class View:
 
     @staticmethod
     def input_tournament_register_player():
-        player_to_register_id = input(
+        return input(
             "please enter the national chess ID of the player you want to register for the tournament: \n"
         )
-        return player_to_register_id
 
     @staticmethod
     def input_tournament_number_of_turns():
@@ -181,18 +165,15 @@ class View:
 
     @staticmethod
     def input_player_chess_id():
-        national_chess_id = input("please enter the national chess ID of the player you want to register: \n")
-        return national_chess_id
+        return input("please enter the national chess ID of the player you want to register: \n")
 
     @staticmethod
     def input_player_first_name():
-        player_first_name = input("please enter the first name of the player you want to register: \n")
-        return player_first_name
+        return input("please enter the first name of the player you want to register: \n")
 
     @staticmethod
     def input_player_last_name():
-        player_last_name = input("plase enter the last name of the player you want to register: \n")
-        return player_last_name
+        return input("please enter the last name of the player you want to register: \n")
 
     @staticmethod
     def input_player_birth_date():
@@ -208,24 +189,38 @@ class View:
 
     @staticmethod
     def input_get_tournament_id():
-        tournament_id = input("please fill the id of the tournament you want to resume: \n")
-        return tournament_id
+        return input("please fill the id of the tournament you want to resume: \n")
 
     @staticmethod
     def display_tournament_turn(turn):
         print(f"current turn: {turn.name}")
 
     @staticmethod
+    def display_game_winner(game_winner):
+        if game_winner == 1:
+            print("the player one wins the game ! 😄")
+        if game_winner == 2:
+            print("the player two wins the game")
+        if game_winner == 3:
+            print("it's a draw")
+
+    @staticmethod
     def input_game_winner(game, game_number):
         print(f"current game: game {game_number}")
-        game_result = input(f"Please choose the digit corresponding to the result of the game \n"
-                            f"1) Player One - "
-                            f"{game.player_one_info.player.first_name} "
-                            f"{game.player_one_info.player.last_name} - win \n"
-                            f"2) Player Two - "
-                            f"{game.player_two_info.player.first_name} "
-                            f"{game.player_two_info.player.last_name} - win \n"
-                            f"3) Draw \n")
+        game_result = None
+        while game_result is None:
+            try:
+                game_result = int(input(
+                    f"Please choose the digit corresponding to the result of the game \n"
+                    f"1) Player One - "
+                    f"{game.player_one_info.player.first_name} "
+                    f"{game.player_one_info.player.last_name} - win \n"
+                    f"2) Player Two - "
+                    f"{game.player_two_info.player.first_name} "
+                    f"{game.player_two_info.player.last_name} - win \n"
+                    f"3) Draw \n"))
+            except ValueError:
+                print(ERR_NOT_NUMERIC_VALUE)
         return game_result
 
     @staticmethod
