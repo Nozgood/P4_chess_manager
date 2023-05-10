@@ -21,13 +21,14 @@ class Player(Person):
         self.has_played_with = has_played_with
 
     def __str__(self):
-        return f"  first name: {self.first_name} \n" \
-               f"  last name: {self.last_name} \n" \
-               f"  birth date: {self.birth_date} \n" \
-               f"  national chess id: {self.national_chess_ID} \n" \
-               f"  has played with: {self.has_played_with} \n" \
-               f"  score: {self.score} \n" \
-
+        return (
+            f"  first name: {self.first_name} \n"
+            f"  last name: {self.last_name} \n"
+            f"  birth date: {self.birth_date} \n"
+            f"  national chess id: {self.national_chess_ID} \n"
+            f"  has played with: {self.has_played_with} \n"
+            f"  score: {self.score} \n"
+        )
 
     def __json__(self):
         """Format an object of type player in json (to be used in db)"""
