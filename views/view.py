@@ -13,7 +13,8 @@ class View:
 
     @staticmethod
     def input_main_menu():
-        """Takes the input from the user to choose which action to make in the main menu of the application
+        """
+        Takes the input from the user to choose which action to make in the main menu of the application
 
         :return: the digit corresponding to the action the user wants to make
         """
@@ -35,7 +36,8 @@ class View:
 
     @staticmethod
     def input_report_menu():
-        """Takes the input from the user to choose which action to make in the report menu of the application
+        """
+        Takes the input from the user to choose which action to make in the report menu of the application
 
         :return: the digit corresponding to the action the user wants to make
         """
@@ -59,7 +61,8 @@ class View:
 
     @staticmethod
     def input_tournament_name():
-        """Saves the input from the user for the name of a created tournament
+        """
+        Saves the input from the user for the name of a created tournament
 
         :return: the input
         """
@@ -68,7 +71,8 @@ class View:
 
     @staticmethod
     def input_tournament_place():
-        """Saves the input from the user for the place of a created tournament
+        """
+        Saves the input from the user for the place of a created tournament
 
         :return: the input
         """
@@ -77,7 +81,8 @@ class View:
 
     @staticmethod
     def input_tournament_start_day():
-        """Saves the input from the user for the start day of a created tournament
+        """
+        Saves the input from the user for the start day of a created tournament
 
         :return: the input
         """
@@ -91,7 +96,8 @@ class View:
 
     @staticmethod
     def input_tournament_start_month():
-        """Saves the input from the user for the start month of a created tournament
+        """
+        Saves the input from the user for the start month of a created tournament
 
         :return: the input
         """
@@ -105,7 +111,8 @@ class View:
 
     @staticmethod
     def input_tournament_start_year():
-        """Saves the input from the user for the start year of a created tournament
+        """
+        Saves the input from the user for the start year of a created tournament
 
         :return: the input
         """
@@ -119,7 +126,8 @@ class View:
 
     @staticmethod
     def input_tournament_end_day():
-        """Saves the input from the user for the end day of a created tournament
+        """
+        Saves the input from the user for the end day of a created tournament
 
         :return: the input
         """
@@ -133,7 +141,8 @@ class View:
 
     @staticmethod
     def input_tournament_end_month():
-        """Saves the input from the user for the end month of a created tournament
+        """
+        Saves the input from the user for the end month of a created tournament
 
         :return: the input
         """
@@ -147,7 +156,8 @@ class View:
 
     @staticmethod
     def input_tournament_end_year():
-        """Saves the input from the user for the end year of a created tournament
+        """
+        Saves the input from the user for the end year of a created tournament
 
         :return: the input
         """
@@ -161,7 +171,8 @@ class View:
 
     @staticmethod
     def input_tournament_start_date():
-        """ Saves the 3 inputs for a starting date (day, month year) create a datetime object and returns it
+        """
+        Saves the 3 inputs for a starting date (day, month year) create a datetime object and returns it
 
         :return: the datetime object that has been created
         """
@@ -173,7 +184,8 @@ class View:
 
     @staticmethod
     def input_tournament_end_date():
-        """Saves the 3 inputs for a starting date (day, month year) create a datetime object and returns it
+        """
+        Saves the 3 inputs for a starting date (day, month year) create a datetime object and returns it
 
         :return: the datetime object that has been created
         """
@@ -185,7 +197,8 @@ class View:
 
     @staticmethod
     def input_tournament_description():
-        """Saves the input from the user for the description of a created tournament
+        """
+        Saves the input from the user for the description of a created tournament
 
         :return: the input
         """
@@ -194,7 +207,8 @@ class View:
 
     @staticmethod
     def input_tournament_register_player():
-        """Saves the input of the user to get a player in the database and register him/her to a tournament
+        """
+        Saves the input of the user to get a player in the database and register him/her to a tournament
 
         :return: the input
         """
@@ -204,7 +218,8 @@ class View:
 
     @staticmethod
     def input_tournament_number_of_turns():
-        """Saves the input from the user for the number of turns of a created tournament
+        """
+        Saves the input from the user for the number of turns of a created tournament
 
         :return: the input
         """
@@ -218,7 +233,8 @@ class View:
 
     @staticmethod
     def input_tournament_number_of_players():
-        """Saves the input from the user for the number of players of a created tournament
+        """
+        Saves the input from the user for the number of players of a created tournament
 
         :return: the input
         """
@@ -233,7 +249,8 @@ class View:
 
     @staticmethod
     def input_player_chess_id():
-        """Saves the input from the user for the chess ID of a created player
+        """
+        Saves the input from the user for the chess ID of a created player
 
         :return: the input
         """
@@ -241,7 +258,8 @@ class View:
 
     @staticmethod
     def input_player_first_name():
-        """Saves the input from the user for the first name of a created player
+        """
+        Saves the input from the user for the first name of a created player
 
         :return: the input
         """
@@ -249,7 +267,8 @@ class View:
 
     @staticmethod
     def input_player_last_name():
-        """Saves the input from the user for the last name of a created player
+        """
+        Saves the input from the user for the last name of a created player
 
         :return: the input
         """
@@ -257,7 +276,8 @@ class View:
 
     @staticmethod
     def input_player_birth_day():
-        """Saves the input from the user for the birth's day of a created player
+        """
+        Saves the input from the user for the birth's day of a created player
 
         :return: the input
         """
@@ -271,7 +291,8 @@ class View:
 
     @staticmethod
     def input_player_birth_month():
-        """Saves the input from the user for the birth's month of a created player
+        """
+        Saves the input from the user for the birth's month of a created player
 
         :return: the input
         """
@@ -285,7 +306,8 @@ class View:
 
     @staticmethod
     def input_player_birth_year():
-        """Saves the input from the user for the birth's year of a created player
+        """
+        Saves the input from the user for the birth's year of a created player
 
         :return: the input
         """
@@ -299,7 +321,8 @@ class View:
 
     @staticmethod
     def input_player_birth_date():
-        """Saves the 3 input for a birthdate, create a datetime object and returns it
+        """
+        Saves the 3 input for a birthdate, create a datetime object and returns it
 
         :return: the datetime object that has been created
         """
@@ -311,7 +334,8 @@ class View:
 
     @staticmethod
     def input_get_tournament_id():
-        """ Saves the input of the user to get a tournament (except to receive an id)
+        """
+        Saves the input of the user to get a tournament (except to receive an id)
 
         :return: the input
         """
@@ -319,7 +343,8 @@ class View:
 
     @staticmethod
     def display_tournament_turn(turn: Turn):
-        """Accepts a turn and display it name
+        """
+        Accepts a turn and display it name
 
         :param turn: the turn that we want to print it name
         """
@@ -327,7 +352,8 @@ class View:
 
     @staticmethod
     def display_game_winner(game_winner: int):
-        """Accepts an int corresponding to the winner of a game and display a message in the console
+        """
+        Accepts an int corresponding to the winner of a game and display a message in the console
 
         :param game_winner: the digit corresponding to the player that has won the game
         """
@@ -340,12 +366,13 @@ class View:
 
     @staticmethod
     def input_game_winner(game: Game, game_number: int):
-        """Accepts an object of type Game and the number of the game in the turn, display the number of the current
+        """
+        Accepts an object of type Game and the number of the game in the turn, display the number of the current
         game saves the input corresponding to thewinner of the game and returns it
 
         :param game: object of type Game which contains the information of the players
         :param game_number: int corresponding to the current game in the turn
-        :return:
+        :return: an int corresponding to the result of the game
         """
         print(f"current game: game {game_number}")
         game_result = None
@@ -369,7 +396,8 @@ class View:
 
     @staticmethod
     def display_tournament_winner(player: Player):
-        """Accepts an object of type Player which corresponds to the winner of a tournament and display his / her
+        """
+        Accepts an object of type Player which corresponds to the winner of a tournament and display his / her
         information
 
         :param player: the winner of the tournament (of the type Player)
@@ -381,7 +409,8 @@ class View:
 
     @staticmethod
     def report_display_players(players: list):
-        """Accepts a list of players and display information for each player in the list
+        """
+        Accepts a list of players and display information for each player in the list
 
         :param players: a list containing players
         :return:
@@ -391,7 +420,8 @@ class View:
 
     @staticmethod
     def report_display_tournaments(tournaments: list):
-        """Accepts a list of tournaments and display information for each tournament in the list
+        """
+        Accepts a list of tournaments and display information for each tournament in the list
 
         :param tournaments: a list containing tournaments
         """
@@ -400,7 +430,8 @@ class View:
 
     @staticmethod
     def report_display_tournament_information(tournament: Tournament):
-        """Accepts an object of type Tournament and display information
+        """
+        Accepts an object of type Tournament and display information
 
         :param tournament: the object type Tournament that we want to display
         """
@@ -411,7 +442,8 @@ class View:
 
     @staticmethod
     def report_display_tournament_players(tournament: Tournament):
-        """Accepts an object of type Tournament and display each player who is registered for this tournament
+        """
+        Accepts an object of type Tournament and display each player who is registered for this tournament
 
         :param tournament: the object type Tournament that we want to display
         """
@@ -420,7 +452,8 @@ class View:
 
     @staticmethod
     def report_display_tournament_turns(tournament: Tournament):
-        """Accepts an object of type Tournament and display each turn for this tournament
+        """
+        Accepts an object of type Tournament and display each turn for this tournament
 
         :param tournament: the object type Tournament that we want to display
         """

@@ -52,7 +52,8 @@ class Game:
         }
 
     def give_win_point(self, player: Player):
-        """Add a point to the score of the winner player
+        """
+        Add a point to the score of the winner player
 
         :param player: take one player (the winner) as argument
         """
