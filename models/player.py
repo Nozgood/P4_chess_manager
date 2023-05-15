@@ -12,27 +12,23 @@ class Player(Person):
         first_name: str,
         birth_date: str,
         national_chess_id: str,
-        in_tournament=False,
-        tournament_id="",
         has_played_with=list[str],
         score=0,
     ):
         super().__init__(first_name, last_name, birth_date)
         self.national_chess_ID = national_chess_id
-        self.in_tournament = in_tournament
         self.score = score
-        self.tournament_id = tournament_id
         self.has_played_with = has_played_with
 
     def __str__(self):
-        return f"  first name: {self.first_name} \n" \
-               f"  last name: {self.last_name} \n" \
-               f"  birth date: {self.birth_date} \n" \
-               f"  national chess id: {self.national_chess_ID} \n" \
-               f"  in tournament ?: {self.in_tournament} \n" \
-               f"  has played with: {self.has_played_with} \n" \
-               f"  score: {self.score} \n" \
-
+        return (
+            f"  first name: {self.first_name} \n"
+            f"  last name: {self.last_name} \n"
+            f"  birth date: {self.birth_date} \n"
+            f"  national chess id: {self.national_chess_ID} \n"
+            f"  has played with: {self.has_played_with} \n"
+            f"  score: {self.score} \n"
+        )
 
     def __json__(self):
         """Format an object of type player in json (to be used in db)"""
@@ -41,10 +37,8 @@ class Player(Person):
             "first_name": self.first_name,
             "birth_date": str(self.birth_date),
             "national_chess_ID": self.national_chess_ID,
-            "tournament_ID": self.tournament_id,
             "has_played_with": self.has_played_with,
             "score": self.score,
-            "in_tournament": self.in_tournament
         }
 
     def display_score(self):
@@ -59,7 +53,6 @@ class Player(Person):
             national_chess_id=json_player["national_chess_ID"],
             has_played_with=json_player["has_played_with"],
             score=json_player["score"],
-            in_tournament=json_player["in_tournament"]
         )
         return formatted_player
 
@@ -74,7 +67,6 @@ class Player(Person):
                 national_chess_id=player["national_chess_ID"],
                 has_played_with=player["has_played_with"],
                 score=player["score"],
-                in_tournament=player["in_tournament"]
             )
             formatted_players.append(formatted_player)
         return formatted_players
@@ -85,7 +77,7 @@ class Player(Person):
         json_self = self.__json__()
         datas.append(json_self)
         with open(FILENAME, 'w') as file:
-            json.dump(datas, file, indent=4)
+            json.dump(datas, file, indent=4, ensure_ascii=False)
         print("player successfully registered in the database")
 
     @staticmethod

@@ -2,7 +2,6 @@ from models.turn import Turn
 from models.game import Game
 from models.player import Player
 
-import shortuuid
 from datetime import datetime
 import json
 import random
@@ -27,7 +26,8 @@ class Tournament:
             ID=None,
     ):
         if ID is None:
-            ID = shortuuid.uuid()
+            all_tournaments = Tournament.list()
+            ID = len(all_tournaments) + 1
         self.ID = ID
         self.name = name
         self.place = place
@@ -52,16 +52,18 @@ class Tournament:
 
         joined_players = "\n".join(str_players)
 
-        return f"id:  {self.ID}\n " \
-               f"name:  {self.name}\n " \
-               f"place:  {self.place}\n " \
-               f"start date:  {self.start_date}\n " \
-               f"end date:  {self.end_date}\n " \
-               f"all turns:\n  {joined_turns}\n " \
-               f"registered players:\n  {joined_players}\n" \
-               f"description:  {self.description}\n " \
-               f"number of turns:  {self.number_of_turns} \n " \
-               f"actual turn:  {self.actual_turn}\n"
+        return (
+            f"id:  {self.ID}\n "
+            f"name:  {self.name}\n "
+            f"place:  {self.place}\n "
+            f"start date:  {self.start_date}\n "
+            f"end date:  {self.end_date}\n "
+            f"all turns:\n  {joined_turns}\n "
+            f"registered players:\n  {joined_players}\n"
+            f"description:  {self.description}\n "
+            f"number of turns:  {self.number_of_turns} \n "
+            f"actual turn:  {self.actual_turn}\n"
+        )
 
     def __json__(self, json_players, json_turns):
         """Json formatting"""
@@ -163,7 +165,6 @@ class Tournament:
         """Sort players by their score, in ascending order"""
         sorted_players = self.registered_players
         sorted_players.sort(key=Player.display_score, reverse=False)
-        print(sorted_players)
         return sorted_players
 
     def find_player(self, nationalChessID: str):
@@ -268,13 +269,16 @@ class Tournament:
             json_turns.append(json_turn)
         return json_turns
 
+    def json_turns_and_players(self, players: list[Player], turns: list[Turn]):
+        return self.json_players(players), self.json_turns(turns)
+
     def post(self, json_players, json_turns):
         with open(FILENAME, "r") as file:
             datas = json.load(file)
         json_self = self.__json__(json_players, json_turns)
         datas.append(json_self)
         with open(FILENAME, 'w') as file:
-            json.dump(datas, file, indent=4)
+            json.dump(datas, file, indent=4, ensure_ascii=False)
         print(f"tournament created, id of the tournament: {self.ID}")
 
     @staticmethod
@@ -313,6 +317,6 @@ class Tournament:
             return None
         json_list_tournaments[index_of_tournament] = new_information
         with open(FILENAME, "w") as file:
-            json.dump(json_list_tournaments, file, indent=4)
+            json.dump(json_list_tournaments, file, indent=4, ensure_ascii=False)
         print("tournament successfully updated")
         return None
