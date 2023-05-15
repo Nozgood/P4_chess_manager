@@ -99,13 +99,20 @@ class Controller:
         :param number_of_players: int representing the number of players to get
         :return: a list with all the players that want to be registered in the tournament
         """
+        players_in_db = Player.list()
         slice_of_players = []
         count = 1
         while count <= number_of_players:
-            player = self.get_player()
+            player = self.get_tournament_player(players_in_db)
             slice_of_players.append(player)
             count += 1
         return slice_of_players
+
+    def get_tournament_player(self, players: list):
+        json_player = self.view.input_tournament_register_player(players)
+        json_player_id = json_player["national_chess_ID"]
+        formatted_player = Player.get(json_player_id)
+        return formatted_player
 
     def get_player(self):
         """

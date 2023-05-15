@@ -206,15 +206,18 @@ class View:
         return tournament_description
 
     @staticmethod
-    def input_tournament_register_player():
+    def input_tournament_register_player(players_in_db: list):
         """
         Saves the input of the user to get a player in the database and register him/her to a tournament
 
         :return: the input
         """
-        return input(
-            "please enter the national chess ID of the player you want to register for the tournament: \n"
-        )
+        for player in players_in_db:
+            print(f"({players_in_db.index(player)})player: {player}")
+        int_player_choice = int(input(
+            "please enter the digit corresponding to the player you want to register to the tournament: \n"
+        ))
+        return players_in_db[int_player_choice]
 
     @staticmethod
     def input_tournament_number_of_turns():
