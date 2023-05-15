@@ -219,7 +219,6 @@ class Controller:
         """
         current_turn = self.get_current_turn(tournament)
         if self.are_still_game_to_play(current_turn) is False:
-            print("hello turn not ended")
             tournament.end_turn(current_turn)
             is_turn_updated = tournament.update_actual_turn()
             if is_turn_updated is False:
@@ -267,9 +266,7 @@ class Controller:
         :return: boolean : true if there is still game(s) to play, false if not
         """
         current_game = Controller.get_current_game(turn)
-        print(f"current game: {current_game}")
-        if current_game is None:
-            print("hellllllo")
+        if current_game[0] is None:
             return False
         return True
 
