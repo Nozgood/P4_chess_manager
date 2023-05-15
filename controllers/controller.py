@@ -219,6 +219,7 @@ class Controller:
         """
         current_turn = self.get_current_turn(tournament)
         if self.are_still_game_to_play(current_turn) is False:
+            print("hello turn not ended")
             tournament.end_turn(current_turn)
             is_turn_updated = tournament.update_actual_turn()
             if is_turn_updated is False:
@@ -249,7 +250,7 @@ class Controller:
         accepts an object type Turn and try to find the current game of this turn
 
         :param turn: the turn in which we want to find the current game
-        :return: the current Game if there is plus it index, None if not
+        :return: the current Game if there is plus it indexes, None if not
         """
         for game in turn.all_games:
             if game.player_one_info.score == 0 and game.player_two_info.score == 0:
@@ -266,8 +267,9 @@ class Controller:
         :return: boolean : true if there is still game(s) to play, false if not
         """
         current_game = Controller.get_current_game(turn)
-        print(current_game)
+        print(f"current game: {current_game}")
         if current_game is None:
+            print("hellllllo")
             return False
         return True
 

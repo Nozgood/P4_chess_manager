@@ -1,10 +1,10 @@
 [
     {
-        "ID": "a",
+        "ID": "1",
         "name": "test",
         "place": "test",
-        "start_date": "1999-02-23",
-        "end_date": "1999-02-23",
+        "start_date": "2023-05-12",
+        "end_date": "2023-05-13",
         "all_turns": [
             {
                 "name": "round 1",
@@ -13,147 +13,41 @@
                         "last_name": "Ronaldo",
                         "first_name": "Cristiano",
                         "birth_date": "1985-02-05",
-                        "national_chess_ID": "b",
-                        "has_played_with": [
-                            "a",
-                            "d"
-                        ],
-                        "score": 0
-                    },
-                    {
-                        "last_name": "Mahrez",
-                        "first_name": "Riyad",
-                        "birth_date": "1991-02-21",
-                        "national_chess_ID": "d",
-                        "has_played_with": [
-                            "c",
-                            "b"
-                        ],
-                        "score": 1
-                    },
-                    {
-                        "last_name": "Messi",
-                        "first_name": "Leo",
-                        "birth_date": "1987-06-24",
-                        "national_chess_ID": "a",
-                        "has_played_with": [
-                            "b"
-                        ],
-                        "score": 1
-                    },
-                    {
-                        "last_name": "Drogba",
-                        "first_name": "Didier",
-                        "birth_date": "1978-03-11",
                         "national_chess_ID": "c",
                         "has_played_with": [
-                            "d"
-                        ],
-                        "score": 1
-                    }
-                ],
-                "number_of_games": 2,
-                "all_games": [
-                    {
-                        "player_one_info": {
-                            "player_info": {
-                                "last_name": "Messi",
-                                "first_name": "Leo",
-                                "birth_date": "1987-06-24",
-                                "national_chess_ID": "a",
-                                "has_played_with": [],
-                                "score": 0
-                            },
-                            "score": 1
-                        },
-                        "player_two_info": {
-                            "player_info": {
-                                "last_name": "Ronaldo",
-                                "first_name": "Cristiano",
-                                "birth_date": "1985-02-05",
-                                "national_chess_ID": "b",
-                                "has_played_with": [],
-                                "score": 0
-                            },
-                            "score": 0
-                        }
-                    },
-                    {
-                        "player_one_info": {
-                            "player_info": {
-                                "last_name": "Drogba",
-                                "first_name": "Didier",
-                                "birth_date": "1978-03-11",
-                                "national_chess_ID": "c",
-                                "has_played_with": [],
-                                "score": 0
-                            },
-                            "score": 1
-                        },
-                        "player_two_info": {
-                            "player_info": {
-                                "last_name": "Mahrez",
-                                "first_name": "Riyad",
-                                "birth_date": "1991-02-21",
-                                "national_chess_ID": "d",
-                                "has_played_with": [],
-                                "score": 0
-                            },
-                            "score": 0
-                        }
-                    }
-                ],
-                "start_date": "2023-05-07 12:26:28.864268",
-                "start_hour": "12:26:28",
-                "end_hour": "12:30:26",
-                "end_date": "2023-05-07"
-            },
-            {
-                "name": "round 2",
-                "players": [
-                    {
-                        "last_name": "Ronaldo",
-                        "first_name": "Cristiano",
-                        "birth_date": "1985-02-05",
-                        "national_chess_ID": "b",
-                        "has_played_with": [
-                            "a",
-                            "d"
-                        ],
-                        "score": 0
-                    },
-                    {
-                        "last_name": "Mahrez",
-                        "first_name": "Riyad",
-                        "birth_date": "1991-02-21",
-                        "national_chess_ID": "d",
-                        "has_played_with": [
-                            "c",
                             "b"
                         ],
                         "score": 1
                     },
                     {
-                        "last_name": "Messi",
-                        "first_name": "Leo",
-                        "birth_date": "1987-06-24",
-                        "national_chess_ID": "a",
+                        "last_name": "Mass\u00e9",
+                        "first_name": "Aur\u00e9lien",
+                        "birth_date": "1987-02-12",
+                        "national_chess_ID": "b",
                         "has_played_with": [
-                            "b",
                             "c"
                         ],
-                        "score": 1
+                        "score": 0
                     },
                     {
-                        "last_name": "Drogba",
-                        "first_name": "Didier",
-                        "birth_date": "1978-03-11",
-                        "national_chess_ID": "c",
+                        "last_name": "Safi",
+                        "first_name": "Nowfeel",
+                        "birth_date": "1999-02-23",
+                        "national_chess_ID": "a",
                         "has_played_with": [
-                            "d",
+                            "d"
+                        ],
+                        "score": 0
+                    },
+                    {
+                        "last_name": "Leo",
+                        "first_name": "Messi",
+                        "birth_date": "1987-06-24",
+                        "national_chess_ID": "d",
+                        "has_played_with": [
                             "a"
                         ],
-                        "score": 2
+                        "score": 1
                     }
                 ],
                 "number_of_games": 2,
@@ -164,63 +58,53 @@
                                 "last_name": "Ronaldo",
                                 "first_name": "Cristiano",
                                 "birth_date": "1985-02-05",
+                                "national_chess_ID": "c",
+                                "has_played_with": [],
+                                "score": 0
+                            },
+                            "score": 1
+                        },
+                        "player_two_info": {
+                            "player_info": {
+                                "last_name": "Mass\u00e9",
+                                "first_name": "Aur\u00e9lien",
+                                "birth_date": "1987-02-12",
                                 "national_chess_ID": "b",
-                                "has_played_with": [
-                                    "a",
-                                    "d"
-                                ],
+                                "has_played_with": [],
+                                "score": 0
+                            },
+                            "score": 0
+                        }
+                    },
+                    {
+                        "player_one_info": {
+                            "player_info": {
+                                "last_name": "Safi",
+                                "first_name": "Nowfeel",
+                                "birth_date": "1999-02-23",
+                                "national_chess_ID": "a",
+                                "has_played_with": [],
                                 "score": 0
                             },
                             "score": 0
                         },
                         "player_two_info": {
                             "player_info": {
-                                "last_name": "Mahrez",
-                                "first_name": "Riyad",
-                                "birth_date": "1991-02-21",
-                                "national_chess_ID": "d",
-                                "has_played_with": [
-                                    "c",
-                                    "b"
-                                ],
-                                "score": 1
-                            },
-                            "score": 1
-                        }
-                    },
-                    {
-                        "player_one_info": {
-                            "player_info": {
-                                "last_name": "Messi",
-                                "first_name": "Leo",
+                                "last_name": "Leo",
+                                "first_name": "Messi",
                                 "birth_date": "1987-06-24",
-                                "national_chess_ID": "a",
-                                "has_played_with": [
-                                    "b"
-                                ],
-                                "score": 1
-                            },
-                            "score": 0
-                        },
-                        "player_two_info": {
-                            "player_info": {
-                                "last_name": "Drogba",
-                                "first_name": "Didier",
-                                "birth_date": "1978-03-11",
-                                "national_chess_ID": "c",
-                                "has_played_with": [
-                                    "d"
-                                ],
-                                "score": 1
+                                "national_chess_ID": "d",
+                                "has_played_with": [],
+                                "score": 0
                             },
                             "score": 1
                         }
                     }
                 ],
-                "start_date": "2023-05-07 12:30:26.776096",
-                "start_hour": "12:30:26",
-                "end_hour": "12:33:12",
-                "end_date": "2023-05-07"
+                "start_date": "2023-05-12 08:44:05.442168",
+                "start_hour": "08:44:05",
+                "end_hour": "None",
+                "end_date": "None"
             }
         ],
         "registered_players": [
@@ -228,49 +112,37 @@
                 "last_name": "Ronaldo",
                 "first_name": "Cristiano",
                 "birth_date": "1985-02-05",
-                "national_chess_ID": "b",
-                "has_played_with": [
-                    "a",
-                    "d"
-                ],
+                "national_chess_ID": "c",
+                "has_played_with": [],
                 "score": 0
             },
             {
-                "last_name": "Mahrez",
-                "first_name": "Riyad",
-                "birth_date": "1991-02-21",
-                "national_chess_ID": "d",
-                "has_played_with": [
-                    "c",
-                    "b"
-                ],
-                "score": 1
+                "last_name": "Mass\u00e9",
+                "first_name": "Aur\u00e9lien",
+                "birth_date": "1987-02-12",
+                "national_chess_ID": "b",
+                "has_played_with": [],
+                "score": 0
             },
             {
-                "last_name": "Messi",
-                "first_name": "Leo",
-                "birth_date": "1987-06-24",
+                "last_name": "Safi",
+                "first_name": "Nowfeel",
+                "birth_date": "1999-02-23",
                 "national_chess_ID": "a",
-                "has_played_with": [
-                    "b",
-                    "c"
-                ],
-                "score": 1
+                "has_played_with": [],
+                "score": 0
             },
             {
-                "last_name": "Drogba",
-                "first_name": "Didier",
-                "birth_date": "1978-03-11",
-                "national_chess_ID": "c",
-                "has_played_with": [
-                    "d",
-                    "a"
-                ],
-                "score": 2
+                "last_name": "Leo",
+                "first_name": "Messi",
+                "birth_date": "1987-06-24",
+                "national_chess_ID": "d",
+                "has_played_with": [],
+                "score": 0
             }
         ],
         "description": "test",
-        "number_of_turns": 2,
-        "actual_turn": 2
+        "number_of_turns": 3,
+        "actual_turn": 1
     }
 ]
