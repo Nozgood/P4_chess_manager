@@ -77,7 +77,7 @@ class Player(Person):
         json_self = self.__json__()
         datas.append(json_self)
         with open(FILENAME, 'w') as file:
-            json.dump(datas, file, indent=4)
+            json.dump(datas, file, indent=4, ensure_ascii=False)
         print("player successfully registered in the database")
 
     @staticmethod

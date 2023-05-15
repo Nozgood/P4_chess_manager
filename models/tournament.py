@@ -52,16 +52,18 @@ class Tournament:
 
         joined_players = "\n".join(str_players)
 
-        return f"id:  {self.ID}\n " \
-               f"name:  {self.name}\n " \
-               f"place:  {self.place}\n " \
-               f"start date:  {self.start_date}\n " \
-               f"end date:  {self.end_date}\n " \
-               f"all turns:\n  {joined_turns}\n " \
-               f"registered players:\n  {joined_players}\n" \
-               f"description:  {self.description}\n " \
-               f"number of turns:  {self.number_of_turns} \n " \
-               f"actual turn:  {self.actual_turn}\n"
+        return (
+            f"id:  {self.ID}\n "
+            f"name:  {self.name}\n "
+            f"place:  {self.place}\n "
+            f"start date:  {self.start_date}\n "
+            f"end date:  {self.end_date}\n "
+            f"all turns:\n  {joined_turns}\n "
+            f"registered players:\n  {joined_players}\n"
+            f"description:  {self.description}\n "
+            f"number of turns:  {self.number_of_turns} \n "
+            f"actual turn:  {self.actual_turn}\n"
+        )
 
     def __json__(self, json_players, json_turns):
         """Json formatting"""
@@ -276,7 +278,7 @@ class Tournament:
         json_self = self.__json__(json_players, json_turns)
         datas.append(json_self)
         with open(FILENAME, 'w') as file:
-            json.dump(datas, file, indent=4)
+            json.dump(datas, file, indent=4, ensure_ascii=False)
         print(f"tournament created, id of the tournament: {self.ID}")
 
     @staticmethod
@@ -315,6 +317,6 @@ class Tournament:
             return None
         json_list_tournaments[index_of_tournament] = new_information
         with open(FILENAME, "w") as file:
-            json.dump(json_list_tournaments, file, indent=4)
+            json.dump(json_list_tournaments, file, indent=4, ensure_ascii=False)
         print("tournament successfully updated")
         return None

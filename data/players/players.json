@@ -1,17 +1,9 @@
 [
     {
-        "last_name": "Safi",
-        "first_name": "Nowfeel",
-        "birth_date": "1999-02-23",
+        "last_name": "Messi",
+        "first_name": "Léo",
+        "birth_date": "1987-04-26",
         "national_chess_ID": "a",
-        "has_played_with": [],
-        "score": 0
-    },
-    {
-        "last_name": "Mass\u00e9",
-        "first_name": "Aur\u00e9lien",
-        "birth_date": "1987-02-12",
-        "national_chess_ID": "b",
         "has_played_with": [],
         "score": 0
     },
@@ -19,14 +11,22 @@
         "last_name": "Ronaldo",
         "first_name": "Cristiano",
         "birth_date": "1985-02-05",
+        "national_chess_ID": "b",
+        "has_played_with": [],
+        "score": 0
+    },
+    {
+        "last_name": "Jr",
+        "first_name": "Neymar",
+        "birth_date": "1992-02-05",
         "national_chess_ID": "c",
         "has_played_with": [],
         "score": 0
     },
     {
-        "last_name": "Leo",
-        "first_name": "Messi",
-        "birth_date": "1987-06-24",
+        "last_name": "Safi",
+        "first_name": "Nowfeel",
+        "birth_date": "1999-02-23",
         "national_chess_ID": "d",
         "has_played_with": [],
         "score": 0

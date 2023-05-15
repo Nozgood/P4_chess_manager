@@ -1,3 +1,5 @@
+import datetime
+
 from models.tournament import Tournament
 from models.turn import Turn
 from models.game import Game
@@ -68,14 +70,13 @@ class Controller:
         tournament_number_of_turns = self.view.input_tournament_number_of_turns()
         tournament_name = self.view.input_tournament_name()
         tournament_place = self.view.input_tournament_place()
-        tournament_start_date = self.view.input_tournament_start_date()
-        tournament_end_date = self.view.input_tournament_end_date()
+        tournament_start_date = datetime.date.today()
         tournament_description = self.view.input_tournament_description()
         tournament = Tournament(
             name=tournament_name,
             place=tournament_place,
             start_date=tournament_start_date,
-            end_date=tournament_end_date,
+            end_date=None,
             description=tournament_description,
             registered_players=tournament_registered_players,
             number_of_turns=tournament_number_of_turns,
@@ -150,6 +151,7 @@ class Controller:
         tournament = self.get_tournament()
         tournament, status = self.check_tournament_status(tournament)
         if status is False:
+            tournament.end_date = datetime.date.today()
             json_players, json_turns = tournament.json_turns_and_players(
                 tournament.registered_players,
                 tournament.all_turns
