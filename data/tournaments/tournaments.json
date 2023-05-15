@@ -1,3 +1,330 @@
 [
-
+    {
+        "ID": "1",
+        "name": "test",
+        "place": "test",
+        "start_date": "2023-05-15",
+        "end_date": "2023-05-15",
+        "all_turns": [
+            {
+                "name": "round 1",
+                "players": [
+                    {
+                        "last_name": "Ronaldo",
+                        "first_name": "Cristiano",
+                        "birth_date": "1985-02-05",
+                        "national_chess_ID": "b",
+                        "has_played_with": [
+                            "c",
+                            "c"
+                        ],
+                        "score": 0
+                    },
+                    {
+                        "last_name": "Jr",
+                        "first_name": "Neymar",
+                        "birth_date": "1992-02-05",
+                        "national_chess_ID": "c",
+                        "has_played_with": [
+                            "b",
+                            "b"
+                        ],
+                        "score": 2
+                    }
+                ],
+                "number_of_games": 1,
+                "all_games": [
+                    {
+                        "player_one_info": {
+                            "player_info": {
+                                "last_name": "Jr",
+                                "first_name": "Neymar",
+                                "birth_date": "1992-02-05",
+                                "national_chess_ID": "c",
+                                "has_played_with": [],
+                                "score": 0
+                            },
+                            "score": 1
+                        },
+                        "player_two_info": {
+                            "player_info": {
+                                "last_name": "Ronaldo",
+                                "first_name": "Cristiano",
+                                "birth_date": "1985-02-05",
+                                "national_chess_ID": "b",
+                                "has_played_with": [],
+                                "score": 0
+                            },
+                            "score": 0
+                        }
+                    }
+                ],
+                "start_date": "2023-05-15 13:20:30.646766",
+                "start_hour": "13:20:30",
+                "end_hour": "13:20:35",
+                "end_date": "2023-05-15"
+            },
+            {
+                "name": "round 2",
+                "players": [
+                    {
+                        "last_name": "Ronaldo",
+                        "first_name": "Cristiano",
+                        "birth_date": "1985-02-05",
+                        "national_chess_ID": "b",
+                        "has_played_with": [
+                            "c",
+                            "c"
+                        ],
+                        "score": 0
+                    },
+                    {
+                        "last_name": "Jr",
+                        "first_name": "Neymar",
+                        "birth_date": "1992-02-05",
+                        "national_chess_ID": "c",
+                        "has_played_with": [
+                            "b",
+                            "b"
+                        ],
+                        "score": 2
+                    }
+                ],
+                "number_of_games": 1,
+                "all_games": [
+                    {
+                        "player_one_info": {
+                            "player_info": {
+                                "last_name": "Ronaldo",
+                                "first_name": "Cristiano",
+                                "birth_date": "1985-02-05",
+                                "national_chess_ID": "b",
+                                "has_played_with": [
+                                    "c",
+                                    "c"
+                                ],
+                                "score": 0
+                            },
+                            "score": 0
+                        },
+                        "player_two_info": {
+                            "player_info": {
+                                "last_name": "Jr",
+                                "first_name": "Neymar",
+                                "birth_date": "1992-02-05",
+                                "national_chess_ID": "c",
+                                "has_played_with": [
+                                    "b",
+                                    "b"
+                                ],
+                                "score": 2
+                            },
+                            "score": 1
+                        }
+                    }
+                ],
+                "start_date": "2023-05-15 13:20:35.133006",
+                "start_hour": "13:20:35",
+                "end_hour": "13:21:58",
+                "end_date": "2023-05-15"
+            }
+        ],
+        "registered_players": [
+            {
+                "last_name": "Ronaldo",
+                "first_name": "Cristiano",
+                "birth_date": "1985-02-05",
+                "national_chess_ID": "b",
+                "has_played_with": [
+                    "c",
+                    "c"
+                ],
+                "score": 0
+            },
+            {
+                "last_name": "Jr",
+                "first_name": "Neymar",
+                "birth_date": "1992-02-05",
+                "national_chess_ID": "c",
+                "has_played_with": [
+                    "b",
+                    "b"
+                ],
+                "score": 2
+            }
+        ],
+        "description": "test",
+        "number_of_turns": 2,
+        "actual_turn": 2
+    },
+    {
+        "ID": "2",
+        "name": "test",
+        "place": "test",
+        "start_date": "2023-05-15",
+        "end_date": "2023-05-15",
+        "all_turns": [
+            {
+                "name": "round 1",
+                "players": [
+                    {
+                        "last_name": "Jr",
+                        "first_name": "Neymar",
+                        "birth_date": "1992-02-05",
+                        "national_chess_ID": "c",
+                        "has_played_with": [
+                            "b",
+                            "b",
+                            "b"
+                        ],
+                        "score": 0
+                    },
+                    {
+                        "last_name": "Ronaldo",
+                        "first_name": "Cristiano",
+                        "birth_date": "1985-02-05",
+                        "national_chess_ID": "b",
+                        "has_played_with": [
+                            "c",
+                            "c",
+                            "c"
+                        ],
+                        "score": 1
+                    }
+                ],
+                "number_of_games": 1,
+                "all_games": [
+                    {
+                        "player_one_info": {
+                            "player_info": {
+                                "last_name": "Ronaldo",
+                                "first_name": "Cristiano",
+                                "birth_date": "1985-02-05",
+                                "national_chess_ID": "b",
+                                "has_played_with": [],
+                                "score": 0
+                            },
+                            "score": 1
+                        },
+                        "player_two_info": {
+                            "player_info": {
+                                "last_name": "Jr",
+                                "first_name": "Neymar",
+                                "birth_date": "1992-02-05",
+                                "national_chess_ID": "c",
+                                "has_played_with": [],
+                                "score": 0
+                            },
+                            "score": 0
+                        }
+                    }
+                ],
+                "start_date": "2023-05-15 13:22:15.403933",
+                "start_hour": "13:22:15",
+                "end_hour": "13:22:38",
+                "end_date": "2023-05-15"
+            },
+            {
+                "name": "round 2",
+                "players": [
+                    {
+                        "last_name": "Jr",
+                        "first_name": "Neymar",
+                        "birth_date": "1992-02-05",
+                        "national_chess_ID": "c",
+                        "has_played_with": [
+                            "b",
+                            "b",
+                            "b",
+                            "b"
+                        ],
+                        "score": 0
+                    },
+                    {
+                        "last_name": "Ronaldo",
+                        "first_name": "Cristiano",
+                        "birth_date": "1985-02-05",
+                        "national_chess_ID": "b",
+                        "has_played_with": [
+                            "c",
+                            "c",
+                            "c",
+                            "c"
+                        ],
+                        "score": 2
+                    }
+                ],
+                "number_of_games": 1,
+                "all_games": [
+                    {
+                        "player_one_info": {
+                            "player_info": {
+                                "last_name": "Jr",
+                                "first_name": "Neymar",
+                                "birth_date": "1992-02-05",
+                                "national_chess_ID": "c",
+                                "has_played_with": [
+                                    "b",
+                                    "b",
+                                    "b"
+                                ],
+                                "score": 0
+                            },
+                            "score": 0
+                        },
+                        "player_two_info": {
+                            "player_info": {
+                                "last_name": "Ronaldo",
+                                "first_name": "Cristiano",
+                                "birth_date": "1985-02-05",
+                                "national_chess_ID": "b",
+                                "has_played_with": [
+                                    "c",
+                                    "c",
+                                    "c"
+                                ],
+                                "score": 1
+                            },
+                            "score": 1
+                        }
+                    }
+                ],
+                "start_date": "2023-05-15 13:22:38.462147",
+                "start_hour": "13:22:38",
+                "end_hour": "13:23:14",
+                "end_date": "2023-05-15"
+            }
+        ],
+        "registered_players": [
+            {
+                "last_name": "Jr",
+                "first_name": "Neymar",
+                "birth_date": "1992-02-05",
+                "national_chess_ID": "c",
+                "has_played_with": [
+                    "b",
+                    "b",
+                    "b",
+                    "b"
+                ],
+                "score": 0
+            },
+            {
+                "last_name": "Ronaldo",
+                "first_name": "Cristiano",
+                "birth_date": "1985-02-05",
+                "national_chess_ID": "b",
+                "has_played_with": [
+                    "c",
+                    "c",
+                    "c",
+                    "c"
+                ],
+                "score": 2
+            }
+        ],
+        "description": "test",
+        "number_of_turns": 2,
+        "actual_turn": 2
+    }
 ]

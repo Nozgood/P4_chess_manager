@@ -402,6 +402,7 @@ class View:
                         f"{game.player_two_info.player.first_name} "
                         f"{game.player_two_info.player.last_name} - win \n"
                         f"3) Draw \n"
+                        f"4) Exit this tournament \n"
                     )
                 )
             except ValueError:

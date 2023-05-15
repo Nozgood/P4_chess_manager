@@ -163,42 +163,46 @@ class Controller:
 
         :return: None
         """
+        running = True
         tournament = self.get_tournament()
-        tournament, status = self.check_tournament_status(tournament)
-        if status is False:
-            tournament.end_date = datetime.date.today()
+        while running is True:
+            tournament, status = self.check_tournament_status(tournament)
+            if status is False:
+                tournament.end_date = datetime.date.today()
+                json_players, json_turns = tournament.json_turns_and_players(
+                    tournament.registered_players,
+                    tournament.all_turns
+                )
+                tournament.put(tournament.ID, json_players, json_turns)
+                tournament.sort_players_by_score()
+                player_best_score_index = len(tournament.registered_players) - 1
+                self.view.display_tournament_winner(tournament.registered_players[player_best_score_index])
+                return None
+            current_turn = self.get_current_turn(tournament)
+            current_game, index_of_game = Controller.get_current_game(current_turn)
+            self.view.display_tournament_turn(current_turn)
+            game_winner = self.view.input_game_winner(current_game, index_of_game + 1)
+            if game_winner == 1:
+                current_game.player_one_info.score += 1
+                Controller.update_player_info_in_turn(current_turn, current_game)
+            if game_winner == 2:
+                current_game.player_two_info.score += 1
+                Controller.update_player_info_in_turn(current_turn, current_game)
+            if game_winner == 3:
+                current_game.player_one_info.score += 0.5
+                current_game.player_two_info.score += 0.5
+            if game_winner == 4:
+                running = False
+                Controller.update_player_info_in_turn(current_turn, current_game)
+            self.view.display_game_winner(game_winner)
+            current_turn.all_games[index_of_game] = current_game
+            current_turn_index = Controller.find_turn_index_in_tournament(tournament, current_turn)
+            tournament.all_turns[current_turn_index] = current_turn
             json_players, json_turns = tournament.json_turns_and_players(
                 tournament.registered_players,
                 tournament.all_turns
             )
             tournament.put(tournament.ID, json_players, json_turns)
-            tournament.sort_players_by_score()
-            player_best_score_index = len(tournament.registered_players) - 1
-            self.view.display_tournament_winner(tournament.registered_players[player_best_score_index])
-            return None
-        current_turn = self.get_current_turn(tournament)
-        current_game, index_of_game = Controller.get_current_game(current_turn)
-        self.view.display_tournament_turn(current_turn)
-        game_winner = self.view.input_game_winner(current_game, index_of_game + 1)
-        if game_winner == 1:
-            current_game.player_one_info.score += 1
-            Controller.update_player_info_in_turn(current_turn, current_game)
-        if game_winner == 2:
-            current_game.player_two_info.score += 1
-            Controller.update_player_info_in_turn(current_turn, current_game)
-        if game_winner == 3:
-            current_game.player_one_info.score += 0.5
-            current_game.player_two_info.score += 0.5
-            Controller.update_player_info_in_turn(current_turn, current_game)
-        self.view.display_game_winner(game_winner)
-        current_turn.all_games[index_of_game] = current_game
-        current_turn_index = Controller.find_turn_index_in_tournament(tournament, current_turn)
-        tournament.all_turns[current_turn_index] = current_turn
-        json_players, json_turns = tournament.json_turns_and_players(
-            tournament.registered_players,
-            tournament.all_turns
-        )
-        tournament.put(tournament.ID, json_players, json_turns)
         return None
 
     @staticmethod
