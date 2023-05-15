@@ -215,9 +215,17 @@ class View:
         for player in players_in_db:
             print(f"({players_in_db.index(player)})player: {player}")
         print(f"({len(players_in_db)}) Add a new player in the database and register him / her")
-        int_player_choice = int(input(
-            "please enter the digit corresponding to the player you want to register to the tournament: \n"
-        ))
+        int_player_choice = None
+        while int_player_choice is None:
+            try:
+                int_player_choice = int(input(
+                    "please enter the digit corresponding to the player you want to register to the tournament: \n"
+                ))
+                if int_player_choice < 0 or int_player_choice > len(players_in_db):
+                    print("the digit you enter is not valid, try again")
+                    int_player_choice = None
+            except ValueError:
+                print(ERR_NOT_NUMERIC_VALUE)
         if int_player_choice == len(players_in_db):
             return int_player_choice
         return players_in_db[int_player_choice]
