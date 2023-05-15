@@ -2,7 +2,6 @@ from models.turn import Turn
 from models.game import Game
 from models.player import Player
 
-import shortuuid
 from datetime import datetime
 import json
 import random
