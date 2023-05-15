@@ -27,7 +27,8 @@ class Tournament:
             ID=None,
     ):
         if ID is None:
-            ID = shortuuid.uuid()
+            all_tournaments = Tournament.list()
+            ID = len(all_tournaments) + 1
         self.ID = ID
         self.name = name
         self.place = place
