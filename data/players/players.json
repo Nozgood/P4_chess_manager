@@ -30,5 +30,21 @@
         "national_chess_ID": "d",
         "has_played_with": [],
         "score": 0
+    },
+    {
+        "last_name": "safe",
+        "first_name": "nozgood",
+        "birth_date": "1999-02-23",
+        "national_chess_ID": "e",
+        "has_played_with": [],
+        "score": 0
+    },
+    {
+        "last_name": "Chatelain",
+        "first_name": "Flora",
+        "birth_date": "1999-01-28",
+        "national_chess_ID": "f",
+        "has_played_with": [],
+        "score": 0
     }
 ]

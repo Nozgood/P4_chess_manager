@@ -214,9 +214,12 @@ class View:
         """
         for player in players_in_db:
             print(f"({players_in_db.index(player)})player: {player}")
+        print(f"({len(players_in_db)}) Add a new player in the database and register him / her")
         int_player_choice = int(input(
             "please enter the digit corresponding to the player you want to register to the tournament: \n"
         ))
+        if int_player_choice == len(players_in_db):
+            return int_player_choice
         return players_in_db[int_player_choice]
 
     @staticmethod

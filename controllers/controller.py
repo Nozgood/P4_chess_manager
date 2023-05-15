@@ -109,7 +109,15 @@ class Controller:
         return slice_of_players
 
     def get_tournament_player(self, players: list):
+        """
+        send to the view all players in the db and try to find the player in this list by the input send by the view
+        :param players: a list contains all the players in the databse (not formatted, string format)
+        :return: an object type Player found by his / her national chess id
+        """
         json_player = self.view.input_tournament_register_player(players)
+        if json_player == len(players):
+            new_player = self.register_player_in_db()
+            return new_player
         json_player_id = json_player["national_chess_ID"]
         formatted_player = Player.get(json_player_id)
         return formatted_player
