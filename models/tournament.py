@@ -141,20 +141,6 @@ class Tournament:
 
         return formatted_tournaments
 
-    def register_new_player(self, player: Player):
-        """Registers a new player to the tournament
-
-        :param player: the player who will be registered at the tournament
-        :return:
-        """
-        for registered_player in self.registered_players:
-            if player.national_chess_ID == registered_player.national_chess_ID:
-                print("This player has been already registered")
-                return None
-        player.in_tournament = True
-        player.tournament_id = self.ID
-        self.registered_players.append(player)
-
     def blend_players_first_turn(self):
         """Blend players for the first turn of the tournament"""
         blended_players = self.registered_players
@@ -167,18 +153,8 @@ class Tournament:
         sorted_players.sort(key=Player.display_score, reverse=False)
         return sorted_players
 
-    def find_player(self, nationalChessID: str):
-        """
-        Find a player in the tournament entries by the chessID. It's a helper
-
-        :param nationalChessID: the chessID of the player we want to find
-        """
-        for player in self.registered_players:
-            if player.national_chess_ID == nationalChessID:
-                return player
-        print("we didn't find a player with this national chess ID in this tournaments")
-
-    def create_games(self, players: list[Player]):
+    @staticmethod
+    def create_games(players: list[Player]):
         """ Create all the games for a turn in the tournament
 
         :param players: a list of sorted or blended players
@@ -201,7 +177,7 @@ class Tournament:
         start_date = datetime.today()
         start_hour = datetime.now().strftime("%H:%M:%S")
         self.check_players_opponents(players)
-        all_games = self.create_games(players)
+        all_games = Tournament.create_games(players)
         turn = Turn(turn_name, players, len(all_games), all_games, start_date, start_hour)
         self.all_turns.append(turn)
         return turn
@@ -219,11 +195,12 @@ class Tournament:
         for i in range(0, len(players), 2):
             if i == (len(players)-2):
                 break
-            if self.find_player_opponent(players[i], players[i+1].national_chess_ID) is True:
+            if Tournament.find_player_opponent(players[i], players[i+1].national_chess_ID) is True:
                 players[i+1], players[i+2] = players[i+2], players[i+1]
         return players
 
-    def find_player_opponent(self, player: Player, national_chess_id: str):
+    @staticmethod
+    def find_player_opponent(player: Player, national_chess_id: str):
         """
         check if two players have already played against
 
@@ -238,7 +215,6 @@ class Tournament:
 
     def update_actual_turn(self):
         """Update the number of the turn we are playing"""
-        print("update actual turn: " + str(self.actual_turn) + str(self.number_of_turns))
         if self.actual_turn == self.number_of_turns:
             print("it was the last turn of the tournament")
             return False

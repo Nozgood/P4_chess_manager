@@ -12,28 +12,6 @@ class Controller:
     def __init__(self, view: View):
         self.view = view
 
-    @staticmethod
-    def json_player(player: Player):
-        """
-        Accepts an object type Player and format this object to json format
-
-        :param player: an object of type Player
-        :return: json format of the player
-        """
-        json_player = player.__json__()
-        return json_player
-
-    @staticmethod
-    def json_turn(turn: Turn):
-        """
-        Accepts an object type Turn and format this object to json format
-
-        :param turn: an object of type turn
-        :return: json format of the turn
-        """
-        json_turn = turn.__json__()
-        return json_turn
-
     def run(self):
         """
         run manages the logical running of the main menu of the program, it returns error if there is during the
@@ -49,12 +27,8 @@ class Controller:
             if menu_selection == 3:
                 self.resume_tournament()
             if menu_selection == 4:
-                self.display_tournament()
-            if menu_selection == 5:
-                self.display_player()
-            if menu_selection == 6:
                 self.report_management()
-            if menu_selection == 7:
+            if menu_selection == 5:
                 print("See You ASAP...")
                 running = False
 
@@ -111,6 +85,7 @@ class Controller:
     def get_tournament_player(self, players: list):
         """
         send to the view all players in the db and try to find the player in this list by the input send by the view
+
         :param players: a list contains all the players in the databse (not formatted, string format)
         :return: an object type Player found by his / her national chess id
         """
@@ -121,17 +96,6 @@ class Controller:
         json_player_id = json_player["national_chess_ID"]
         formatted_player = Player.get(json_player_id)
         return formatted_player
-
-    def get_player(self):
-        """
-        Takes the id of the player we want to get in the database, returns him / her
-        :return: an object of type Player if found, None otherwise
-        """
-        player = None
-        while player is None:
-            player_id = self.view.input_tournament_register_player()
-            player = Player.get(player_id)
-        return player
 
     def register_player_in_db(self):
         """
@@ -204,18 +168,6 @@ class Controller:
             )
             tournament.put(tournament.ID, json_players, json_turns)
         return None
-
-    @staticmethod
-    def find_tournament_winner(tournament: Tournament):
-        """
-        accepts an object type Tournament and find the registered player that has the biggest score
-
-        :param tournament: the tournament in which we want to find the winner
-        :return: the player with the biggest score
-        """
-        registered_players = tournament.registered_players
-        player_max_score = max(registered_players, key=lambda objet: objet.score)
-        return player_max_score
 
     @staticmethod
     def update_player_info_in_turn(turn: Turn, game: Game):
@@ -308,28 +260,6 @@ class Controller:
         print("we didn't find a turn with this name")
         return None
 
-    @staticmethod
-    def find_player_index_in_tournament(tournament: Tournament, current_player: Player):
-        """
-        accepts an object type tournament and an object type Player and will try to find the index of the received
-        player in the tournament registered players
-
-        :param tournament: object type Tournament
-        :param current_player: object type Player
-        :return: the index of the player in the tournament if there is, None otherwise
-        """
-        for player in tournament.registered_players:
-            if current_player.national_chess_ID == player.national_chess_ID:
-                index_of_player = tournament.registered_players.index(player)
-                return index_of_player
-        print("this player is not registered to the tournament")
-        return None
-
-    def display_tournament(self):
-        """ Finds the tournament in the database and displays the information """
-        tournament = self.get_tournament()
-        print(f"tournament informations: \n {tournament}")
-
     def get_tournament(self):
         """
         Takes the id of the tournament we want to get, try to find it in the database and returns the result
@@ -341,14 +271,6 @@ class Controller:
             return None
         tournament.ID = tournament_id
         return tournament
-
-    def display_player(self):
-        """ Find the player we want to display in the database and display him/her information on the console """
-        player = self.get_player()
-        if player is None:
-            print("we didnt find a player with this national chess id in our database")
-            return None
-        print(f"player information:\n{player}")
 
     def report_management(self):
         """ manages the logical running of the report menu of the program """
