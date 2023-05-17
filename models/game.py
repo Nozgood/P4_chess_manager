@@ -50,20 +50,3 @@ class Game:
             "player_one_info": json_player_one,
             "player_two_info": json_player_two,
         }
-
-    def give_win_point(self, player: Player):
-        """
-        Add a point to the score of the winner player
-
-        :param player: take one player (the winner) as argument
-        """
-        if self.player_one_info.player.national_chess_ID == player.national_chess_ID:
-            self.player_one_info.score += 1
-            return None
-        self.player_two_info.score += 1
-        return None
-
-    def give_equal_point(self):
-        """ Give 0.5 points to both players that play the game. It used when players are tied"""
-        self.player_one_info.score += 0.5
-        self.player_one_info.score += 0.5

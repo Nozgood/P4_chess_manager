@@ -23,10 +23,8 @@ class View:
         print("(1) Register a player in the database")
         print("(2) Create a new tournament")
         print("(3) Resume a tournament \n")
-        print("(4) Display a Tournament information (need it id)")
-        print("(5) Display a Player information (need him national chess id)")
-        print("(6) Generate a report \n")
-        print("(7) Exit the application \n")
+        print("(4) Generate a report \n")
+        print("(5) Exit the application \n")
         try:
             digit_menu_selection = int(
                 input("please insert the digit corresponding to the action you want to make: \n"))
@@ -170,32 +168,6 @@ class View:
                 print(ERR_NOT_NUMERIC_VALUE)
 
     @staticmethod
-    def input_tournament_start_date():
-        """
-        Saves the 3 inputs for a starting date (day, month year) create a datetime object and returns it
-
-        :return: the datetime object that has been created
-        """
-        start_day = View.input_tournament_start_day()
-        start_month = View.input_tournament_start_month()
-        start_year = View.input_tournament_start_year()
-        start_date = datetime.date(start_year, start_month, start_day)
-        return start_date
-
-    @staticmethod
-    def input_tournament_end_date():
-        """
-        Saves the 3 inputs for a starting date (day, month year) create a datetime object and returns it
-
-        :return: the datetime object that has been created
-        """
-        end_day = View.input_tournament_end_day()
-        end_month = View.input_tournament_end_month()
-        end_year = View.input_tournament_end_year()
-        end_date = datetime.date(end_year, end_month, end_day)
-        return end_date
-
-    @staticmethod
     def input_tournament_description():
         """
         Saves the input from the user for the description of a created tournament
@@ -213,7 +185,7 @@ class View:
         :return: the input
         """
         for player in players_in_db:
-            print(f"({players_in_db.index(player)})player: {player}")
+            print(f"({players_in_db.index(player)}) player: {player}")
         print(f"({len(players_in_db)}) Add a new player in the database and register him / her")
         int_player_choice = None
         while int_player_choice is None:

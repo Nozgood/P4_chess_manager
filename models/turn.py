@@ -107,7 +107,6 @@ class Turn:
         :param player_one_id: the chessID of the player we want to update
         :param player_two_id: the chess id we want to put in the array of the player_one (player_one_id)
         """
-        print("hello it's me")
         player_index = self.find_player_index(player_one_id)
         self.players[player_index].has_played_with.append(player_two_id)
 
