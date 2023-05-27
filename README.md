@@ -16,7 +16,7 @@
 ## Launching 
 
 1. Open a terminal and go to the project's root directory
-2. Launch the application by running the following command: `python main.py`
+2. Launch the application by running the following command: `python3 main.py`
 3. Enjoy ! :D
 
 ## Flask8
@@ -47,7 +47,7 @@ If you want to generate a flask8 report, please follow this commands:
 ## Lancement
 
 1.  Ouvrez un terminal et allez dans le répertoire racine du projet.
-2.  Lancez l'application en exécutant la commande suivante : `python main.py`
+2.  Lancez l'application en exécutant la commande suivante : `python3 main.py`
 3.  Amusez-vous bien ! :D
 
 ## Flask8
